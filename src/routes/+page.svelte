@@ -3,7 +3,7 @@
 	import type { MarqueeckOptions } from '$lib/Marqueeck.svelte';
 
 	const options: MarqueeckOptions = {
-		speed: 125,
+		speed: 75,
 		direction: 'left',
 		onHover: 'customSpeed',
 		hoverSpeed: 15,
