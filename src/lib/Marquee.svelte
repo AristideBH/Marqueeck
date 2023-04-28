@@ -23,7 +23,9 @@
 	import { quadInOut } from 'svelte/easing';
 	import { MarqueeTranslate } from '$lib/MarqueeTranslate.ts';
 
-	export let wrapperClasses = '', // Define classes for the container
+	// External arguments
+	export let options: MarqueeOptions = {},
+		wrapperClasses = '', // Define classes for the container
 		contentClasses = '', // Define classes for the repeating wrapper
 		elementClasses = ''; // Define classes for the repeated content
 
@@ -37,42 +39,39 @@
 		gradualStopDuration: 1250,
 		minSpeed: 10
 	};
-	export let options: MarqueeOptions = {};
 
 	// Merge options with defaultOptions
 	const mergedOptions = { ...defaultOptions, ...options };
-
-	const speed = mergedOptions.speed;
 	const direction: 'left' | 'right' = mergedOptions.direction as 'left' | 'right';
-	const gap = mergedOptions.gap;
-	const paddingWrapper = mergedOptions.paddingWrapper;
-	const debug = mergedOptions.debug;
-	const onHover = mergedOptions.onHover;
-	const gradualStopDuration = mergedOptions.gradualStopDuration;
-	const minSpeed = mergedOptions.minSpeed;
 
 	// Define a tweened value for the speed, can be passed to MarqueeTranslate() as currentSpeed
-	const tweenedSpeed = tweened(speed, {
-		duration: gradualStopDuration,
+	const tweenedSpeed = tweened(mergedOptions.speed, {
+		duration: mergedOptions.gradualStopDuration,
 		easing: quadInOut
 	});
-	const noHoverState = onHover === 'stop' || onHover === 'slow' ? true : false;
+
+	// Define a Boolean for onHover options state
+	const noHoverState =
+		mergedOptions.onHover === 'stop' || mergedOptions.onHover === 'slow' ? true : false;
+
+	// Define a Boolean for mouse state
 	const isMouseIn = writable(false);
 
 	let wrapperWidth: number, wrapperHeight: number, contentWidth: number, contentHeight: number;
 	let extendContentby = 3; // Number of elements to add to always overflow the parent
 
-	$: wrapperInnerWidth = wrapperWidth - 2 * paddingWrapper; // Get the width of the wrapper without it paddings
-	$: contentNumber = Math.ceil(wrapperInnerWidth / (contentWidth + gap)) + extendContentby; // Define the number of elements needed to fill the wrapper
+	// Get the width of the wrapper without it paddings
+	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.paddingWrapper;
+	// Define the number of elements needed to fill the wrapper
+	$: contentNumber =
+		Math.ceil(wrapperInnerWidth / (contentWidth + mergedOptions.gap)) + extendContentby;
 
 	const handleMouseEnter = async () => {
 		if (noHoverState) {
-			if (debug) {
-				console.log('❇️');
-			}
+			if (mergedOptions.debug) console.log('❇️');
 			isMouseIn.set(true);
-			if (onHover === 'slow') {
-				await tweenedSpeed.update(() => minSpeed);
+			if (mergedOptions.onHover === 'slow') {
+				await tweenedSpeed.update(() => mergedOptions.minSpeed);
 			} else {
 				await tweenedSpeed.update(() => 0);
 			}
@@ -81,17 +80,13 @@
 
 	const handleMouseLeave = async () => {
 		if (noHoverState) {
-			if (debug) {
-				console.log('⛔');
-			}
+			if (mergedOptions.debug) console.log('⛔');
 			isMouseIn.set(false);
-			await tweenedSpeed.update(() => speed);
+			await tweenedSpeed.update(() => mergedOptions.speed);
 		}
 	};
 
-	if (debug) {
-		console.clear();
-	}
+	if (mergedOptions.debug) console.clear();
 </script>
 
 <!--/////////////////////////////////////////////////////////////////
@@ -99,8 +94,8 @@
 //////////////////////////////////////////////////////////////////-->
 <div
 	class="marquee-wrapper {wrapperClasses}"
-	style:gap="{gap}px"
-	style:padding-inline="{paddingWrapper}px"
+	style:gap="{mergedOptions.gap}px"
+	style:padding-inline="{mergedOptions.paddingWrapper}px"
 	bind:offsetWidth={wrapperWidth}
 	bind:offsetHeight={wrapperHeight}
 	on:mouseenter={handleMouseEnter}
@@ -109,8 +104,8 @@
 	<div
 		class="marquee-content {contentClasses}"
 		use:MarqueeTranslate={{
-			direction,
-			distance: contentWidth + gap,
+			direction: direction,
+			distance: contentWidth + mergedOptions.gap,
 			currentSpeed: () => $tweenedSpeed,
 			isMouseIn: () => $isMouseIn
 		}}
@@ -121,7 +116,7 @@
 		</span>
 
 		<!-- Repeating content the necessary times -->
-		{#each { length: contentNumber } as item}
+		{#each { length: contentNumber } as item, i}
 			<span class={elementClasses}>
 				<slot>Marquee</slot>
 			</span>
@@ -131,7 +126,7 @@
 
 {#if options.debug}
 	<code class="debug">
-		<div>direction: {direction}</div>
+		<div>direction: {mergedOptions.direction}</div>
 		<div>wrapperInnerWidth: {wrapperInnerWidth} px</div>
 		<div>contentWidth: {contentWidth} px</div>
 		<div>contentNumber: {contentNumber} elements</div>
