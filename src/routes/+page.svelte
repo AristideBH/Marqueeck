@@ -3,24 +3,19 @@
 	import type { MarqueeOptions } from '$lib/Marquee.svelte';
 
 	const options: MarqueeOptions = {
-		speed: 75,
-		direction: 'left',
+		speed: 350,
+		direction: 'right',
 		gap: 20,
 		paddingWrapper: 10,
 		debug: true,
 		onHover: 'stop',
-		gradualStopDuration: 1000
+		gradualStopDuration: 1500,
+		minSpeed: 10
 	};
 </script>
 
-<Marquee {options} elementClasses="white">
-	<span>abcdefghijklmnopqrstuvwxyz</span>
+<Marquee options={{ direction: 'right', debug: true }} />
+<Marquee {options}>SPEED</Marquee>
+<Marquee options={{ debug: true }}>
+	<a href="/">ABCDEFGHIJKLMNOPQRSTUVWXYZ</a>
 </Marquee>
-
-<style>
-	span {
-		text-transform: uppercase;
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-			Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	}
-</style>
