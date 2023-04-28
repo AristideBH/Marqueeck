@@ -1,6 +1,7 @@
 {
-	"name": "@arisbh/marquee-sk",
+	"name": "@arisbh/marqueeck",
 	"version": "0.0.1",
+	"description": "Marqueeck is a custom and customizable marquee component for Sveltekit",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",

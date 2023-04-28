@@ -1,12 +1,12 @@
 
-type MarqueeTranslateOptions = {
+type MarqueeckTranslateOptions = {
     direction: 'left' | 'right';
     distance: number;
     currentSpeed: () => number;
     isMouseIn: () => boolean;
 };
 
-export function MarqueeTranslate(node: HTMLElement, options: MarqueeTranslateOptions): void {
+export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslateOptions): void {
     const { direction, distance } = options;
     let currentX = -2 * distance, totalMoved = distance;
     const distanceToMove = Math.abs(distance);
@@ -17,7 +17,6 @@ export function MarqueeTranslate(node: HTMLElement, options: MarqueeTranslateOpt
         } else {
             currentX = 1 * (totalMoved % distance) - distance;
         }
-        // console.log("💫");
     };
 
     function update() {
