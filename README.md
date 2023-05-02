@@ -36,15 +36,23 @@ Once you've installed the module, use it in your project.
 <Marqueeck>[Your element]</Marqueeck>
 ```
 
-### Passing options
+## Options
 
 You can either pass your options directly in the `<Marqueeck/>` component :
 
 ```svelte
-<Marqueeck options={{ speed: 75, direction: 'left' }}>[Your element]</Marqueeck>
+<Marqueeck
+	options={{
+		speed: 75,
+		direction: 'left',
+		onHover: 'none'
+	}}
+>
+	[Your element]
+</Marqueeck>
 ```
 
-or by constructing a MarqueeckOptions object, using the provided `MarqueeckOptions` type :
+or by constructing a `MarqueeckOptions` object, using the provided `MarqueeckOptions` type :
 
 ```svelte
 <script lang="ts">
@@ -61,6 +69,23 @@ or by constructing a MarqueeckOptions object, using the provided `MarqueeckOptio
 </script>
 
 <Marqueeck {options}>[Your element]</Marqueeck>
+```
+
+### Default options
+
+```js
+const options = {
+	speed: 50, // in px/sec
+	direction: 'left', // either 'left' or 'right'
+	gap: 20, // in px
+	paddingX_Wrapper: 20, // in px
+	paddingY_Wrapper: 16, // in px
+	debug: false,
+	onHover: 'customSpeed', // either 'none', 'stop' or 'customSpeed'
+	gradualHoverDuration: 1250, // in ms
+	hoverSpeed: 10, // in px/sec
+	stickyPosition: 'start' // either 'start' or 'end'
+};
 ```
 
 ### Optional sticky element
@@ -92,26 +117,9 @@ You can pass a custom function to run when you hover on the Marqueeck element.
 <Marqueeck on:hover={{ handleHover }}>[Your element]</Marqueeck>
 ```
 
-### Default options
-
-```js
-const options = {
-	speed: 50, // in px/sec
-	direction: 'left', // either 'left' or 'right'
-	gap: 20, // in px
-	paddingX_Wrapper: 20, // in px
-	paddingY_Wrapper: 16, // in px
-	debug: false,
-	onHover: 'customSpeed', // either 'none', 'stop' or 'customSpeed'
-	gradualHoverDuration: 1250, // in ms
-	hoverSpeed: 10, // in px/sec
-	stickyPosition: 'start' // either 'start' or 'end'
-};
-```
-
 ## Styling
 
-Marqueeck comes with minimal style integration, giving you the flexibility to use your preffered classes and styling paradigm.
+Marqueeck comes with minimal style integration, giving you the flexibility to use your prefered classes and styling paradigm.
 
 ### Slotted Component
 
@@ -129,4 +137,52 @@ You can directly pass CSS variables to Marqueeck like so :
 
 Marqueeck accepts `contentClasses`, `elementClasses` and `stickElClasses` as strings to style the different aspect of the components.
 
-Define your own custom class or use utility framework like [Tailwind](https://tailwindcss.com/) or [MasterCSS](https://css.master.co)
+Define your own custom class or use utility framework like [Tailwind](https://tailwindcss.com/) or [MasterCSS](https://css.master.co).
+
+You can find the default styles below :
+
+```css
+.marqueeck-wrapper {
+	width: 100%;
+	background: var(--bg-color, lightslategrey);
+	color: var(--text-color, white);
+	display: flex;
+	flex-flow: row;
+	flex-wrap: nowrap;
+	overflow-x: hidden;
+	position: relative;
+}
+
+.marqueeck-content {
+	display: inherit;
+	flex-flow: inherit;
+	flex-wrap: inherit;
+	gap: inherit;
+	position: inherit;
+}
+
+span.marqueeck-child {
+	display: inline;
+	width: max-content;
+}
+
+.marqueeck-sticky {
+	position: absolute;
+	background: var(--bg-color, lightslategrey);
+	width: -moz-fit-content;
+	width: fit-content;
+}
+
+code.marqueeck-log {
+	display: flex;
+	flex-flow: column wrap;
+	border: 1px solid lightslategrey;
+	padding: 4px;
+	margin-block: 8px;
+	margin-inline: 8px;
+	border-radius: 4px;
+	width: -moz-fit-content;
+	width: fit-content;
+	font-size: 13px;
+}
+```
