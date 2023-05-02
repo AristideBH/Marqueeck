@@ -1,6 +1,6 @@
 {
 	"name": "@arisbh/marqueeck",
-	"version": "0.0.19",
+	"version": "0.0.20",
 	"description": "Marqueeck is a custom and customizable marquee component for Sveltekit",
 	"keywords": [
 		"sveltekit",
