@@ -29,13 +29,13 @@
 			name: 'paddingX_Wrapper',
 			type: 'number',
 			value: 20,
-			description: 'The horizontal padding of the container'
+			description: 'The horizontal padding of the container (px)'
 		},
 		{
 			name: 'paddingY_Wrapper',
 			type: 'number',
 			value: 16,
-			description: 'The vertical padding of the container'
+			description: 'The vertical padding of the container (px)'
 		},
 		{
 			name: 'onHover',
@@ -86,17 +86,19 @@ pnpm i @arisbh/marqueeck`}
 <TabGroup>
 	<Tab bind:group={tabSet} name="tab1" value={0}>Usage</Tab>
 
-	<Tab bind:group={tabSet} name="tab2" value={1}>Props</Tab>
+	<Tab bind:group={tabSet} name="tab2" value={1}>Options</Tab>
 
 	<Tab bind:group={tabSet} name="tab3" value={2}>Styling</Tab>
+
 	<Tab bind:group={tabSet} name="tab4" value={3}>Event</Tab>
 	<!-- Tab Panels --->
+
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
 			<div class="space-y-2">
 				<h2 class="mb-2">Basic usage</h2>
 
-				<Marqueeck>
+				<Marqueeck options={{ debug: true }}>
 					<span>Hello Marqueeck</span>
 				</Marqueeck>
 
