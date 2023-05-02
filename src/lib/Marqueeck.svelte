@@ -53,8 +53,10 @@
 
 			if (direction === 'left') {
 				node.style.transform = `translateX(${-currentX}px)`;
+				console.log('scrollleft');
 			} else {
 				node.style.transform = `translateX(${currentX}px)`;
+				console.log('scrollright');
 			}
 
 			// Keep track of total distance moved
