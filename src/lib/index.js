@@ -4,4 +4,4 @@ import { MarqueeckTranslate } from "$lib/MarqueeckTranslate.js"
 
 // export { Marqueeck, MarqueeckTranslate }
 export default Marqueeck
-// export { MarqueeckTranslate }
+export { MarqueeckTranslate }

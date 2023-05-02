@@ -8,11 +8,12 @@ type MarqueeckTranslateOptions = {
 
 export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslateOptions): void {
     const { direction, distance } = options;
-    let currentX = -2 * distance, totalMoved = distance;
+    let currentX = -2 * distance,
+        totalMoved = distance;
     const distanceToMove = Math.abs(distance);
 
     const loopTranslate = () => {
-        if (direction === "left") {
+        if (direction === 'left') {
             currentX = 1 * (totalMoved % distance);
         } else {
             currentX = 1 * (totalMoved % distance) - distance;
@@ -21,12 +22,14 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
 
     function update() {
         const currentSpeed = options.currentSpeed();
-        currentX += direction === "left" ? -currentSpeed / 60 : currentSpeed / 60;
+        currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
 
-        if (direction === "left") {
+        if (direction === 'left') {
             node.style.transform = `translateX(${-currentX}px)`;
+            console.log('scrollleft');
         } else {
             node.style.transform = `translateX(${currentX}px)`;
+            console.log('scrollright');
         }
 
         // Keep track of total distance moved
