@@ -76,7 +76,7 @@
 	<title>Marqueeck - A custom marquee component for Sveltekit</title>
 </svelte:head>
 
-<h1 class="py-4">Marqueeck demo</h1>
+<h1 class="pt-12 pb-4">Marqueeck demo</h1>
 <CodeBlock
 	language="bash"
 	code={`
