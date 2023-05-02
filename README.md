@@ -14,7 +14,7 @@ Features :
 
 [Demo](https://marqueeck.vercel.app)
 
-[Github page](https://github.com/AristideBH/Sveltekit-Marquee-Component/tree/master)
+[Github page](https://github.com/AristideBH/Marqueeck)
 
 ## Installation
 
