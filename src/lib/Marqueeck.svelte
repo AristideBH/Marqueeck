@@ -86,7 +86,7 @@
 	// Event listeners handlers
 	const handleMouseEnter = async () => {
 		if (noHoverState) {
-			if (mergedOptions.debug) console.log('❇️');
+			if (mergedOptions.debug) console.log('▶️ hover in');
 			isMouseIn.set(true);
 			await displatchHoverEvent();
 			if (mergedOptions.onHover === 'customSpeed') {
@@ -99,7 +99,7 @@
 
 	const handleMouseLeave = async () => {
 		if (noHoverState) {
-			if (mergedOptions.debug) console.log('⛔');
+			if (mergedOptions.debug) console.log('⏸️ hover out');
 			isMouseIn.set(false);
 			await tweenedSpeed.update(() => mergedOptions.speed);
 		}
