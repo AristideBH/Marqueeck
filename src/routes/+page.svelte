@@ -139,28 +139,28 @@ pnpm i @arisbh/marqueeck`}
 			<div class="space-y-2 mt-6">
 				<!-- ! Tab Panel --->
 				<h3 class="mb-2">Slotted component</h3>
-				<pre> [to document...]</pre>
+				<code> [to document...]</code>
 				<h3 class="mb-2">Styling via CSS Variables</h3>
 				<p>
 					You can directly pass CSS variables for the background and text colors, using any CSS
 					authorized colors (name, hex, hsl, etc...) :
 				</p>
-				<Marqueeck --bg-color={'red'} --text-color={'#000'}>
+				<Marqueeck --bg-color={'rgb(164, 217, 205)'} --text-color={'rgb(var(--color-primary-500))'}>
 					<span>Hello Marqueeck</span>
 				</Marqueeck>
 				<CodeBlock
 					language="svelte"
 					code={`
-<Marqueeck --bg-color={'red'} --text-color={"#000"}>
+<Marqueeck --bg-color={'rgb(164, 217, 205)'} --text-color={"rgb(var(--color-primary-700))"}>
 	<span>Hello Marqueeck</span>
 </Marqueeck>`}
 				/>
 				<h3 class="mb-2">Using custom classes</h3>
-				<pre> [to document...]</pre>
+				<code> [to document...]</code>
 			</div>
 		{:else if tabSet === 4}
 			<!-- ! Tab Panel --->
-			<pre>[to document...]</pre>
+			<code>[to document...]</code>
 		{/if}
 	</svelte:fragment>
 </TabGroup>
