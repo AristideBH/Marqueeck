@@ -12,9 +12,9 @@ Features :
 - Debug mode
 - Fully typed with TypeScript
 
-> [Demo](marqueeck.vercel.app)
+[Demo](marqueeck.vercel.app)
 
-> [Github page](https://github.com/AristideBH/Sveltekit-Marquee-Component/tree/master)
+[Github page](https://github.com/AristideBH/Sveltekit-Marquee-Component/tree/master)
 
 ## Installation
 
@@ -41,14 +41,10 @@ Once you've installed the module, use it in your project.
 You can either pass your options directly in the `<Marqueeck/>` component :
 
 ```svelte
-<script>
-	import Marqueeck from '@arisbh/marqueeck';
-</script>
-
 <Marqueeck options={{ speed: 75, direction: 'left' }}>[Your element]</Marqueeck>
 ```
 
-or by constructing a MarqueeckOptions object, using provided Type :
+or by constructing a MarqueeckOptions object, using the provided `MarqueeckOptions` type :
 
 ```svelte
 <script lang="ts">
@@ -112,3 +108,25 @@ const options = {
 	stickyPosition: 'start' // either 'start' or 'end'
 };
 ```
+
+## Styling
+
+Marqueeck comes with minimal style integration, giving you the flexibility to use your preffered classes and styling paradigm.
+
+### Slotted Component
+
+You have full control over the element you're slotting inside Marqueeck, therefore you can style it as you want.
+
+### CSS Variables
+
+You can directly pass CSS variables to Marqueeck like so :
+
+```svelte
+<Marqueeck --bg-color={'red'} --text-color={'#fff'} />
+```
+
+### Custom classes
+
+Marqueeck accepts `contentClasses`, `elementClasses` and `stickElClasses` as strings to style the different aspect of the components.
+
+Define your own custom class or use utility framework like [Tailwind](https://tailwindcss.com/) or [MasterCSS](https://css.master.co)

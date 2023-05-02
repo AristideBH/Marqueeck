@@ -23,7 +23,7 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
     function update() {
         const currentSpeed = options.currentSpeed();
         currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
-        console.log(node);
+        console.log(currentX);
 
         if (direction === 'left') {
             node.style.transform = `translateX(${-currentX}px)`;
