@@ -74,7 +74,7 @@
 	<title>Marqueeck - A custom marquee component for Sveltekit</title>
 </svelte:head>
 
-<h1 class="pt-12 pb-4"><strong>Marqueeck demo</strong></h1>
+<h1 class="pt-12 pb-4"><strong>Marqueeck </strong></h1>
 <CodeBlock language="install" code={`npm i @arisbh/marqueeck`} />
 
 <TabGroup>
