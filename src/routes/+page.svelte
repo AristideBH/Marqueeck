@@ -1,11 +1,9 @@
 <script lang="ts">
 	import Marqueeck from '@arisbh/marqueeck';
-	import { CodeBlock } from '@skeletonlabs/skeleton';
-	import { TabGroup, Tab } from '@skeletonlabs/skeleton';
-	import { Table } from '@skeletonlabs/skeleton';
+	import { CodeBlock, TabGroup, Tab, Table, tableMapperValues } from '@skeletonlabs/skeleton';
 	import type { TableSource } from '@skeletonlabs/skeleton';
-	import { tableMapperValues } from '@skeletonlabs/skeleton';
 	let tabSet: number = 0;
+
 	const sourceData = [
 		{
 			name: 'speed',
@@ -77,21 +75,15 @@
 </svelte:head>
 
 <h1 class="pt-12 pb-4"><strong>Marqueeck demo</strong></h1>
-<CodeBlock
-	language="install"
-	code={`
-pnpm i @arisbh/marqueeck`}
-/>
+<CodeBlock language="install" code={`npm i @arisbh/marqueeck`} />
 
 <TabGroup>
 	<Tab bind:group={tabSet} name="tab1" value={0}>Usage</Tab>
 
 	<Tab bind:group={tabSet} name="tab2" value={1}>Options</Tab>
-	<Tab bind:group={tabSet} name="tab2" value={2}>Props</Tab>
+	<Tab bind:group={tabSet} name="tab3" value={2}>Styling</Tab>
 
-	<Tab bind:group={tabSet} name="tab3" value={3}>Styling</Tab>
-
-	<Tab bind:group={tabSet} name="tab4" value={4}>Event</Tab>
+	<Tab bind:group={tabSet} name="tab4" value={3}>Event</Tab>
 	<!-- Tab Panels --->
 
 	<svelte:fragment slot="panel">
@@ -120,7 +112,7 @@ pnpm i @arisbh/marqueeck`}
 
 				<Marqueeck options={{ stickyPosition: 'end' }}>
 					<span>Hello Marqueeck</span>
-					<svelte:fragment slot="sticky">Sticky element</svelte:fragment>
+					<svelte:fragment slot="sticky"><strong>Sticky element</strong></svelte:fragment>
 				</Marqueeck>
 
 				<CodeBlock
@@ -128,37 +120,48 @@ pnpm i @arisbh/marqueeck`}
 					code={`
 <Marqueeck options={{ stickyPosition: 'end' }}>
 	<span>Hello Marqueeck</span>
-	<svelte:fragment slot="sticky">Sticky element</svelte:fragment>
+	<svelte:fragment slot="sticky">
+		<strong>Sticky element</strong>
+	</svelte:fragment>
 </Marqueeck>`}
 				/>
 			</div>
 		{:else if tabSet === 1}
 			<!-- ! Tab Panel --->
 			<Table source={tableSimple} />
-		{:else if tabSet === 3}
-			<div class="space-y-2 mt-6">
+		{:else if tabSet === 2}
+			<div class="space-y-6 mt-6">
 				<!-- ! Tab Panel --->
-				<h3 class="mb-2">Slotted component</h3>
-				<code> [to document...]</code>
-				<h3 class="mb-2">Styling via CSS Variables</h3>
-				<p>
-					You can directly pass CSS variables for the background and text colors, using any CSS
-					authorized colors (name, hex, hsl, etc...) :
-				</p>
-				<Marqueeck --bg-color={'rgb(164, 217, 205)'} --text-color={'rgb(var(--color-primary-500))'}>
-					<span>Hello Marqueeck</span>
-				</Marqueeck>
-				<CodeBlock
-					language="svelte"
-					code={`
+				<div class="space-y-2">
+					<h3 class="mb-2">Slotted component</h3>
+					<code> [to document...]</code>
+				</div>
+				<div class="space-y-2">
+					<h3 class="mb-2">Styling via CSS Variables</h3>
+					<p>
+						You can directly pass CSS variables for the background and text colors, using any CSS
+						authorized colors (name, hex, hsl, etc...) :
+					</p>
+					<Marqueeck
+						--bg-color={'rgb(164, 217, 205)'}
+						--text-color={'rgb(var(--color-primary-700))'}
+					>
+						<span>Hello Marqueeck</span>
+					</Marqueeck>
+					<CodeBlock
+						language="svelte"
+						code={`
 <Marqueeck --bg-color={'rgb(164, 217, 205)'} --text-color={"rgb(var(--color-primary-700))"}>
 	<span>Hello Marqueeck</span>
 </Marqueeck>`}
-				/>
-				<h3 class="mb-2">Using custom classes</h3>
-				<code> [to document...]</code>
+					/>
+				</div>
+				<div class="space-y-2">
+					<h3 class="mb-2">Using classes props</h3>
+					<code> [to document...]</code>
+				</div>
 			</div>
-		{:else if tabSet === 4}
+		{:else if tabSet === 3}
 			<!-- ! Tab Panel --->
 			<code>[to document...]</code>
 		{/if}
