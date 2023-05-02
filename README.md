@@ -12,55 +12,45 @@ Features :
 - Debug mode
 - Fully typed with TypeScript
 
+> [Demo](marqueeck.vercel.app)
+
+> [Github page](https://github.com/AristideBH/Sveltekit-Marquee-Component/tree/master)
+
 ## Installation
 
-Install the module from npm
-
-```bash
-npm i @arisbh/marqueeck
-```
-
+`npm i @arisbh/marqueeck`
 or
-
-```bash
-pnpm i @arisbh/marqueeck
-```
-
+`pnpm i @arisbh/marqueeck`
 or
-
-```bash
-yarn i @arisbh/marqueeck
-```
+`yarn i @arisbh/marqueeck`
 
 ## Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed the module, use it in your project.
 
-```html
+```svelte
 <script>
 	import Marqueeck from '@arisbh/marqueeck';
 </script>
 
-<Marqueeck> [Your element] </Marqueeck>
+<Marqueeck>[Your element]</Marqueeck>
 ```
 
 ### Passing options
 
 You can either pass your options directly in the `<Marqueeck/>` component :
 
-```html
+```svelte
 <script>
 	import Marqueeck from '@arisbh/marqueeck';
 </script>
 
-<Marqueeck options={{ speed: 75, direction: 'left' }} >
-    [Your element]
-</Marqueeck>
+<Marqueeck options={{ speed: 75, direction: 'left' }}>[Your element]</Marqueeck>
 ```
 
 or by constructing a MarqueeckOptions object, using provided Type :
 
-```html
+```svelte
 <script lang="ts">
 	import Marqueeck from '@arisbh/marqueeck';
 	import type { MarqueeckOptions } from '@arisbh/marqueeck';
@@ -74,21 +64,37 @@ or by constructing a MarqueeckOptions object, using provided Type :
 	};
 </script>
 
-<Marqueeck {options}> [Your element] </Marqueeck>
+<Marqueeck {options}>[Your element]</Marqueeck>
 ```
 
 ### Optional sticky element
 
 You can using the reserved `svelte:fragment` to place a sticky element inside the component.
 
-```html
+```svelte
 <Marqueeck {options}>
 	[Your element]
-	<svelte:fragment slot="sticky"> [Sticky element] </svelte:fragment>
+	<svelte:fragment slot="sticky">[Sticky element]</svelte:fragment>
 </Marqueeck>
 ```
 
-Edit the placement of the sticky element with `stickyPosition` inside options.
+Edit the placement of the sticky element with `stickyPosition` key.
+
+### Hover directive
+
+You can pass a custom function to run when you hover on the Marqueeck element.
+
+```svelte
+<script>
+	import Marqueeck from '@arisbh/marqueeck';
+
+	const handleHover = () => {
+		//do what you want
+	};
+</script>
+
+<Marqueeck on:hover={{ handleHover }}>[Your element]</Marqueeck>
+```
 
 ### Default options
 
