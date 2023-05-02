@@ -111,7 +111,7 @@ pnpm i @arisbh/marqueeck`}
 				/>
 			</div>
 
-			<div class="space-y-2">
+			<div class="space-y-2 mt-6">
 				<h2 class="mb-2">Advanced configuration</h2>
 
 				<h3 class="mb-2">Sticky element</h3>
