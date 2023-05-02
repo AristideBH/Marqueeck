@@ -67,6 +67,6 @@
 		"registry": "https://registry.npmjs.org/"
 	},
 	"dependencies": {
-		"@arisbh/marqueeck": "^0.0.23"
+		"@arisbh/marqueeck": "latest"
 	}
 }
