@@ -44,6 +44,7 @@
 
 	let wrapperWidth: number, wrapperHeight: number, contentWidth: number, contentHeight: number;
 	let extendContentby = 3; // Number of elements to add to always overflow the parent
+	let DefaultPlaceHolder = 'Marqueeck component';
 
 	const defaultOptions = {
 		speed: 50,
@@ -135,13 +136,13 @@
 			bind:offsetWidth={contentWidth}
 			bind:offsetHeight={contentHeight}
 		>
-			<slot>Marqueeck</slot>
+			<slot>{DefaultPlaceHolder}</slot>
 		</span>
 
 		<!-- Repeating content the necessary times -->
 		{#each { length: contentNumber } as item, i}
-			<span transition:fade class="Marqueeck-child {elementClasses ?? ''}">
-				<slot>Marqueeck</slot>
+			<span transition:fade class="marqueeck-child {elementClasses ?? ''}">
+				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}
 	</div>

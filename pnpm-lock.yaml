@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+dependencies:
+  '@arisbh/marqueeck':
+    specifier: ^0.0.21
+    version: 0.0.21(svelte@3.58.0)
+
 devDependencies:
   '@sveltejs/adapter-auto':
     specifier: ^2.0.1
@@ -51,6 +56,14 @@ devDependencies:
     version: 4.3.4
 
 packages:
+
+  /@arisbh/marqueeck@0.0.21(svelte@3.58.0):
+    resolution: {integrity: sha512-mHc+513r0Am870ukpNXogZwii0kqzAbiSjCzpnGwm7OF7z4HLKenBVyfMspT+cNUgc6GChXK+tifSryH+cdB6w==}
+    peerDependencies:
+      svelte: ^3.54.0
+    dependencies:
+      svelte: 3.58.0
+    dev: false
 
   /@esbuild/android-arm64@0.17.18:
     resolution: {integrity: sha512-/iq0aK0eeHgSC3z55ucMAHO05OIqmQehiGay8eP5l/5l+iEr4EIbh4/MI8xD9qRFjqzgkc0JkX0LculNC9mXBw==}
@@ -1776,7 +1789,6 @@ packages:
   /svelte@3.58.0:
     resolution: {integrity: sha512-brIBNNB76mXFmU/Kerm4wFnkskBbluBDCjx/8TcpYRb298Yh2dztS2kQ6bhtjMcvUhd5ynClfwpz5h2gnzdQ1A==}
     engines: {node: '>= 8'}
-    dev: true
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
