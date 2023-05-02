@@ -87,10 +87,11 @@ pnpm i @arisbh/marqueeck`}
 	<Tab bind:group={tabSet} name="tab1" value={0}>Usage</Tab>
 
 	<Tab bind:group={tabSet} name="tab2" value={1}>Options</Tab>
+	<Tab bind:group={tabSet} name="tab2" value={2}>Props</Tab>
 
-	<Tab bind:group={tabSet} name="tab3" value={2}>Styling</Tab>
+	<Tab bind:group={tabSet} name="tab3" value={3}>Styling</Tab>
 
-	<Tab bind:group={tabSet} name="tab4" value={3}>Event</Tab>
+	<Tab bind:group={tabSet} name="tab4" value={4}>Event</Tab>
 	<!-- Tab Panels --->
 
 	<svelte:fragment slot="panel">
@@ -134,16 +135,19 @@ pnpm i @arisbh/marqueeck`}
 		{:else if tabSet === 1}
 			<!-- ! Tab Panel --->
 			<Table source={tableSimple} />
-		{:else if tabSet === 2}
-			<div class="space-y-8 mt-6">
+		{:else if tabSet === 3}
+			<div class="space-y-2 mt-6">
 				<!-- ! Tab Panel --->
 				<h3 class="mb-2">Slotted component</h3>
 				<pre> [to document...]</pre>
 				<h3 class="mb-2">Styling via CSS Variables</h3>
+				<p>
+					You can directly pass CSS variables for the background and text colors, using any CSS
+					authorized colors (name, hex, hsl, etc...) :
+				</p>
 				<Marqueeck --bg-color={'red'} --text-color={'#000'}>
 					<span>Hello Marqueeck</span>
 				</Marqueeck>
-
 				<CodeBlock
 					language="svelte"
 					code={`
@@ -154,7 +158,7 @@ pnpm i @arisbh/marqueeck`}
 				<h3 class="mb-2">Using custom classes</h3>
 				<pre> [to document...]</pre>
 			</div>
-		{:else if tabSet === 3}
+		{:else if tabSet === 4}
 			<!-- ! Tab Panel --->
 			<pre>[to document...]</pre>
 		{/if}
