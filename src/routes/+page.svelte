@@ -78,7 +78,7 @@
 
 <h1 class="pt-12 pb-4"><strong>Marqueeck demo</strong></h1>
 <CodeBlock
-	language="bash"
+	language="install"
 	code={`
 pnpm i @arisbh/marqueeck`}
 />
@@ -135,25 +135,28 @@ pnpm i @arisbh/marqueeck`}
 			<!-- ! Tab Panel --->
 			<Table source={tableSimple} />
 		{:else if tabSet === 2}
-			<!-- ! Tab Panel --->
-			<h3 class="mb-2">Slotted component</h3>
+			<div class="space-y-8 mt-6">
+				<!-- ! Tab Panel --->
+				<h3 class="mb-2">Slotted component</h3>
+				<pre> [to document...]</pre>
+				<h3 class="mb-2">Styling via CSS Variables</h3>
+				<Marqueeck --bg-color={'red'} --text-color={'#000'}>
+					<span>Hello Marqueeck</span>
+				</Marqueeck>
 
-			<h3 class="mb-2">Styling via CSS Variables</h3>
-			<Marqueeck --bg-color={'red'} --text-color={'#000'}>
-				<span>Hello Marqueeck</span>
-			</Marqueeck>
-
-			<CodeBlock
-				language="svelte"
-				code={`
+				<CodeBlock
+					language="svelte"
+					code={`
 <Marqueeck --bg-color={'red'} --text-color={"#000"}>
 	<span>Hello Marqueeck</span>
 </Marqueeck>`}
-			/>
-			<h3 class="mb-2">Using custom classes</h3>
+				/>
+				<h3 class="mb-2">Using custom classes</h3>
+				<pre> [to document...]</pre>
+			</div>
 		{:else if tabSet === 3}
 			<!-- ! Tab Panel --->
-			<pre>event</pre>
+			<pre>[to document...]</pre>
 		{/if}
 	</svelte:fragment>
 </TabGroup>
