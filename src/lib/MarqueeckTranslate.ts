@@ -26,10 +26,10 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
 
         if (direction === 'left') {
             node.style.transform = `translateX(${-currentX}px)`;
-            console.log('scrollleft');
+            // console.log('scrollleft');
         } else {
             node.style.transform = `translateX(${currentX}px)`;
-            console.log('scrollright');
+            // console.log('scrollright');
         }
 
         // Keep track of total distance moved
