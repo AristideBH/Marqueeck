@@ -1,58 +1,89 @@
-# create-svelte
+# Marqueeck
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Marqueeck is a custom marquee component for Sveltekit, speed-eased, style-free and without dependencies.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+Features :
 
-## Creating a project
+- Auto-repeat slotted elements (reactive to screen width)
+- Custom speed, directions, gap, paddings, etc..
+- Completely unstyled (come with your own classes)
+- Custom hover interactions (stop, custom speed and event forwarding)
+- Optional sticky element (start/end)
+- Debug mode
+- Fully typed with TypeScript
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Installation
+
+Install the module from npm
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm i @arisbh/marqueeck
 ```
 
-## Developing
+or
+
+```bash
+pnpm i @arisbh/marqueeck
+```
+
+or
+
+```bash
+yarn i @arisbh/marqueeck
+```
+
+## Usage
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-```bash
-npm run dev
+```html
+<script>
+	import Marqueeck from '@arisbh/marqueeck';
+</script>
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+<Marqueeck> [Your element] </Marqueeck>
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+### Passing options
 
-## Building
+You can either pass your options directly in the `<Marqueeck/>` component :
 
-To build your library:
+```html
+<script>
+	import Marqueeck from '@arisbh/marqueeck';
+</script>
 
-```bash
-npm run package
+<Marqueeck options={{ speed: 75, direction: 'left' }} >
+    [Your element]
+</Marqueeck>
 ```
 
-To create a production version of your showcase app:
+or by constructing a MarqueeckOptions object, using provided Type :
 
-```bash
-npm run build
+```html
+<script lang="ts">
+	import Marqueeck from '@arisbh/marqueeck';
+	import type { MarqueeckOptions } from '@arisbh/marqueeck';
+
+	const options: MarqueeckOptions = {
+		speed: 75,
+		direction: 'left',
+		onHover: 'customSpeed',
+		hoverSpeed: 15,
+		gradualHoverDuration: 750
+	};
+</script>
+
+<Marqueeck {options}> [Your element] </Marqueeck>
 ```
 
-You can preview the production build with `npm run preview`.
+### Optional sticky element
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+You can using the reserved `svelte:fragment` to place a sticky element inside the component.
 
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+```html
+<Marqueeck {options}>
+	[Your element]
+	<svelte:fragment slot="sticky"> [Sticky element] </svelte:fragment>
+</Marqueeck>
 ```
