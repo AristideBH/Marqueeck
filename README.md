@@ -87,3 +87,22 @@ You can using the reserved `svelte:fragment` to place a sticky element inside th
 	<svelte:fragment slot="sticky"> [Sticky element] </svelte:fragment>
 </Marqueeck>
 ```
+
+Edit the placement of the sticky element with `stickyPosition` inside options.
+
+### Default options
+
+```js
+const options = {
+	speed: 50, // in px/sec
+	direction: 'left', // either 'left' or 'right'
+	gap: 20, // in px
+	paddingX_Wrapper: 20, // in px
+	paddingY_Wrapper: 16, // in px
+	debug: false,
+	onHover: 'customSpeed', // either 'none', 'stop' or 'customSpeed'
+	gradualHoverDuration: 1250, // in ms
+	hoverSpeed: 10, // in px/sec
+	stickyPosition: 'start' // either 'start' or 'end'
+};
+```
