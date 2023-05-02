@@ -2,6 +2,6 @@
 import Marqueeck from "$lib/Marqueeck.svelte"
 import { MarqueeckTranslate } from "$lib/MarqueeckTranslate.js"
 
-export { Marqueeck, MarqueeckTranslate }
-// export default Marqueeck
+// export { Marqueeck, MarqueeckTranslate }
+export default Marqueeck
 // export { MarqueeckTranslate }
