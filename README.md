@@ -4,15 +4,15 @@ Marqueeck is a custom marquee component for Sveltekit, speed-eased, style-free a
 
 Features :
 
-- Auto-repeat slotted elements (reactive to screen width)
-- Custom speed, directions, gap, paddings, etc..
-- Completely unstyled (come with your own classes)
-- Custom hover interactions (stop, custom speed and event forwarding)
-- Optional sticky element (start/end)
-- Debug mode
-- Fully typed with TypeScript
+- ♾️ Auto-repeat slotted elements (reactive to screen's width)
+- 🎛️ Custom speed, directions, gap, paddings, etc..
+- 🧶 Minimum styling (come with your own classes)
+- 🖱️ Custom hover interactions (stop, custom speed and event forwarding)
+- 📍 Optional sticky element (start/end)
+- 🐞 Debug mode
+- ✅ Fully typed with TypeScript
 
-[Demo](marqueeck.vercel.app)
+[Demo](https://marqueeck.vercel.app)
 
 [Github page](https://github.com/AristideBH/Sveltekit-Marquee-Component/tree/master)
 
