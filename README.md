@@ -46,6 +46,7 @@ You can either pass your options directly in the `<Marqueeck/>` component :
 		speed: 75,
 		direction: 'left',
 		onHover: 'none'
+		// ...
 	}}
 >
 	[Your element]
@@ -55,16 +56,14 @@ You can either pass your options directly in the `<Marqueeck/>` component :
 or by constructing a `MarqueeckOptions` object, using the provided `MarqueeckOptions` type :
 
 ```svelte
-<script lang="ts">
+<script>
 	import Marqueeck from '@arisbh/marqueeck';
-	import type { MarqueeckOptions } from '@arisbh/marqueeck';
 
-	const options: MarqueeckOptions = {
+	const options = {
 		speed: 75,
 		direction: 'left',
-		onHover: 'customSpeed',
-		hoverSpeed: 15,
-		gradualHoverDuration: 750
+		onHover: 'customSpeed'
+		// ...
 	};
 </script>
 
@@ -72,6 +71,8 @@ or by constructing a `MarqueeckOptions` object, using the provided `MarqueeckOpt
 ```
 
 ### Default options
+
+> If you don't pass any options to the Marqueeck element, it will use the following options.
 
 ```js
 const options = {
@@ -90,7 +91,9 @@ const options = {
 
 ### Optional sticky element
 
-You can using the reserved `svelte:fragment` to place a sticky element inside the component.
+You can use the reserved `svelte:fragment` to place a sticky element inside the component.
+
+Customize its placement with the `stickyPosition` key inside options.
 
 ```svelte
 <Marqueeck {options}>
@@ -98,8 +101,6 @@ You can using the reserved `svelte:fragment` to place a sticky element inside th
 	<svelte:fragment slot="sticky">[Sticky element]</svelte:fragment>
 </Marqueeck>
 ```
-
-Edit the placement of the sticky element with `stickyPosition` key.
 
 ### Hover directive
 
@@ -119,7 +120,7 @@ You can pass a custom function to run when you hover on the Marqueeck element.
 
 ## Styling
 
-Marqueeck comes with minimal style integration, giving you the flexibility to use your prefered classes and styling paradigm.
+> Marqueeck comes with minimal style integration, giving you the flexibility to use your prefered classes and styling paradigm.
 
 ### Slotted Component
 
@@ -127,7 +128,7 @@ You have full control over the element you're slotting inside Marqueeck, therefo
 
 ### CSS Variables
 
-You can directly pass CSS variables to Marqueeck like so :
+You can directly pass CSS variables for the background and text colors, using any CSS authorized colors (name, hex, hsl, etc...) :
 
 ```svelte
 <Marqueeck --bg-color={'red'} --text-color={'#fff'} />
