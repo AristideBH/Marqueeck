@@ -24,7 +24,7 @@
 	import { tweened } from 'svelte/motion';
 	import { quadInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
+	import { MarqueeckTranslate } from './MarqueeckTranslate.js';
 	import { createEventDispatcher } from 'svelte';
 
 	// Initialize custom hover event
