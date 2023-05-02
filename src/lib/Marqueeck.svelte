@@ -161,7 +161,7 @@
 
 {#if options.debug}
 	<code class="marqueeck-log">
-		<span>direction: {mergedOptions.direction}</span>
+		<!-- <span>direction: {mergedOptions.direction}</span> -->
 		<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
 		<span>contentWidth: {contentWidth} px</span>
 		<span>contentNumber: {contentNumber} elements</span>

@@ -95,18 +95,19 @@ pnpm i @arisbh/marqueeck`}
 
 	<svelte:fragment slot="panel">
 		{#if tabSet === 0}
+			<!-- ! Tab Panel --->
 			<div class="space-y-2">
 				<h2 class="mb-2">Basic usage</h2>
 
-				<Marqueeck options={{ debug: true }}>
+				<Marqueeck>
 					<span>Hello Marqueeck</span>
 				</Marqueeck>
 
 				<CodeBlock
 					language="svelte"
 					code={`
-	<Marqueeck>
-		<span>Hello Marqueeck</span>
+<Marqueeck>
+	<span>Hello Marqueeck</span>
 </Marqueeck>`}
 				/>
 			</div>
@@ -124,15 +125,17 @@ pnpm i @arisbh/marqueeck`}
 				<CodeBlock
 					language="svelte"
 					code={`
-	<Marqueeck options={{ stickyPosition: 'end' }}>
-		<span>Hello Marqueeck</span>
-		<svelte:fragment slot="sticky">Sticky element</svelte:fragment>
+<Marqueeck options={{ stickyPosition: 'end' }}>
+	<span>Hello Marqueeck</span>
+	<svelte:fragment slot="sticky">Sticky element</svelte:fragment>
 </Marqueeck>`}
 				/>
 			</div>
 		{:else if tabSet === 1}
+			<!-- ! Tab Panel --->
 			<Table source={tableSimple} />
 		{:else if tabSet === 2}
+			<!-- ! Tab Panel --->
 			<h3 class="mb-2">Slotted component</h3>
 
 			<h3 class="mb-2">Styling via CSS Variables</h3>
@@ -143,11 +146,14 @@ pnpm i @arisbh/marqueeck`}
 			<CodeBlock
 				language="svelte"
 				code={`
-		<Marqueeck --bg-color={'red'} --text-color={"#000"}>
-			<span>Hello Marqueeck</span>
+<Marqueeck --bg-color={'red'} --text-color={"#000"}>
+	<span>Hello Marqueeck</span>
 </Marqueeck>`}
 			/>
 			<h3 class="mb-2">Using custom classes</h3>
+		{:else if tabSet === 3}
+			<!-- ! Tab Panel --->
+			<pre>event</pre>
 		{/if}
 	</svelte:fragment>
 </TabGroup>
