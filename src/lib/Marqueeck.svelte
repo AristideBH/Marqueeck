@@ -29,7 +29,7 @@
 
 	// Initialize custom hover event
 	const dispatch = createEventDispatcher();
-	const displatchHoverEvent = async () => {
+	const dispatchHoverEvent = async () => {
 		const data = {
 			movingDistance: contentWidth + mergedOptions.gap
 		};
@@ -88,7 +88,7 @@
 		if (noHoverState) {
 			if (mergedOptions.debug) console.log('▶️ hover in');
 			isMouseIn.set(true);
-			await displatchHoverEvent();
+			await dispatchHoverEvent();
 			if (mergedOptions.onHover === 'customSpeed') {
 				await tweenedSpeed.update(() => mergedOptions.hoverSpeed);
 			} else {
@@ -119,6 +119,8 @@
 	bind:offsetHeight={wrapperHeight}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
+	on:click
+	
 >
 	<div
 		class="marqueeck-ribbon {ribbonClasses ?? ''}"
