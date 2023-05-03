@@ -4,6 +4,10 @@
 	import type { TableSource } from '@skeletonlabs/skeleton';
 	let tabSet: number = 0;
 
+	const handleHover = () => {
+		console.log('🖱️: Mouse is in Marqueeck !');
+	};
+
 	const sourceData = [
 		{
 			name: 'speed',
@@ -276,7 +280,20 @@
 			</div>
 		{:else if tabSet === 3}
 			<!-- ! Tab Panel - EVENTS --->
-			<code>[to document...]</code>
+			<h3>OnHover</h3>
+			<Marqueeck on:hover={handleHover}>Check your console when hovering !</Marqueeck>
+			<CodeBlock
+				language="svelte"
+				code={`
+<script>
+	const handleHover = () => {
+		//do what you want
+	};
+</script>
+
+<Marqueeck on:hover={{ handleHover }}>[Your element]</Marqueeck>
+			`}
+			/>
 		{/if}
 	</svelte:fragment>
 </TabGroup>
