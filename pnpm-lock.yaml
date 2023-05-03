@@ -4,6 +4,12 @@ dependencies:
   '@arisbh/marqueeck':
     specifier: latest
     version: 0.0.27(svelte@3.58.0)
+  highlight.js:
+    specifier: ^11.8.0
+    version: 11.8.0
+  highlightjs-svelte:
+    specifier: ^1.0.6
+    version: 1.0.6
 
 devDependencies:
   '@skeletonlabs/skeleton':
@@ -1257,6 +1263,15 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
+
+  /highlight.js@11.8.0:
+    resolution: {integrity: sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==}
+    engines: {node: '>=12.0.0'}
+    dev: false
+
+  /highlightjs-svelte@1.0.6:
+    resolution: {integrity: sha512-aXuBPz8df3sOXg90q8rRcBLyxIR8ozPU39a6tJ2rpJUjjd9brRIr55aC0IccW4gsPhQxZ+B3rFugdXsg9/ckDw==}
+    dev: false
 
   /ignore-walk@5.0.1:
     resolution: {integrity: sha512-yemi4pMf51WKT7khInJqAvsIGzoqYXblnsz0ql8tM+yi1EKYTY1evX4NAbJrLL/Aanr2HyZeluqU+Oi7MGHokw==}

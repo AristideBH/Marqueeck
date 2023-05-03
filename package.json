@@ -73,6 +73,8 @@
 		"registry": "https://registry.npmjs.org/"
 	},
 	"dependencies": {
-		"@arisbh/marqueeck": "latest"
+		"@arisbh/marqueeck": "latest",
+		"highlight.js": "^11.8.0",
+		"highlightjs-svelte": "^1.0.6"
 	}
 }

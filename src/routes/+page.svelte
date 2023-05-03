@@ -79,7 +79,7 @@
 </svelte:head>
 
 <!-- INSTALL COMMAND -->
-<CodeBlock language="install" code={`npm i @arisbh/marqueeck`} />
+<CodeBlock language="bash" code={`npm i @arisbh/marqueeck`} />
 
 <TabGroup regionPanel="space-y-8 pb-8" regionList="bg-surface-50 sticky top-0 z-40">
 	<Tab bind:group={tabSet} name="tab1" value={0}>Usage</Tab>
@@ -97,7 +97,7 @@
 				<Marqueeck>Hello Marqueeck</Marqueeck>
 
 				<CodeBlock
-					language="svelte"
+					language="html"
 					code={`
 <script>
 	import Marqueeck from '@arisbh/marqueeck';
@@ -131,7 +131,7 @@
 				</Marqueeck>
 
 				<CodeBlock
-					language="svelte"
+					language="html"
 					code={`
 <Marqueeck >
 	Marqueeck
@@ -154,7 +154,7 @@
 			<div class="space-y-2">
 				<p>You can either pass your options directly in the <code>Marqueeck</code> component :</p>
 				<CodeBlock
-					language="svelte"
+					language="html"
 					code={`
 <Marqueeck options={{ direction: 'right' }}>
 	[Your element]
@@ -166,7 +166,7 @@
 					<code>MarqueeckOptions</code> type :
 				</p>
 				<CodeBlock
-					language="svelte"
+					language="html"
 					code={`
 <script>
 	const options = {
@@ -215,7 +215,7 @@
 				</Marqueeck>
 
 				<CodeBlock
-					language="svelte"
+					language="html"
 					code={`
 <Marqueeck options={{ gap: 56, paddingY_Wrapper: 25 }}>
 	<div class="flex gap-2 items-end leading-4">
@@ -242,7 +242,7 @@
 					CSS Variables
 				</Marqueeck>
 				<CodeBlock
-					language="svelte"
+					language="html"
 					code={`
 <Marqueeck 
 	--bg-color={'rgb(164, 217, 205)'} 
@@ -280,11 +280,12 @@
 			</div>
 		{:else if tabSet === 3}
 			<!-- ! Tab Panel - EVENTS --->
-			<h3>OnHover</h3>
-			<Marqueeck on:hover={handleHover}>Check your console when hovering !</Marqueeck>
-			<CodeBlock
-				language="svelte"
-				code={`
+			<div class="space-y-2">
+				<h3>OnHover</h3>
+				<Marqueeck on:hover={handleHover}>Check your console when hovering !</Marqueeck>
+				<CodeBlock
+					language="html"
+					code={`
 <script>
 	const handleHover = () => {
 		//do what you want
@@ -292,8 +293,9 @@
 </script>
 
 <Marqueeck on:hover={{ handleHover }}>[Your element]</Marqueeck>
-			`}
-			/>
+				`}
+				/>
+			</div>
 		{/if}
 	</svelte:fragment>
 </TabGroup>
