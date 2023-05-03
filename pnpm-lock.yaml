@@ -3,7 +3,7 @@ lockfileVersion: '6.0'
 dependencies:
   '@arisbh/marqueeck':
     specifier: latest
-    version: 0.0.23(svelte@3.58.0)
+    version: 0.0.27(svelte@3.58.0)
 
 devDependencies:
   '@skeletonlabs/skeleton':
@@ -80,8 +80,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@arisbh/marqueeck@0.0.23(svelte@3.58.0):
-    resolution: {integrity: sha512-u379ZNtyl6z8DU4hGMiNpRIsIfXuNYopJypPrLMvtN3PaMtf5BubZNKAhFSUnB436fdx6eDzTIPjfKYOnmKHcg==}
+  /@arisbh/marqueeck@0.0.27(svelte@3.58.0):
+    resolution: {integrity: sha512-D8Tp2WLVN0bk78Onhj6iPS9w7ow2SAPiLMFO6Jg0j1eTpsmI8X7K2o152bqyLaZA7FHPNRSnsm42xhoOEc8uuA==}
     peerDependencies:
       svelte: ^3.54.0
     dependencies:
@@ -737,7 +737,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001482
-      electron-to-chromium: 1.4.379
+      electron-to-chromium: 1.4.380
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -886,8 +886,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /electron-to-chromium@1.4.379:
-    resolution: {integrity: sha512-eRMq6Cf4PhjB14R9U6QcXM/VRQ54Gc3OL9LKnFugUIh2AXm3KJlOizlSfVIgjH76bII4zHGK4t0PVTE5qq8dZg==}
+  /electron-to-chromium@1.4.380:
+    resolution: {integrity: sha512-XKGdI4pWM78eLH2cbXJHiBnWUwFSzZM7XujsB6stDiGu9AeSqziedP6amNLpJzE3i0rLTcfAwdCTs5ecP5yeSg==}
     dev: true
 
   /es6-promise@3.3.1:
