@@ -1,14 +1,9 @@
 lockfileVersion: '6.0'
 
-dependencies:
+devDependencies:
   '@arisbh/marqueeck':
     specifier: latest
-    version: 0.0.36(svelte@3.58.0)
-  highlight.js:
-    specifier: ^11.8.0
-    version: 11.8.0
-
-devDependencies:
+    version: 0.0.37(svelte@3.58.0)
   '@skeletonlabs/skeleton':
     specifier: ^1.2.5
     version: 1.2.5
@@ -39,6 +34,9 @@ devDependencies:
   eslint-plugin-svelte:
     specifier: ^2.27.3
     version: 2.27.3(eslint@8.39.0)(svelte@3.58.0)
+  highlight.js:
+    specifier: ^11.8.0
+    version: 11.8.0
   postcss:
     specifier: ^8.4.23
     version: 8.4.23
@@ -83,14 +81,13 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@arisbh/marqueeck@0.0.36(svelte@3.58.0):
-    resolution: {integrity: sha512-TZxsRy7G2bflPEM89Jwwh9f7weh2fabjRUmqslCqSzoGY031Ed3cTwgmCaVCeaLW+7sCdz5R5Kw2odrHyoWSmQ==}
+  /@arisbh/marqueeck@0.0.37(svelte@3.58.0):
+    resolution: {integrity: sha512-+Immix6AJOD32ILFDjQHUyCulZb9s22QJZ8s5NP58EfopAcY9ntuOi/YkSMLwGv8rnaMJyqGk6cShbYs/MW1Hg==}
     peerDependencies:
       svelte: ^3.54.0
     dependencies:
-      highlight.js: 11.8.0
       svelte: 3.58.0
-    dev: false
+    dev: true
 
   /@esbuild/android-arm64@0.17.18:
     resolution: {integrity: sha512-/iq0aK0eeHgSC3z55ucMAHO05OIqmQehiGay8eP5l/5l+iEr4EIbh4/MI8xD9qRFjqzgkc0JkX0LculNC9mXBw==}
@@ -1265,7 +1262,7 @@ packages:
   /highlight.js@11.8.0:
     resolution: {integrity: sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==}
     engines: {node: '>=12.0.0'}
-    dev: false
+    dev: true
 
   /ignore-walk@5.0.1:
     resolution: {integrity: sha512-yemi4pMf51WKT7khInJqAvsIGzoqYXblnsz0ql8tM+yi1EKYTY1evX4NAbJrLL/Aanr2HyZeluqU+Oi7MGHokw==}
@@ -2091,6 +2088,7 @@ packages:
   /svelte@3.58.0:
     resolution: {integrity: sha512-brIBNNB76mXFmU/Kerm4wFnkskBbluBDCjx/8TcpYRb298Yh2dztS2kQ6bhtjMcvUhd5ynClfwpz5h2gnzdQ1A==}
     engines: {node: '>= 8'}
+    dev: true
 
   /tailwindcss@3.3.2:
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}

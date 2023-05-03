@@ -1,5 +1,5 @@
 <script>
-	import Marqueeck from '$lib/Marqueeck.svelte';
+	import Marqueeck from '@arisbh/marqueeck';
 </script>
 
 <Marqueeck options={{}} />
