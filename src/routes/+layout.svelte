@@ -8,8 +8,6 @@
 
 	import { AppShell, CodeBlock, storeHighlightJs } from '@skeletonlabs/skeleton';
 	storeHighlightJs.set(hljs);
-
-	export let data;
 </script>
 
 <AppShell
