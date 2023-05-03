@@ -78,8 +78,6 @@
 	<title>Marqueeck - A custom marquee component for Sveltekit</title>
 </svelte:head>
 
-<!-- INSTALL COMMAND -->
-<CodeBlock language="bash" code={`npm i @arisbh/marqueeck`} />
 
 <TabGroup regionPanel="space-y-8 pb-8" regionList="bg-surface-50 sticky top-0 z-40">
 	<Tab bind:group={tabSet} name="tab1" value={0}>Usage</Tab>
