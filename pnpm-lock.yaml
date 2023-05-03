@@ -3,7 +3,7 @@ lockfileVersion: '6.0'
 dependencies:
   '@arisbh/marqueeck':
     specifier: latest
-    version: 0.0.32(svelte@3.58.0)
+    version: 0.0.35(svelte@3.58.0)
   highlight.js:
     specifier: ^11.8.0
     version: 11.8.0
@@ -37,8 +37,8 @@ devDependencies:
     specifier: ^8.8.0
     version: 8.8.0(eslint@8.39.0)
   eslint-plugin-svelte:
-    specifier: ^2.27.2
-    version: 2.27.2(eslint@8.39.0)(svelte@3.58.0)
+    specifier: ^2.27.3
+    version: 2.27.3(eslint@8.39.0)(svelte@3.58.0)
   postcss:
     specifier: ^8.4.23
     version: 8.4.23
@@ -83,8 +83,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@arisbh/marqueeck@0.0.32(svelte@3.58.0):
-    resolution: {integrity: sha512-OZ2Hm43yzsMr+GM95ylzki10GIN518iHrrlXgRIK7N6/erqjozfGFcJpex8r3kzy6GqnsbG2iZYmFW+Oktw7tg==}
+  /@arisbh/marqueeck@0.0.35(svelte@3.58.0):
+    resolution: {integrity: sha512-qBXrhSRabfP4otjN0WBjNH29kZAf/NQEEHJsPJpjckXMf44XgEg+Vn9UQOFGnN2xszuKXHWjauINujjU/GYL3A==}
     peerDependencies:
       svelte: ^3.54.0
     dependencies:
@@ -947,8 +947,8 @@ packages:
       eslint: 8.39.0
     dev: true
 
-  /eslint-plugin-svelte@2.27.2(eslint@8.39.0)(svelte@3.58.0):
-    resolution: {integrity: sha512-1tIl65TMF0MtY26+O/1Y5S5HEFc0vRzzoX3m9FHI6VuiruqFU9PBr8WzoqdaSPlcL/q7xPUzQYl4Fzg/3GBpcg==}
+  /eslint-plugin-svelte@2.27.3(eslint@8.39.0)(svelte@3.58.0):
+    resolution: {integrity: sha512-LPri23kkKeeh+TkYr9FndQEy2Q5BhOrIwatnLdXx6hUtTIolohzrTJhWMK3k8BwitVBnJGl5CDVWNkV80tmdkQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0-0
