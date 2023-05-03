@@ -25,7 +25,7 @@
 	import { quadInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.ts';
+	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
 
 	// Initialize custom event dispatchers
 	const dispatch = createEventDispatcher();
