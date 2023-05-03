@@ -12,8 +12,8 @@
 	storeHighlightJs.set(hljs);
 </script>
 
-<AppShell slotHeader="px-4 py-8 container mx-auto" slotPageFooter="px-4 py-2 container mx-auto">
-	<svelte:fragment slot="header">
+<AppShell slotPageHeader="px-4 py-8 container mx-auto" slotPageFooter="px-4 py-2 container mx-auto">
+	<svelte:fragment slot="pageHeader">
 		<h1 class=""><strong>Marqueeck </strong></h1>
 		<a href="https://github.com/AristideBH/Marqueeck/">
 			<span class="chip variant-ghost-primary">Github page</span>
