@@ -1,7 +1,7 @@
 <!--/////////////////////////////////////////////////////////////////
 // Types definitions
 //////////////////////////////////////////////////////////////////-->
-<script lang="ts" context="module">
+<!-- <script lang="ts" context="module">
 	declare type MarqueeckOptions = {
 		speed?: number;
 		direction?: 'left' | 'right';
@@ -14,7 +14,7 @@
 		hoverSpeed?: number;
 		stickyPosition?: 'start' | 'end';
 	};
-</script>
+</script> -->
 
 <!--/////////////////////////////////////////////////////////////////
 // JS Logic
@@ -26,6 +26,7 @@
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
+	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.js';
 
 	// Initialize custom event dispatchers
 	const dispatch = createEventDispatcher();

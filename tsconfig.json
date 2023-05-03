@@ -10,8 +10,6 @@
 		"sourceMap": true,
 		"strict": true,
 		"moduleResolution": "NodeNext",
-		"allowImportingTsExtensions": true,
-		"declaration": true,
-		"declarationDir": "./dist"
+		"allowImportingTsExtensions": true
 	}
 }
