@@ -2,7 +2,7 @@
 // Types definitions
 //////////////////////////////////////////////////////////////////-->
 <script lang="ts" context="module">
-	export type MarqueeckOptions = {
+	declare type MarqueeckOptions = {
 		speed?: number;
 		direction?: 'left' | 'right';
 		gap?: number;
