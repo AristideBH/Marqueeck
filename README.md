@@ -38,4 +38,4 @@ Once you've installed the module, use it in your project.
 
 ## Advanced options
 
-Please visit the [demo page](https://marqueeck.vercel.app/) fo the full documentation.
+Please visit the [project page](https://marqueeck.vercel.app/) fo the full documentation.
