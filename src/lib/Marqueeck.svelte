@@ -38,8 +38,8 @@
 
 	// External arguments
 	export let options: MarqueeckOptions = {},
-		contentClasses = '', // Define classes for the repeating wrapper
-		elementClasses = '', // Define classes for the repeated content
+		ribbonClasses = '', // Define classes for the repeating wrapper
+		childClasses = '', // Define classes for the repeated content
 		stickElClasses = ''; // Define classes for the sticky element
 
 	let wrapperWidth: number, wrapperHeight: number, contentWidth: number, contentHeight: number;
@@ -121,7 +121,7 @@
 	on:mouseleave={handleMouseLeave}
 >
 	<div
-		class="marqueeck-content {contentClasses ?? ''}"
+		class="marqueeck-ribbon {ribbonClasses ?? ''}"
 		use:MarqueeckTranslate={{
 			direction: direction,
 			distance: contentWidth + mergedOptions.gap,
@@ -132,7 +132,7 @@
 		<!-- Put one element to get its size -->
 		<span
 			transition:fade
-			class="marqueeck-child {elementClasses ?? ''}"
+			class="marqueeck-child {childClasses ?? ''}"
 			bind:offsetWidth={contentWidth}
 			bind:offsetHeight={contentHeight}
 		>
@@ -141,7 +141,7 @@
 
 		<!-- Repeating content the necessary times -->
 		{#each { length: contentNumber } as item, i}
-			<span transition:fade class="marqueeck-child {elementClasses ?? ''}">
+			<span transition:fade class="marqueeck-child {childClasses ?? ''}">
 				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}
@@ -185,7 +185,7 @@
 		position: relative;
 	}
 
-	.marqueeck-content {
+	.marqueeck-ribbon {
 		display: inherit;
 		flex-flow: inherit;
 		flex-wrap: inherit;
