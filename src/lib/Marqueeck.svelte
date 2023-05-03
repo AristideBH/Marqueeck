@@ -27,7 +27,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
 
-	// Initialize custom events dispatcher
+	// Initialize custom event dispatchers
 	const dispatch = createEventDispatcher();
 	const dispatchHoverInEvent = async () => {
 		const data = {
@@ -35,26 +35,15 @@
 		};
 		dispatch('hoverIn', data);
 	};
-	const dispatchHoverOutEvent = async () => {
-		const data = {
-			movingDistance: contentWidth + mergedOptions.gap
-		};
-		dispatch('hoverOut', data);
-	};
-
-	const dispatchClickEvent = async () => {
-		const data = {
-			movingDistance: contentWidth + mergedOptions.gap
-		};
-		dispatch('click', data);
-	};
+	const dispatchHoverOutEvent = async () => dispatch('hoverOut');
+	const dispatchClickEvent = async () => dispatch('click');
 
 	// External arguments
 	export let options: MarqueeckOptions = {},
 		ribbonClasses = '', // Define classes for the repeating wrapper
 		childClasses = '', // Define classes for the repeated content
 		stickElClasses = '', // Define classes for the sticky element
-		hoverClasses = 'hover'; // Define wrapper classes when hovered
+		hoverClasses = ''; // Define wrapper classes when hovered
 
 	let wrapperWidth: number, wrapperHeight: number, contentWidth: number, contentHeight: number;
 	let extendContentby = 3; // Number of elements to add to always overflow the parent
@@ -201,11 +190,10 @@
 <style>
 	.marqueeck-wrapper {
 		width: 100%;
-		background: var(--bg-color, lightslategrey);
+		background-color: var(--bg-color, lightslategrey);
 		color: var(--text-color, white);
 		display: flex;
-		flex-flow: row;
-		flex-wrap: nowrap;
+		flex-flow: row nowrap;
 		overflow-x: hidden;
 		position: relative;
 	}
@@ -213,24 +201,23 @@
 	.marqueeck-ribbon {
 		display: inherit;
 		flex-flow: inherit;
-		flex-wrap: inherit;
 		gap: inherit;
 		position: inherit;
 	}
 
-	span.marqueeck-child {
+	.marqueeck-child {
 		display: inline;
 		width: max-content;
 	}
 
 	.marqueeck-sticky {
 		position: absolute;
-		background: var(--bg-color, lightslategrey);
+		background-color: var(--bg-color, lightslategrey);
 		width: -moz-fit-content;
 		width: fit-content;
 	}
 
-	code.marqueeck-log {
+	.marqueeck-log {
 		display: flex;
 		flex-flow: column wrap;
 		border: 1px solid lightslategrey;

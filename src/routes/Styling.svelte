@@ -93,53 +93,37 @@
 		Although Marqueeck has a minimal styling approach, it still needs a few CSS lines to operate.
 	</p>
 	<CodeBlock
-		language="html"
+		language="css"
 		code={`
-<style>
-	.marqueeck-wrapper {
-		width: 100%;
-		background: var(--bg-color, lightslategrey);
-		color: var(--text-color, white);
-		display: flex;
-		flex-flow: row;
-		flex-wrap: nowrap;
-		overflow-x: hidden;
-		position: relative;
-	}
 
-	.marqueeck-ribbon {
-		display: inherit;
-		flex-flow: inherit;
-		flex-wrap: inherit;
-		gap: inherit;
-		position: inherit;
-	}
+.marqueeck-wrapper {
+	width: 100%;
+	background-color: var(--bg-color, lightslategrey);
+	color: var(--text-color, white);
+	display: flex;
+	flex-flow: row nowrap;
+	overflow-x: hidden;
+	position: relative;
+}
 
-	span.marqueeck-child {
-		display: inline;
-		width: max-content;
-	}
+.marqueeck-ribbon {
+	display: inherit;
+	flex-flow: inherit;
+	gap: inherit;
+	position: inherit;
+}
 
-	.marqueeck-sticky {
-		position: absolute;
-		background: var(--bg-color, lightslategrey);
-		width: -moz-fit-content;
-		width: fit-content;
-	}
+.marqueeck-child {
+	display: inline;
+	width: max-content;
+}
 
-	code.marqueeck-log {
-		display: flex;
-		flex-flow: column wrap;
-		border: 1px solid lightslategrey;
-		padding: 4px;
-		margin-block: 8px;
-		margin-inline: 8px;
-		border-radius: 4px;
-		width: -moz-fit-content;
-		width: fit-content;
-		font-size: 13px;
-	}
-</style>
+.marqueeck-sticky {
+	position: absolute;
+	background-color: var(--bg-color, lightslategrey);
+	width: -moz-fit-content;
+	width: fit-content;
+}
 
 `}
 	/>
