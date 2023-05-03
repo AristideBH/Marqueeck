@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Marqueeck from '@arisbh/marqueeck';
-	import { CodeBlock, TabGroup, Tab, Table, tableMapperValues } from '@skeletonlabs/skeleton';
+	import { CodeBlock, Table, tableMapperValues } from '@skeletonlabs/skeleton';
 	import type { TableSource } from '@skeletonlabs/skeleton';
 
 	const sourceData = [
@@ -69,7 +69,7 @@
 	};
 </script>
 
-<div class="space-y-2">
+<div class="space-y-2 container">
 	<p>You can either pass your options directly in the <code>Marqueeck</code> component :</p>
 	<CodeBlock
 		language="html"
@@ -87,6 +87,7 @@
 		language="html"
 		code={`
 <script>
+	import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
 	const options = {
 		speed: 32,
 		direction: 'right',
@@ -99,7 +100,8 @@
 	/>
 </div>
 
-<div class="space-y-4">
+<div class="space-y-4 container">
+	<h3>MarqueeckOptions type</h3>
 	<p class="mt-8">
 		If you don't pass any options to the <code>Marqueeck</code> element, it will use the following options.
 	</p>

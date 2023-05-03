@@ -14,8 +14,6 @@ Features :
 
 [Demo](https://marqueeck.vercel.app)
 
-[Github page](https://github.com/AristideBH/Marqueeck)
-
 ## Installation
 
 `npm i @arisbh/marqueeck`

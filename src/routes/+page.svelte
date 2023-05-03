@@ -12,7 +12,7 @@
 	<title>Marqueeck - A custom marquee component for Sveltekit</title>
 </svelte:head>
 
-<TabGroup regionPanel="space-y-8 pb-8" regionList="bg-surface-50 sticky top-0 z-40">
+<TabGroup regionPanel="space-y-8 pb-8" regionList="bg-surface-50 sticky top-0 z-40 container !py-0">
 	<Tab bind:group={tabSet} name="tab1" value={0}>Usage</Tab>
 	<Tab bind:group={tabSet} name="tab2" value={1}>Options</Tab>
 	<Tab bind:group={tabSet} name="tab3" value={2}>Styling</Tab>
