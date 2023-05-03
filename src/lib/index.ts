@@ -1,7 +1,7 @@
 // Reexport your entry components here
 import Marqueeck from "./Marqueeck.svelte"
-import { MarqueeckTranslate } from "./MarqueeckTranslate.ts"
-import type { MarqueeckOptions } from "./MarqueeckOptions.ts"
+import { MarqueeckTranslate } from "./MarqueeckTranslate.js"
+import type { MarqueeckOptions } from "./MarqueeckOptions.js"
 
 export default Marqueeck
 export { MarqueeckTranslate, MarqueeckOptions } 
