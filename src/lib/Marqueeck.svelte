@@ -53,7 +53,8 @@
 	export let options: MarqueeckOptions = {},
 		ribbonClasses = '', // Define classes for the repeating wrapper
 		childClasses = '', // Define classes for the repeated content
-		stickElClasses = ''; // Define classes for the sticky element
+		stickElClasses = '', // Define classes for the sticky element
+		hoverClasses = 'hover'; // Define wrapper classes when hovered
 
 	let wrapperWidth: number, wrapperHeight: number, contentWidth: number, contentHeight: number;
 	let extendContentby = 3; // Number of elements to add to always overflow the parent
@@ -87,8 +88,9 @@
 	const noHoverState =
 		mergedOptions.onHover === 'stop' || mergedOptions.onHover === 'customSpeed' ? true : false;
 
-	// Define a Boolean for mouse state
+	// Define a Boolean for mouse hover state
 	const isMouseIn = writable(false);
+	$: reactiveHoverClasses = $isMouseIn ? hoverClasses : '';
 
 	// Get the width of the wrapper without it paddings
 	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.paddingX_Wrapper;
@@ -102,6 +104,7 @@
 			if (mergedOptions.debug) console.log('▶️ hover in');
 			isMouseIn.set(true);
 			await dispatchHoverInEvent();
+
 			if (mergedOptions.onHover === 'customSpeed') {
 				await tweenedSpeed.update(() => mergedOptions.hoverSpeed);
 			} else {
@@ -127,8 +130,9 @@
 <!--/////////////////////////////////////////////////////////////////
 // HTML CONSTRUCT
 //////////////////////////////////////////////////////////////////-->
+
 <div
-	class="marqueeck-wrapper {$$props.class ?? ''}"
+	class="marqueeck-wrapper {$$props.class ?? ''} {reactiveHoverClasses}"
 	style:gap="{mergedOptions.gap}px"
 	style:padding-inline="{mergedOptions.paddingX_Wrapper}px"
 	style:padding-block="{mergedOptions.paddingY_Wrapper}px"
@@ -187,6 +191,7 @@
 		<span>contentNumber: {contentNumber} elements</span>
 		<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
 		<span>isMouseIn: {$isMouseIn}</span>
+		<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
 	</code>
 {/if}
 

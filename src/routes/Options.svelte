@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Marqueeck from '@arisbh/marqueeck';
 	import { CodeBlock, TabGroup, Tab, Table, tableMapperValues } from '@skeletonlabs/skeleton';
-    import type { TableSource } from '@skeletonlabs/skeleton';
+	import type { TableSource } from '@skeletonlabs/skeleton';
 
-const sourceData = [
+	const sourceData = [
 		{
 			name: 'speed',
 			type: 'number',
@@ -69,41 +69,39 @@ const sourceData = [
 	};
 </script>
 
-
 <div class="space-y-2">
-    <p>You can either pass your options directly in the <code>Marqueeck</code> component :</p>
-    <CodeBlock
-        language="html"
-        code={`
+	<p>You can either pass your options directly in the <code>Marqueeck</code> component :</p>
+	<CodeBlock
+		language="html"
+		code={`
 <Marqueeck options={{ direction: 'right' }}>
-[Your element]
+	[Your element]
 </Marqueeck>
         `}
-    />
-    <p>
-        or by constructing a <code>MarqueeckOptions</code> object, using the provided
-        <code>MarqueeckOptions</code> type :
-    </p>
-    <CodeBlock
-        language="html"
-        code={`
+	/>
+	<p>
+		or by constructing a <code>MarqueeckOptions</code> object, using the provided
+		<code>MarqueeckOptions</code> type :
+	</p>
+	<CodeBlock
+		language="html"
+		code={`
 <script>
-const options = {
-speed: 32,
-direction: 'right',
-// ...
-};
+	const options = {
+		speed: 32,
+		direction: 'right',
+		// ...
+	};
 </script>
 
 <Marqueeck {options}>[Your element]</Marqueeck>
     `}
-    />
+	/>
 </div>
 
 <div class="space-y-4">
-    <p class="mt-8">
-        If you don't pass any options to the <code>Marqueeck</code> element, it will use the following
-        options.
-    </p>
-    <Table source={tableSimple} />
+	<p class="mt-8">
+		If you don't pass any options to the <code>Marqueeck</code> element, it will use the following options.
+	</p>
+	<Table source={tableSimple} />
 </div>
