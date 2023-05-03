@@ -12,11 +12,14 @@
 	storeHighlightJs.set(hljs);
 </script>
 
-<AppShell slotPageHeader="px-4 py-8 container mx-auto flex gap-16 flex-wrap items-baseline" slotPageFooter="px-4 py-2 container mx-auto">
+<AppShell
+	slotPageHeader="px-4 py-8 container mx-auto flex gap-16 flex-wrap items-baseline"
+	slotPageFooter="px-4 py-2 container mx-auto"
+>
 	<svelte:fragment slot="pageHeader">
 		<div class=" flex flex-col gap-4">
 			<h1 class=""><strong>Marqueeck </strong></h1>
-			
+
 			<!-- INSTALL COMMAND -->
 			<CodeBlock language="bash" code={`npm i @arisbh/marqueeck`} />
 
@@ -24,7 +27,7 @@
 				<span class="chip variant-ghost-primary">Github page</span>
 			</a>
 		</div>
-		<div class="">
+		<div class="hidden">
 			<p>
 				Marqueeck is a custom marquee component for Sveltekit, speed-eased, style-free and without
 				dependencies.

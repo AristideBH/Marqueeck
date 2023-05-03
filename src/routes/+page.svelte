@@ -5,7 +5,7 @@
 	import Styling from './Styling.svelte';
 	import Events from './Events.svelte';
 
-	let tabSet: number = 3;
+	let tabSet: number = 0;
 </script>
 
 <svelte:head>
