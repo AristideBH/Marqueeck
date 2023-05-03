@@ -15,19 +15,20 @@
 
 <div class="space-y-2">
 	<h3>OnHover</h3>
-	<Marqueeck on:hoverIn={handleHoverIn} on:HoverOut={handleHoverOut}>
+	<Marqueeck on:hoverIn={handleHoverIn} on:hoverOut={handleHoverOut}>
 		Check your console when hovering !
 	</Marqueeck>
 	<CodeBlock
 		language="html"
 		code={`
 <script>
-    const handleHoverIn = () => {
-        //do what you want
-    };
+	const handleHoverIn = () => { //do what you want };
+	const handleHoverOut = () => { //do what you want };
 </script>
 
-<Marqueeck on:hoverIn={ handleHoverIn }>[Your element]</Marqueeck>
+<Marqueeck on:hoverIn={ handleHoverIn } on:hoverOut={ handleHoverOut }>
+	[Your element]
+</Marqueeck>
     `}
 	/>
 </div>
@@ -44,7 +45,7 @@
 	};
 </script>
 
-<Marqueeck on:hover={ handleClick }>[Your element]</Marqueeck>
+<Marqueeck on:click={ handleClick }>[Your element]</Marqueeck>
     `}
 	/>
 </div>

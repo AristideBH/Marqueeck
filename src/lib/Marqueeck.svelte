@@ -42,6 +42,13 @@
 		dispatch('hoverOut', data);
 	};
 
+	const dispatchClickEvent = async () => {
+		const data = {
+			movingDistance: contentWidth + mergedOptions.gap
+		};
+		dispatch('click', data);
+	};
+
 	// External arguments
 	export let options: MarqueeckOptions = {},
 		ribbonClasses = '', // Define classes for the repeating wrapper
@@ -111,6 +118,10 @@
 			await tweenedSpeed.update(() => mergedOptions.speed);
 		}
 	};
+
+	const handleMouseClick = async () => {
+		await dispatchClickEvent();
+	};
 </script>
 
 <!--/////////////////////////////////////////////////////////////////
@@ -126,7 +137,8 @@
 	bind:offsetHeight={wrapperHeight}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
-	on:click
+	on:click={handleMouseClick}
+	on:keydown={handleMouseClick}
 >
 	<div
 		class="marqueeck-ribbon {ribbonClasses ?? ''}"
