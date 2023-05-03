@@ -26,7 +26,7 @@
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
-	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.d.ts';
+	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.ts';
 
 	// Initialize custom event dispatchers
 	const dispatch = createEventDispatcher();

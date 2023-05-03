@@ -2,7 +2,7 @@
 	import Marqueeck from '@arisbh/marqueeck';
 
 	const options: MarqueeckOptions = {};
-	$: console.log(Marqueeck);
+	// $: console.log(Marqueeck);
 </script>
 
 <Marqueeck {options} />
