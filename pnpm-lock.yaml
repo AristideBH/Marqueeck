@@ -3,7 +3,7 @@ lockfileVersion: '6.0'
 dependencies:
   '@arisbh/marqueeck':
     specifier: latest
-    version: 0.0.27(svelte@3.58.0)
+    version: 0.0.28(svelte@3.58.0)
   highlight.js:
     specifier: ^11.8.0
     version: 11.8.0
@@ -83,11 +83,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@arisbh/marqueeck@0.0.27(svelte@3.58.0):
-    resolution: {integrity: sha512-D8Tp2WLVN0bk78Onhj6iPS9w7ow2SAPiLMFO6Jg0j1eTpsmI8X7K2o152bqyLaZA7FHPNRSnsm42xhoOEc8uuA==}
+  /@arisbh/marqueeck@0.0.28(svelte@3.58.0):
+    resolution: {integrity: sha512-WYXbuAmqroKG0IAMs0GtcgV9nQlv3/tFAuxnXQdPkTXmBOinR+D/El3DiTiiYenZFinVf6H3aJbQi6BEAAPkaA==}
     peerDependencies:
       svelte: ^3.54.0
     dependencies:
+      highlight.js: 11.8.0
       svelte: 3.58.0
     dev: false
 

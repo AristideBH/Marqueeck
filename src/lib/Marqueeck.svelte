@@ -27,13 +27,19 @@
 	import { createEventDispatcher } from 'svelte';
 	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
 
-	// Initialize custom hover event
+	// Initialize custom events dispatcher
 	const dispatch = createEventDispatcher();
-	const dispatchHoverEvent = async () => {
+	const dispatchHoverInEvent = async () => {
 		const data = {
 			movingDistance: contentWidth + mergedOptions.gap
 		};
-		dispatch('hover', data);
+		dispatch('hoverIn', data);
+	};
+	const dispatchHoverOutEvent = async () => {
+		const data = {
+			movingDistance: contentWidth + mergedOptions.gap
+		};
+		dispatch('hoverOut', data);
 	};
 
 	// External arguments
@@ -88,7 +94,7 @@
 		if (noHoverState) {
 			if (mergedOptions.debug) console.log('▶️ hover in');
 			isMouseIn.set(true);
-			await dispatchHoverEvent();
+			await dispatchHoverInEvent();
 			if (mergedOptions.onHover === 'customSpeed') {
 				await tweenedSpeed.update(() => mergedOptions.hoverSpeed);
 			} else {
@@ -101,6 +107,7 @@
 		if (noHoverState) {
 			if (mergedOptions.debug) console.log('⏸️ hover out');
 			isMouseIn.set(false);
+			await dispatchHoverOutEvent();
 			await tweenedSpeed.update(() => mergedOptions.speed);
 		}
 	};
@@ -120,7 +127,6 @@
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
 	on:click
-	
 >
 	<div
 		class="marqueeck-ribbon {ribbonClasses ?? ''}"
