@@ -3,9 +3,9 @@
 	import Marqueeck, { type MarqueeckOptions } from '$lib/index.ts';
 	import { scrollState, scrollHandler } from '$lib/MarqueeckScroll.ts';
 
-	const velocitySpeed = (nb) => {
+	const velocitySpeed = (nb: number) => {
 		if (nb == 0) {
-			return 10;
+			return 1;
 		} else {
 			return nb;
 		}
