@@ -26,11 +26,18 @@
 	</div>
 </Marqueeck>
 
-<div class="container">
+<div class="container relative">
 	<p class="text-center text-lg unstyled mb-2">
 		Scroll in this container to see the effect on Marqueeck's speed !
 	</p>
-	<div class=" max-h-[380px] overflow-auto relative" on:scroll={scrollHandler}>
+	<!-- <pre class="absolute top-9 w-fit z-10">{JSON.stringify($scrollState, undefined, 2)}</pre> -->
+	<div class="absolute top-9 w-fit z-10 px-3 py-2 font-mono font-bold">
+		<div>{+$scrollState.distance.toFixed(2)} px scrolled</div>
+		<div>{$scrollState.percentage} % scrolled</div>
+		<div>Scroll : {$scrollState.direction}</div>
+		<div>{+Math.abs($scrollState.velocity * 3).toFixed(2)} px/sec</div>
+	</div>
+	<div class=" max-h-[380px] overflow-auto" on:scroll={scrollHandler}>
 		<div class="card p-4 bg-gradient-to-b from-primary-500 to-yellow-300 h-[2000px]" />
 	</div>
 </div>

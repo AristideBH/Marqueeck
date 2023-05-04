@@ -5,9 +5,9 @@ import { cubicOut } from 'svelte/easing';
 function createScrollState() {
     let lastPos: number | null = null;
     let timer: ReturnType<typeof setTimeout> | null = null;
-    const velocityGuard = 5;
+    const velocityGuard = 4;
     const delay = 300;
-    const initialState = { distance: 0, percentage: 0, direction: '🛑', velocity: 0 }
+    const initialState = { distance: 0, percentage: 0, direction: 'static', velocity: 0 }
     const { subscribe, update } = writable(initialState);
     const scrollVelocity = tweened(0, {
         duration: delay, // Add the duration option
@@ -42,7 +42,7 @@ function createScrollState() {
             if (!(velocity > -velocityGuard && velocity < velocityGuard)) {
                 update(($scrollState) => ({ ...$scrollState, distance, direction, percentage }));
             } else {
-                update(($scrollState) => ({ ...$scrollState, distance, direction: '🛑', percentage }));
+                update(($scrollState) => ({ ...$scrollState, distance, direction: 'static', percentage }));
             }
         },
         setVelocity: (velocity: number) => {
@@ -58,7 +58,7 @@ export const scrollHandler = (event: UIEvent & { currentTarget: EventTarget & HT
     const newPos = event.currentTarget.scrollTop;
     const distance = newPos;
     const velocity = scrollState.checkScrollSpeed(newPos);
-    const direction = velocity >= 0 ? '🔽' : '🔼';
+    const direction = velocity >= 0 ? 'down' : 'up';
     const maxScrollTop = event.currentTarget.scrollHeight - event.currentTarget.clientHeight;
     scrollState.updateDistanceAndDirection(distance, direction, velocity, maxScrollTop);
     scrollState.setVelocity(velocity);
