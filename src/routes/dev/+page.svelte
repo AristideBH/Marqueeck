@@ -26,13 +26,11 @@
 	</div>
 </Marqueeck>
 
-<div class="container !pt-0">
+<div class="container">
+	<p class="text-center text-lg unstyled mb-2">
+		Scroll in this container to see the affect Marqueeck's speed !
+	</p>
 	<div class=" max-h-[380px] overflow-auto relative" on:scroll={scrollHandler}>
-		<h3
-			class="fixed top-[540px] translate-y-1/2 left-0 right-0 w-full text-center mix-blend-soft-light text-black"
-		>
-			Scroll in this container to see the affect Marqueeck's speed _
-		</h3>
 		<div class="card p-4 bg-gradient-to-b from-primary-500 to-yellow-300 h-[2000px]" />
 	</div>
 </div>
