@@ -187,7 +187,7 @@
 
 	.marqueeck-sticky {
 		position: absolute;
-		background-color: var(--bg-color, #a4d9cd);
+		background-color: inherit;
 		width: -moz-fit-content;
 		width: fit-content;
 	}
