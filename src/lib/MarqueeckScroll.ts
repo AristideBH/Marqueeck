@@ -65,7 +65,7 @@ export const scrollHandler = (event: UIEvent & { currentTarget: EventTarget & HT
 };
 
 
-export const FactorHelper = (velocity: number, damper = 7) => {
+export const factorHelper = (velocity: number, damper = 7) => {
     if (velocity <= 5 && velocity >= -5) {
         return 1;
     } else {
