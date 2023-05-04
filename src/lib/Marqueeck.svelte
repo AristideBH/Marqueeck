@@ -97,11 +97,14 @@
 	const handleMouseClick = async () => {
 		await dispatchClickEvent();
 	};
+	let windowHeight: number, windowScrollY: number;
 </script>
 
 <!--/////////////////////////////////////////////////////////////////
 // HTML CONSTRUCT
 //////////////////////////////////////////////////////////////////-->
+
+<svelte:window bind:innerHeight={windowHeight} bind:scrollY={windowScrollY} />
 
 <div
 	class="marqueeck-wrapper {$$props.class ?? ''} {reactiveHoverClasses}"

@@ -1,11 +1,10 @@
-<script>
+<script lang="ts">
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.postcss';
 
 	import 'highlight.js/styles/github-dark.css';
 	import hljs from 'highlight.js';
-
 	import { AppShell, CodeBlock, storeHighlightJs } from '@skeletonlabs/skeleton';
 	storeHighlightJs.set(hljs);
 </script>
@@ -30,7 +29,7 @@
 				</a>
 			</div>
 		</div>
-		<div class="grow w-full">
+		<div class="grow w-full hidden">
 			<p>
 				Marqueeck is a custom marquee component for Sveltekit, speed-eased, style-free and without
 				any dependencies.
