@@ -29,7 +29,7 @@
 				</a>
 			</div>
 		</div>
-		<div class="grow w-full hidden">
+		<div class="grow w-full">
 			<p>
 				Marqueeck is a custom marquee component for Sveltekit, speed-eased, style-free and without
 				any dependencies.
