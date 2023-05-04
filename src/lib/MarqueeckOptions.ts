@@ -1,5 +1,5 @@
 export type MarqueeckOptions = {
-    speed?: number;
+    speed?: number | (() => number);
     direction?: 'left' | 'right';
     gap?: number;
     paddingX_Wrapper?: number;

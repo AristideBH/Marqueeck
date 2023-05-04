@@ -51,10 +51,13 @@
 	const stickyPosHelper = mergedOptions.stickyPosition === 'start' ? 'left: 0;' : 'right: 0;';
 
 	// Define a tweened value for the speed, can be passed to MarqueeckTranslate() as currentSpeed
-	const tweenedSpeed = tweened(mergedOptions.speed, {
-		duration: mergedOptions.gradualHoverDuration,
-		easing: quadInOut
-	});
+	const tweenedSpeed = tweened(
+		typeof mergedOptions.speed === 'function' ? mergedOptions.speed() : mergedOptions.speed,
+		{
+			duration: mergedOptions.gradualHoverDuration,
+			easing: quadInOut
+		}
+	);
 
 	// Define a Boolean for onHover options state
 	const noHoverState =
@@ -90,7 +93,9 @@
 			if (mergedOptions.debug) console.log('⏸️ hover out');
 			isMouseIn.set(false);
 			await dispatchHoverOutEvent();
-			await tweenedSpeed.update(() => mergedOptions.speed);
+			await tweenedSpeed.update(() =>
+				typeof mergedOptions.speed === 'function' ? mergedOptions.speed() : mergedOptions.speed
+			);
 		}
 	};
 

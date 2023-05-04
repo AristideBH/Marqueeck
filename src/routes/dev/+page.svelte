@@ -3,13 +3,36 @@
 	import Marqueeck, { type MarqueeckOptions } from '$lib/index.ts';
 	import { scrollState, scrollHandler } from '$lib/MarqueeckScroll.ts';
 
+	const velocitySpeed = (nb) => {
+		if (nb == 0) {
+			return 10;
+		} else {
+			return nb;
+		}
+	};
+
 	const options: MarqueeckOptions = {
 		direction: 'right',
 		gap: 60,
 		gradualHoverDuration: 1000,
-		onHover: 'stop'
+		onHover: 'stop',
+		speed: velocitySpeed($scrollState.velocity),
+		debug: true
 	};
 </script>
+
+<Marqueeck
+	{options}
+	--bg-color={'rgb(164, 217, 205)'}
+	--text-color={'rgb(var(--color-primary-700))'}
+	hoverClasses="!bg-primary-500 !text-white"
+	class="transition-all cursor-pointer duration-1000 ease-in-out  "
+>
+	<div class="flex gap-2 items-end text-5xl">
+		<span> 👋 </span>
+		<strong class="">Marqueeck</strong>
+	</div>
+</Marqueeck>
 
 <pre class="container">{JSON.stringify($scrollState, undefined, 2)}</pre>
 
@@ -119,18 +142,6 @@
 		</p>
 	</div>
 
-	<Marqueeck
-		{options}
-		--bg-color={'rgb(164, 217, 205)'}
-		--text-color={'rgb(var(--color-primary-700))'}
-		hoverClasses="!bg-primary-500 !text-white"
-		class="transition-all cursor-pointer duration-1000 ease-in-out  "
-	>
-		<div class="flex gap-2 items-end text-5xl">
-			<span> 👋 </span>
-			<strong class="">Marqueeck</strong>
-		</div>
-	</Marqueeck>
 	<div class="card p-4">
 		<p>
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga explicabo et harum placeat
