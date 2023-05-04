@@ -9,4 +9,5 @@ export type MarqueeckOptions = {
     gradualHoverDuration?: number;
     hoverSpeed?: number;
     stickyPosition?: 'start' | 'end';
+    speedFactor?: number
 };

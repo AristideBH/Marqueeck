@@ -1,6 +1,4 @@
-<!--/////////////////////////////////////////////////////////////////
-// Logic
-//////////////////////////////////////////////////////////////////-->
+<!--/////////////////////////////////////////////////////////////////-->
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import { tweened } from 'svelte/motion';
@@ -9,17 +7,6 @@
 	import { createEventDispatcher } from 'svelte';
 	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
 	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.js';
-
-	// Initialize custom event dispatchers
-	const dispatch = createEventDispatcher();
-	const dispatchHoverInEvent = async () => {
-		const data = {
-			movingDistance: contentWidth + mergedOptions.gap
-		};
-		dispatch('hoverIn', data);
-	};
-	const dispatchHoverOutEvent = async () => dispatch('hoverOut');
-	const dispatchClickEvent = async () => dispatch('click');
 
 	// External arguments
 	export let options: MarqueeckOptions = {},
@@ -42,7 +29,8 @@
 		onHover: 'customSpeed',
 		gradualHoverDuration: 1250,
 		hoverSpeed: 10,
-		stickyPosition: 'start'
+		stickyPosition: 'start',
+		speedFactor: 1
 	};
 
 	// Merge options with defaultOptions
@@ -50,8 +38,9 @@
 	const direction: 'left' | 'right' = mergedOptions.direction as 'left' | 'right';
 	const stickyPosHelper = mergedOptions.stickyPosition === 'start' ? 'left: 0;' : 'right: 0;';
 
+	export const speedFactorStore = writable(options.speedFactor);
 	// Define a tweened value for the speed, can be passed to MarqueeckTranslate() as currentSpeed
-	const tweenedSpeed = tweened(mergedOptions.speed, {
+	const tweenedSpeed = tweened(mergedOptions.speed * (options.speedFactor ?? 1), {
 		duration: mergedOptions.gradualHoverDuration,
 		easing: quadInOut
 	});
@@ -70,7 +59,12 @@
 	$: contentNumber =
 		Math.ceil(wrapperInnerWidth / (contentWidth + mergedOptions.gap)) + extendContentby;
 
-	// Event listeners handlers
+	// Initialize custom event dispatchers
+	const dispatch = createEventDispatcher();
+	const dispatchHoverInEvent = async () => dispatch('hoverIn');
+	const dispatchHoverOutEvent = async () => dispatch('hoverOut');
+	const dispatchClickEvent = async () => dispatch('click');
+
 	const handleMouseEnter = async () => {
 		if (noHoverState) {
 			if (mergedOptions.debug) console.log('▶️ hover in');
@@ -78,7 +72,8 @@
 			await dispatchHoverInEvent();
 
 			if (mergedOptions.onHover === 'customSpeed') {
-				await tweenedSpeed.update(() => mergedOptions.hoverSpeed);
+				// await tweenedSpeed.update(() => mergedOptions.hoverSpeed);
+				await tweenedSpeed.update(() => mergedOptions.hoverSpeed * (options.speedFactor ?? 1));
 			} else {
 				await tweenedSpeed.update(() => 0);
 			}
@@ -90,24 +85,17 @@
 			if (mergedOptions.debug) console.log('⏸️ hover out');
 			isMouseIn.set(false);
 			await dispatchHoverOutEvent();
-			await tweenedSpeed.update(() =>
-				typeof mergedOptions.speed === 'function' ? mergedOptions.speed() : mergedOptions.speed
-			);
+			// await tweenedSpeed.update(() => mergedOptions.speed);
+			await tweenedSpeed.update(() => mergedOptions.speed * (options.speedFactor ?? 1));
 		}
 	};
 
 	const handleMouseClick = async () => {
 		await dispatchClickEvent();
 	};
-	let windowHeight: number, windowScrollY: number;
 </script>
 
-<!--/////////////////////////////////////////////////////////////////
-// HTML CONSTRUCT
-//////////////////////////////////////////////////////////////////-->
-
-<svelte:window bind:innerHeight={windowHeight} bind:scrollY={windowScrollY} />
-
+<!--/////////////////////////////////////////////////////////////////-->
 <div
 	class="marqueeck-wrapper {$$props.class ?? ''} {reactiveHoverClasses}"
 	style:gap="{mergedOptions.gap}px"
@@ -126,8 +114,8 @@
 		use:MarqueeckTranslate={{
 			direction: direction,
 			distance: contentWidth + mergedOptions.gap,
-			currentSpeed: () => $tweenedSpeed,
-			isMouseIn: () => $isMouseIn
+			currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1),
+			isMouseIn: () => $isMouseIn,
 		}}
 	>
 		<!-- Put one element to get its size -->
@@ -169,12 +157,11 @@
 		<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
 		<span>isMouseIn: {$isMouseIn}</span>
 		<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
+		<span>speedFactor: {options.speedFactor}</span>
 	</code>
 {/if}
 
-<!--/////////////////////////////////////////////////////////////////
-// Default styles
-//////////////////////////////////////////////////////////////////-->
+<!--/////////////////////////////////////////////////////////////////-->
 <style>
 	.marqueeck-wrapper {
 		width: 100%;
