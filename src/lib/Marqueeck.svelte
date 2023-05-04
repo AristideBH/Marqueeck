@@ -115,7 +115,7 @@
 			direction: direction,
 			distance: contentWidth + mergedOptions.gap,
 			currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1),
-			isMouseIn: () => $isMouseIn,
+			isMouseIn: () => $isMouseIn
 		}}
 	>
 		<!-- Put one element to get its size -->
@@ -165,8 +165,8 @@
 <style>
 	.marqueeck-wrapper {
 		width: 100%;
-		background-color: var(--bg-color, lightslategrey);
-		color: var(--text-color, white);
+		background-color: var(--bg-color, #a4d9cd);
+		color: var(--text-color, #0b8c61);
 		display: flex;
 		flex-flow: row nowrap;
 		overflow-x: hidden;

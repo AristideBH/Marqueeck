@@ -57,6 +57,13 @@
 			type: "'start' | 'end'",
 			value: "'start'",
 			description: 'The position of the provided sticky element'
+		},
+		{
+			name: 'speedFactor',
+			type: 'number',
+			value: '1',
+			description:
+				'The factor used to modify the speed, you can pass a function that will return varying value '
 		}
 	];
 	const tableSimple: TableSource = {

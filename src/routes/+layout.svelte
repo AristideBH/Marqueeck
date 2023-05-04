@@ -16,7 +16,7 @@
 	<svelte:fragment slot="pageHeader">
 		<div class=" flex flex-col gap-4 w-full max-w-lg">
 			<h1 class="">
-				<strong>Marqueeck </strong>
+				<a href="/" class="unstyled"><strong>Marqueeck </strong></a>
 				<!-- svelte-ignore missing-declaration -->
 				<sup><div class="badge variant-ghost-primary">{APP_VERSION}</div></sup>
 			</h1>
