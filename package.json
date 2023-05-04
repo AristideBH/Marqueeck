@@ -27,9 +27,9 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"pubup": "pnpm publish && pnpm up",
-		"version:patch": "pnpm version patch",
-		"version:minor": "pnpm version minor",
-		"version:major": "pnpm version major"
+		"v:patch": "git commit -am 'patch:v update' && pnpm version patch",
+		"v:minor": "pnpm version minor",
+		"v:major": "pnpm version major"
 	},
 	"exports": {
 		".": {
