@@ -28,7 +28,7 @@
 
 <div class="container">
 	<p class="text-center text-lg unstyled mb-2">
-		Scroll in this container to see the affect Marqueeck's speed !
+		Scroll in this container to see the effect on Marqueeck's speed !
 	</p>
 	<div class=" max-h-[380px] overflow-auto relative" on:scroll={scrollHandler}>
 		<div class="card p-4 bg-gradient-to-b from-primary-500 to-yellow-300 h-[2000px]" />
