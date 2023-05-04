@@ -51,8 +51,8 @@
 		</p>
 	</div>
 	<Marqueeck
-		--bg-color={'rgb(164, 217, 205)'}
-		--text-color={'rgb(var(--color-primary-700))'}
+		--bg-color={'rgb(var(--color-primary-700))'}
+		--text-color={'rgb(164, 217, 205)'}
 		class="mt-2"
 	>
 		CSS Variables
@@ -62,8 +62,8 @@
 			language="html"
 			code={`
 <Marqueeck 
-	--bg-color={'rgb(164, 217, 205)'} 
-	--text-color={"rgb(var(--color-primary-700))"}>
+	--bg-color={'rgb(var(--color-primary-700))'}
+	--text-color={'rgb(164, 217, 205)'}>
 	CSS Variables
 </Marqueeck>`}
 		/>
