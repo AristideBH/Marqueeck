@@ -3,7 +3,7 @@ lockfileVersion: '6.0'
 devDependencies:
   '@arisbh/marqueeck':
     specifier: latest
-    version: 0.1.9(svelte@3.58.0)
+    version: 0.1.10(svelte@3.58.0)
   '@skeletonlabs/skeleton':
     specifier: ^1.2.5
     version: 1.2.5
@@ -84,8 +84,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@arisbh/marqueeck@0.1.9(svelte@3.58.0):
-    resolution: {integrity: sha512-sy/cPeIz0R+ckvQDq/uYk+lXjRZDjHY6YLBXXYV123+kIZkT9cKItzBVtg6f4V2FPPZEUdcFiB+MKXNM9CDwkQ==}
+  /@arisbh/marqueeck@0.1.10(svelte@3.58.0):
+    resolution: {integrity: sha512-swRQvZZYg+7WLHT+z/XIaV4PTa3gkXIztObcfrUXEMuDaz9eMUJ+ajbViF9iPWNDsrn59riq8htJO+f8z9wQ8w==}
     peerDependencies:
       svelte: ^3.54.0
     dependencies:
