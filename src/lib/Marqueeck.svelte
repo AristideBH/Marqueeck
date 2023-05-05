@@ -5,8 +5,11 @@
 	import { quadInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
+	import { MarqueeckTranslate, type MarqueeckTranslateOptions } from '$lib/MarqueeckTranslate.js';
 	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.js';
+
+	let debugVisible = true;
+	const toggleDebug = () => (debugVisible = debugVisible ? false : true);
 
 	// External arguments
 	export let options: MarqueeckOptions = {},
@@ -15,7 +18,7 @@
 		stickElClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered
 
-	let wrapperWidth: number, wrapperHeight: number, contentWidth: number, contentHeight: number;
+	let wrapperWidth: number, contentWidth: number;
 	let extendContentby = 3; // Number of elements to add to always overflow the parent
 	let DefaultPlaceHolder = 'Marqueeck component';
 
@@ -93,6 +96,8 @@
 	const handleMouseClick = async () => {
 		await dispatchClickEvent();
 	};
+
+	let dist = writable(contentWidth ?? 9999999999 + mergedOptions.gap);
 </script>
 
 <!--/////////////////////////////////////////////////////////////////-->
@@ -103,27 +108,23 @@
 	style:padding-block="{mergedOptions.paddingY_Wrapper}px"
 	style={$$props.style ?? ''}
 	bind:offsetWidth={wrapperWidth}
-	bind:offsetHeight={wrapperHeight}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
 	on:click={handleMouseClick}
 	on:keydown={handleMouseClick}
+	use:MarqueeckTranslate={{
+		direction: direction,
+		distance: () => $dist,
+		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1),
+		isMouseIn: () => $isMouseIn
+	}}
 >
-	<div
-		class="marqueeck-ribbon {ribbonClasses ?? ''}"
-		use:MarqueeckTranslate={{
-			direction: direction,
-			distance: contentWidth + mergedOptions.gap,
-			currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1),
-			isMouseIn: () => $isMouseIn
-		}}
-	>
+	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
 		<!-- Put one element to get its size -->
 		<span
 			transition:fade
 			class="marqueeck-child {childClasses ?? ''}"
 			bind:offsetWidth={contentWidth}
-			bind:offsetHeight={contentHeight}
 		>
 			<slot>{DefaultPlaceHolder}</slot>
 		</span>
@@ -147,18 +148,21 @@
 		</div>
 	{/if}
 </div>
-
 {#if options.debug}
-	<code class="marqueeck-log">
-		<!-- <span>direction: {mergedOptions.direction}</span> -->
-		<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
-		<span>contentWidth: {contentWidth} px</span>
-		<span>contentNumber: {contentNumber} elements</span>
-		<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
-		<span>isMouseIn: {$isMouseIn}</span>
-		<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
-		<span>speedFactor: {options.speedFactor}</span>
-	</code>
+	<button on:click={toggleDebug}>🐞</button>
+
+	{#if debugVisible}
+		<pre class="marqueeck-log" transition:fade>
+			<!-- <span>direction: {mergedOptions.direction}</span> -->
+			<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
+			<span>contentWidth: {contentWidth} px</span>
+			<span>contentNumber: {contentNumber} elements</span>
+			<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
+			<span>isMouseIn: {$isMouseIn}</span>
+			<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
+			<span>speedFactor: {options.speedFactor}</span>
+		</pre>
+	{/if}
 {/if}
 
 <!--/////////////////////////////////////////////////////////////////-->

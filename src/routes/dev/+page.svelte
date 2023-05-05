@@ -9,7 +9,8 @@
 		gap: 60,
 		gradualHoverDuration: 1000,
 		onHover: 'stop',
-		speedFactor: factorHelper($scrollState.velocity, 3)
+		speedFactor: factorHelper($scrollState.velocity, 3),
+		debug: true
 	};
 </script>
 
@@ -26,23 +27,25 @@
 	</div>
 </Marqueeck>
 
-<div class="container relative">
-	<p class="text-center text-lg unstyled mb-2">
-		Scroll in this container to see the effect on Marqueeck's speed !
+<div class="container relative flex flex-wrap gap-y-2 gap-x-4">
+	<p class="text-lg unstyled w-full">
+		Scroll in the container below to see the effect on Marqueeck's speed !
 	</p>
-	<div
-		class="absolute top-9 w-fit z-10 px-3 py-2 font-mono font-bold border-r border-b rounded-br-md transition-all border-black pointer-events-none"
-	>
-		<div>{+$scrollState.distance.toFixed(2)} px scrolled</div>
-		<div>{$scrollState.percentage} % scrolled</div>
-		<div>Scroll : {$scrollState.direction}</div>
-		<div>{+Math.abs($scrollState.velocity * 3).toFixed(2)} px/sec</div>
-	</div>
-	<div class=" max-h-[380px] overflow-auto" on:scroll={scrollHandler}>
+	<div class="max-h-[380px] overflow-auto grow w-full md:w-auto" on:scroll={scrollHandler}>
 		<div class="card p-4 bg-gradient-to-b from-primary-500 to-yellow-300 h-[2000px]" />
 	</div>
-	<p>
-		Here, we're using the calculated scroll velocity to impact Marqueeck's speed via the
-		<code>speedFactor</code> proprety.
-	</p>
+	<div class="z-10 pointer-events-none flex flex-col min-w-[200px] md:w-min shrink space-y-2">
+		<ul class="list-disc font-mono font-bold pl-4">
+			<li>{+$scrollState.distance.toFixed(2)} px scrolled</li>
+			<li>{$scrollState.percentage} % scrolled</li>
+			<li>Scroll : {$scrollState.direction}</li>
+			<li>{+Math.abs($scrollState.velocity).toFixed(2)} px/sec</li>
+		</ul>
+		<br />
+
+		<p class="">
+			Here, we're using the calculated scroll velocity to impact Marqueeck's speed via the
+			<code>speedFactor</code> proprety.
+		</p>
+	</div>
 </div>

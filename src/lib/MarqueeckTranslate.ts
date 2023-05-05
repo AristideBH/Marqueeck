@@ -1,13 +1,16 @@
-
-type MarqueeckTranslateOptions = {
+export type MarqueeckTranslateOptions = {
     direction: 'left' | 'right';
-    distance: number;
+    distance: () => number;
     currentSpeed: () => number;
     isMouseIn: () => boolean;
 };
 
 export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslateOptions): void {
-    const { direction, distance, } = options;
+    const ribbon = node.getElementsByClassName('marqueeck-ribbon')[0];
+    console.log(ribbon);
+
+    const { direction } = options;
+    const distance = options.distance() ?? 0;
     let currentX = -2 * distance,
         totalMoved = distance;
     const distanceToMove = Math.abs(distance);
@@ -19,15 +22,14 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
             currentX = 1 * (totalMoved % distance) - distance;
         }
     };
-
     function update() {
         const currentSpeed = options.currentSpeed();
         currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
 
         if (direction === 'left') {
-            node.style.transform = `translateX(${-currentX}px)`;
+            ribbon.style.transform = `translateX(${-currentX}px)`;
         } else {
-            node.style.transform = `translateX(${currentX}px)`;
+            ribbon.style.transform = `translateX(${currentX}px)`;
         }
 
         totalMoved += Math.abs(currentSpeed) / 60;
@@ -35,6 +37,6 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
 
         requestAnimationFrame(update);
     }
-
     update();
+
 }
