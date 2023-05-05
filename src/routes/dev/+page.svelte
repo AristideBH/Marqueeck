@@ -9,8 +9,7 @@
 		gap: 60,
 		gradualHoverDuration: 1000,
 		onHover: 'stop',
-		speedFactor: factorHelper($scrollState.velocity, 3),
-		debug: true
+		speedFactor: factorHelper($scrollState.velocity, 3)
 	};
 </script>
 
