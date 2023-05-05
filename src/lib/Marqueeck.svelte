@@ -99,7 +99,7 @@
 		await dispatchClickEvent();
 	};
 
-	onMount(async () => ($dist = contentWidth + mergedOptions.gap));
+	onMount(() => ($dist = contentWidth + mergedOptions.gap));
 </script>
 
 <!--/////////////////////////////////////////////////////////////////-->
@@ -122,6 +122,13 @@
 	}}
 >
 	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
+		<span
+			bind:offsetWidth={contentWidth}
+			transition:fade|local
+			class="marqueeck-child {childClasses ?? ''}"
+		>
+			<slot>{DefaultPlaceHolder}</slot>
+		</span>
 		<!-- Repeating content the necessary times -->
 		{#each { length: contentNumber } as i}
 			<span
