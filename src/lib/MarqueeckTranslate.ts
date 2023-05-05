@@ -1,3 +1,5 @@
+import { onMount } from "svelte";
+
 export type MarqueeckTranslateOptions = {
     direction: 'left' | 'right';
     distance: () => number;
@@ -6,37 +8,38 @@ export type MarqueeckTranslateOptions = {
 };
 
 export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslateOptions): void {
-    const ribbon = node.getElementsByClassName('marqueeck-ribbon')[0];
-    console.log(ribbon);
+    onMount(() => {
+        const ribbon = node.getElementsByClassName('marqueeck-ribbon')[0] as HTMLElement;
+        const { direction } = options;
+        const distance = options.distance() ?? 0;
+        const distanceToMove = Math.abs(distance);
+        let currentX = -2 * distance,
+            totalMoved = distance;
 
-    const { direction } = options;
-    const distance = options.distance() ?? 0;
-    let currentX = -2 * distance,
-        totalMoved = distance;
-    const distanceToMove = Math.abs(distance);
+        const loopTranslate = () => {
+            if (direction === 'left') {
+                currentX = 1 * (totalMoved % distance);
+            } else {
+                currentX = 1 * (totalMoved % distance) - distance;
+            }
+        };
+        function update() {
+            const currentSpeed = options.currentSpeed();
+            currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
 
-    const loopTranslate = () => {
-        if (direction === 'left') {
-            currentX = 1 * (totalMoved % distance);
-        } else {
-            currentX = 1 * (totalMoved % distance) - distance;
+            if (direction === 'left') {
+                ribbon.style.transform = `translateX(${-currentX}px)`;
+            } else {
+                ribbon.style.transform = `translateX(${currentX}px)`;
+            }
+
+            totalMoved += Math.abs(currentSpeed) / 60;
+            if (totalMoved >= distanceToMove) loopTranslate();
+
+            requestAnimationFrame(update);
         }
-    };
-    function update() {
-        const currentSpeed = options.currentSpeed();
-        currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
 
-        if (direction === 'left') {
-            ribbon.style.transform = `translateX(${-currentX}px)`;
-        } else {
-            ribbon.style.transform = `translateX(${currentX}px)`;
-        }
-
-        totalMoved += Math.abs(currentSpeed) / 60;
-        if (totalMoved >= distanceToMove) loopTranslate();
-
-        requestAnimationFrame(update);
-    }
-    update();
+        update();
+    })
 
 }

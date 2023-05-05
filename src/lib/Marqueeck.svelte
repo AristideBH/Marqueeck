@@ -4,7 +4,7 @@
 	import { tweened } from 'svelte/motion';
 	import { quadInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { MarqueeckTranslate, type MarqueeckTranslateOptions } from '$lib/MarqueeckTranslate.js';
 	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.js';
 
@@ -18,7 +18,8 @@
 		stickElClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered
 
-	let wrapperWidth: number, contentWidth: number;
+	let wrapperWidth: number,
+		contentWidth: number = 0;
 	let extendContentby = 3; // Number of elements to add to always overflow the parent
 	let DefaultPlaceHolder = 'Marqueeck component';
 
@@ -97,7 +98,11 @@
 		await dispatchClickEvent();
 	};
 
-	let dist = writable(contentWidth ?? 9999999999 + mergedOptions.gap);
+	let dist = writable(contentWidth + mergedOptions.gap);
+
+	onMount(async () => {
+		$dist = contentWidth + mergedOptions.gap;
+	});
 </script>
 
 <!--/////////////////////////////////////////////////////////////////-->
