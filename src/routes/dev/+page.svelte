@@ -8,7 +8,7 @@
 		pingPongHelper
 	} from '$lib/MarqueeckScroll.ts';
 
-	const value = pingPongHelper(1, 5, 2000);
+	const value = pingPongHelper(1, 4, 2000);
 
 	let options1: MarqueeckOptions, options2: MarqueeckOptions;
 	$: options1 = {
@@ -19,10 +19,9 @@
 		speedFactor: factorHelper($scrollState.velocity, 3)
 	};
 	$: options2 = {
-		direction: 'left',
+		direction: 'right',
 		gap: 60,
 		gradualHoverDuration: 1000,
-		onHover: 'stop',
 		speedFactor: $value
 	};
 </script>
@@ -72,8 +71,17 @@
 	>
 		<strong class="flex gap-2 items-end text-5xl"> Cyclic speed </strong>
 	</Marqueeck>
-	<p class="container">
-		Here, we're using the a ping-ponging value to impact Marqueeck's speed via the
-		<code>speedFactor</code> proprety.
-	</p>
+
+	<div class="container relative flex flex-wrap gap-y-2 gap-x-6">
+		<div class="max-h-[380px] overflow-auto grow w-full md:w-auto">
+			<pre>{$value.toFixed(2)}</pre>
+			<input type="range" value={$value * 100} min="100" max="400" disabled />
+		</div>
+		<div class="z-10 pointer-events-none flex flex-col min-w-[200px] md:w-min shrink space-y-2">
+			<p class="">
+				Here, we're using a ping-ponging value to impact Marqueeck's speed via the
+				<code>speedFactor</code> proprety.
+			</p>
+		</div>
+	</div>
 </section>

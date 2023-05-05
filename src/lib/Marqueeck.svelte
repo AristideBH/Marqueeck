@@ -186,6 +186,7 @@
 		flex-flow: inherit;
 		gap: inherit;
 		position: inherit;
+		will-change: transform;
 	}
 
 	.marqueeck-child {

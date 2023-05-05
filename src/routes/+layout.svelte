@@ -11,7 +11,7 @@
 
 <AppShell
 	slotPageHeader="px-4 py-8 container mx-auto flex gap-16 flex-wrap items-baseline md:flex-nowrap"
-	slotPageFooter="px-4 py-2 container mx-auto"
+	slotPageFooter="px-4 py-2 container mx-auto justify-between flex mt-16"
 >
 	<svelte:fragment slot="pageHeader">
 		<div class=" flex flex-col gap-4 w-full max-w-lg">
@@ -50,6 +50,11 @@
 	</div>
 
 	<svelte:fragment slot="pageFooter">
-		<a href="https://github.com/AristideBH/"> @AristideBH </a>
+		<a href="https://github.com/AristideBH/" target="_blank"> @AristideBH </a>
+		<span>
+			Thanks to
+			<a href="https://www.skeleton.dev/" target="_blank">Skeleton.dev</a>
+			from their framework use to build this site.
+		</span>
 	</svelte:fragment>
 </AppShell>
