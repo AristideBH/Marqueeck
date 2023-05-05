@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { tweened } from 'svelte/motion';
-import { cubicOut } from 'svelte/easing';
+import { cubicOut, cubicInOut } from 'svelte/easing';
 
 function createScrollState() {
     let lastPos: number | null = null;
@@ -72,3 +72,39 @@ export const factorHelper = (velocity: number, damper = 7) => {
         return Math.abs(velocity) / damper;
     }
 };
+
+
+
+export function pingPongHelper(min: number, max: number, duration: number) {
+    const internalStore = writable(min);
+    const pingPongValue = tweened(min, {
+        duration,
+        easing: cubicInOut
+    });
+
+    function startPingPong(min: number, max: number) {
+        pingPongValue
+            .update((value) => {
+                const target = value === min ? max : min;
+                return target;
+            })
+            .then(() => startPingPong(min, max));
+    }
+
+    pingPongValue.subscribe((value) => {
+        internalStore.set(value);
+    });
+
+    startPingPong(min, max);
+
+    return {
+        subscribe: internalStore.subscribe,
+        get value() {
+            let currentValue;
+            internalStore.subscribe((value) => {
+                currentValue = value;
+            })();
+            return currentValue;
+        }
+    };
+}

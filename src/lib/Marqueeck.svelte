@@ -5,11 +5,14 @@
 	import { quadInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { MarqueeckTranslate, type MarqueeckTranslateOptions } from '$lib/MarqueeckTranslate.js';
+	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
 	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.js';
 
 	let debugVisible = true;
+	let showMarqueeck = false;
+
 	const toggleDebug = () => (debugVisible = debugVisible ? false : true);
+	const toggleMarqueeck = () => (showMarqueeck = showMarqueeck ? false : true);
 
 	// External arguments
 	export let options: MarqueeckOptions = {},
@@ -42,7 +45,14 @@
 	const direction: 'left' | 'right' = mergedOptions.direction as 'left' | 'right';
 	const stickyPosHelper = mergedOptions.stickyPosition === 'start' ? 'left: 0;' : 'right: 0;';
 
-	export const speedFactorStore = writable(options.speedFactor);
+	// Store distance into a store to update it onMount
+	let dist = writable(contentWidth + mergedOptions.gap);
+	// Get the width of the wrapper without it paddings
+	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.paddingX_Wrapper;
+	// Define the number of elements needed to fill the wrapper
+	$: contentNumber =
+		Math.ceil(wrapperInnerWidth / (contentWidth + mergedOptions.gap)) + extendContentby;
+
 	// Define a tweened value for the speed, can be passed to MarqueeckTranslate() as currentSpeed
 	const tweenedSpeed = tweened(mergedOptions.speed * (options.speedFactor ?? 1), {
 		duration: mergedOptions.gradualHoverDuration,
@@ -57,12 +67,6 @@
 	const isMouseIn = writable(false);
 	$: reactiveHoverClasses = $isMouseIn ? hoverClasses : '';
 
-	// Get the width of the wrapper without it paddings
-	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.paddingX_Wrapper;
-	// Define the number of elements needed to fill the wrapper
-	$: contentNumber =
-		Math.ceil(wrapperInnerWidth / (contentWidth + mergedOptions.gap)) + extendContentby;
-
 	// Initialize custom event dispatchers
 	const dispatch = createEventDispatcher();
 	const dispatchHoverInEvent = async () => dispatch('hoverIn');
@@ -74,9 +78,7 @@
 			if (mergedOptions.debug) console.log('▶️ hover in');
 			isMouseIn.set(true);
 			await dispatchHoverInEvent();
-
 			if (mergedOptions.onHover === 'customSpeed') {
-				// await tweenedSpeed.update(() => mergedOptions.hoverSpeed);
 				await tweenedSpeed.update(() => mergedOptions.hoverSpeed * (options.speedFactor ?? 1));
 			} else {
 				await tweenedSpeed.update(() => 0);
@@ -89,7 +91,6 @@
 			if (mergedOptions.debug) console.log('⏸️ hover out');
 			isMouseIn.set(false);
 			await dispatchHoverOutEvent();
-			// await tweenedSpeed.update(() => mergedOptions.speed);
 			await tweenedSpeed.update(() => mergedOptions.speed * (options.speedFactor ?? 1));
 		}
 	};
@@ -98,11 +99,7 @@
 		await dispatchClickEvent();
 	};
 
-	let dist = writable(contentWidth + mergedOptions.gap);
-
-	onMount(async () => {
-		$dist = contentWidth + mergedOptions.gap;
-	});
+	onMount(async () => ($dist = contentWidth + mergedOptions.gap));
 </script>
 
 <!--/////////////////////////////////////////////////////////////////-->
@@ -125,18 +122,13 @@
 	}}
 >
 	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
-		<!-- Put one element to get its size -->
-		<span
-			transition:fade
-			class="marqueeck-child {childClasses ?? ''}"
-			bind:offsetWidth={contentWidth}
-		>
-			<slot>{DefaultPlaceHolder}</slot>
-		</span>
-
 		<!-- Repeating content the necessary times -->
-		{#each { length: contentNumber } as item, i}
-			<span transition:fade class="marqueeck-child {childClasses ?? ''}">
+		{#each { length: contentNumber } as i}
+			<span
+				bind:offsetWidth={contentWidth}
+				transition:fade|local
+				class="marqueeck-child {childClasses ?? ''}"
+			>
 				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}
@@ -158,7 +150,7 @@
 
 	{#if debugVisible}
 		<pre class="marqueeck-log" transition:fade>
-			<!-- <span>direction: {mergedOptions.direction}</span> -->
+			<span>direction: {mergedOptions.direction}</span>
 			<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
 			<span>contentWidth: {contentWidth} px</span>
 			<span>contentNumber: {contentNumber} elements</span>

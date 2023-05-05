@@ -8,7 +8,7 @@ export type MarqueeckTranslateOptions = {
 };
 
 export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslateOptions): void {
-    onMount(() => {
+    onMount(async () => {
         const ribbon = node.getElementsByClassName('marqueeck-ribbon')[0] as HTMLElement;
         const { direction } = options;
         const distance = options.distance() ?? 0;
