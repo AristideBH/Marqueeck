@@ -10,6 +10,10 @@
 
 <svelte:head>
 	<title>Marqueeck - A custom marquee component for Sveltekit</title>
+	<meta
+		property="description"
+		content="Marqueeck is a smooth custom marquee component for Sveltekit, speed-eased, style-free and without dependencies."
+	/>
 </svelte:head>
 
 <TabGroup regionPanel="space-y-8 pb-8" regionList="bg-surface-50 sticky top-0 z-40 container !py-0">
