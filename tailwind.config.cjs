@@ -12,7 +12,11 @@ module.exports = {
 		)
 	],
 	theme: {
-		extend: {},
+		extend: {
+			maxWidth: {
+				'full': '100%',
+			},
+		},
 	},
 	plugins: [
 		// 3. Append the Skeleton plugin to the end of this list

@@ -173,6 +173,7 @@
 <style>
 	.marqueeck-wrapper {
 		width: 100%;
+		max-width: 100%;
 		background-color: var(--bg-color, #a4d9cd);
 		color: var(--text-color, #0b8c61);
 		display: flex;
