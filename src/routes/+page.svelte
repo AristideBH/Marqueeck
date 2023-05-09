@@ -17,6 +17,7 @@
 	<Tab bind:group={tabSet} name="tab2" value={1}>Options</Tab>
 	<Tab bind:group={tabSet} name="tab3" value={2}>Styling</Tab>
 	<Tab bind:group={tabSet} name="tab4" value={3}>Events</Tab>
+	<Tab bind:group={tabSet} name="tab5" value={4}>Infos</Tab>
 
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
@@ -28,6 +29,17 @@
 			<Styling />
 		{:else if tabSet === 3}
 			<Events />
+		{:else if tabSet === 4}
+			<div class="container">
+				<h2>Informations</h2>
+				<blockquote class="!mt-4">...writing documentation...</blockquote>
+			</div>
 		{/if}
 	</svelte:fragment>
 </TabGroup>
+
+<style>
+	:global(.tab-list label:last-of-type) {
+		margin-left: auto;
+	}
+</style>

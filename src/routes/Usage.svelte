@@ -86,12 +86,12 @@
 			</p>
 			<p>You can overide this behaviour with the <code>onHover</code> property inside options :</p>
 			<ul class="list-disc ml-6">
-				<li><code>none</code> : nothing will happen upon hover</li>
+				<li><code>none</code> : nothing will happen upon hover, the animation will continue.</li>
 				<li><code>stop</code> : the component speed will smoothly stops to zero.</li>
 			</ul>
 			<blockquote class="!mt-4">
 				<p>
-					You can customize the time it takes to stop or slow down the animation using the <code
+					Customize the time it takes to stop or slow down the animation using the <code
 						>gradualHoverDuration</code
 					> proprety.
 				</p>

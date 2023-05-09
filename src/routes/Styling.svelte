@@ -30,7 +30,7 @@
 			language="html"
 			code={`
 <Marqueeck options={{ gap: 56, paddingY_Wrapper: 25 }}>
-	<div class="flex gap-2 items-end leading-4">
+	<div class="flex gap-2 items-end leading-4"> // Here we're using Tailwind classes
 		<span class="flex flex-col">
 			<strong>Hello</strong> <i>custom</i>
 		</span>
@@ -73,9 +73,20 @@
 <div class="space-y-2 container">
 	<h3 class="mb-2">Using classes props</h3>
 	<p>
-		Marqueeck provides 3 props to style its barebone structure and the default <code>class</code> tag.
+		Marqueeck provides props to style its barebone structure and the default <code>class</code> tag.
 	</p>
 	<ul class="list-disc pl-6 space-y-1">
+		<li>
+			Default <strong> class</strong> is use to style the parent of your repeated element.
+			<br />Its gap property is automaticaly inherited from <code>options</code> and is use to
+			properly calculate the needed number of elements. Please do not redefined it here and use the
+			<code>gap</code>
+			property in <code>options</code>.
+			<br />
+			<blockquote>
+				This is the animated element, please do not apply any <code>transform</code> to it.
+			</blockquote>
+		</li>
 		<li>
 			<strong>ribbonClasses</strong> is use to style the parent of your repeated element.
 			<br />Its gap property is automaticaly inherited from <code>options</code> and is use to
@@ -107,8 +118,9 @@
 
 .marqueeck-wrapper {
 	width: 100%;
-	background-color: var(--bg-color, lightslategrey);
-	color: var(--text-color, white);
+	max-width: 100%;
+	background-color: var(--bg-color, #a4d9cd);
+	color: var(--text-color, #0b8c61);
 	display: flex;
 	flex-flow: row nowrap;
 	overflow-x: hidden;
@@ -120,6 +132,7 @@
 	flex-flow: inherit;
 	gap: inherit;
 	position: inherit;
+	will-change: transform;
 }
 
 .marqueeck-child {
@@ -129,7 +142,7 @@
 
 .marqueeck-sticky {
 	position: absolute;
-	background-color: var(--bg-color, lightslategrey);
+	background-color: inherit;
 	width: -moz-fit-content;
 	width: fit-content;
 }
