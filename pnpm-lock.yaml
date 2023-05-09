@@ -3,7 +3,7 @@ lockfileVersion: '6.0'
 devDependencies:
   '@arisbh/marqueeck':
     specifier: latest
-    version: 0.1.11(svelte@3.59.1)
+    version: 0.1.12(svelte@3.59.1)
   '@skeletonlabs/skeleton':
     specifier: ^1.2.5
     version: 1.2.5
@@ -84,8 +84,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@arisbh/marqueeck@0.1.11(svelte@3.59.1):
-    resolution: {integrity: sha512-NGunvnAHjpMgSx2fVyo+ywoU47gvGHGTzwg/j4N8S2gEg1lwa7sFX8nGrlDTaYNY0bYILOOUAp7F1IH/eHbYLA==}
+  /@arisbh/marqueeck@0.1.12(svelte@3.59.1):
+    resolution: {integrity: sha512-xr+4XJfiaLZSznGl+HyWZrhGE/XwTFNvhvoYBBs/rMMMuXam51U1vaGrMUDfF6A6tNnASddkk+3lHwZ6AJElfw==}
     peerDependencies:
       svelte: ^3.54.0
     dependencies:
@@ -460,7 +460,7 @@ packages:
       kleur: 4.1.5
       sade: 1.8.1
       svelte: 3.59.1
-      svelte2tsx: 0.6.13(svelte@3.59.1)(typescript@5.0.4)
+      svelte2tsx: 0.6.14(svelte@3.59.1)(typescript@5.0.4)
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -702,7 +702,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.5
-      caniuse-lite: 1.0.30001482
+      caniuse-lite: 1.0.30001486
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -744,8 +744,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001482
-      electron-to-chromium: 1.4.384
+      caniuse-lite: 1.0.30001486
+      electron-to-chromium: 1.4.387
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -771,8 +771,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /caniuse-lite@1.0.30001482:
-    resolution: {integrity: sha512-F1ZInsg53cegyjroxLNW9DmrEQ1SuGRTO1QlpA0o2/6OpQ0gFeDRoq1yFmnr8Sakn9qwwt9DmbxHB6w167OSuQ==}
+  /caniuse-lite@1.0.30001486:
+    resolution: {integrity: sha512-uv7/gXuHi10Whlj0pp5q/tsK/32J2QSqVRKQhs2j8VsDCjgyruAh/eEXHF822VqO9yT6iZKw3nRwZRSPBE9OQg==}
     dev: true
 
   /chalk@4.1.2:
@@ -894,8 +894,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /electron-to-chromium@1.4.384:
-    resolution: {integrity: sha512-I97q0MmRAAqj53+a8vZsDkEXBZki+ehYAOPzwtQzALip52aEp2+BJqHFtTlsfjoqVZYwPpHC8wM6MbsSZQ/Eqw==}
+  /electron-to-chromium@1.4.387:
+    resolution: {integrity: sha512-tutLf+alr1/0YqJwKPdstVvDLmxmLb5xNyDLNS0RZmenHcEYk9qKfpKDCVZEKJ00JVbnayJm1MZAbYhYDFpcOw==}
     dev: true
 
   /es6-promise@3.3.1:
@@ -2080,8 +2080,8 @@ packages:
       typescript: 5.0.4
     dev: true
 
-  /svelte2tsx@0.6.13(svelte@3.59.1)(typescript@5.0.4):
-    resolution: {integrity: sha512-QmAkVvItJGyAcBElRqOqqXrkbH8CO5kWypRcTQ5IgQIVSosLmpJ5wcG2Hhyos4aqox0GNJ2JzBFSgXZjfllmiQ==}
+  /svelte2tsx@0.6.14(svelte@3.59.1)(typescript@5.0.4):
+    resolution: {integrity: sha512-Sxo9gtpc3dYWuFQ8fruZG+M+I6OZMIvOxxKjt48Lr8jD6Kr9cNf1Hf/yHUDEgDwQdRbAzn5y0FL9xk8Dx5v9lg==}
     peerDependencies:
       svelte: ^3.55
       typescript: ^4.9.4 || ^5.0.0
