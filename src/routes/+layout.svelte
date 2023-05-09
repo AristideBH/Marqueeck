@@ -11,7 +11,7 @@
 
 <AppShell
 	slotPageHeader="px-4 py-8 container mx-auto flex gap-16 flex-wrap items-baseline md:flex-nowrap"
-	slotPageFooter="px-4 py-2 container mx-auto justify-between flex mt-16"
+	slotPageFooter="px-4 py-2 container mx-auto justify-between flex mt-16 gap-4"
 >
 	<svelte:fragment slot="pageHeader">
 		<div class=" flex flex-col gap-4 w-full max-w-lg">
@@ -23,7 +23,7 @@
 
 			<!-- INSTALL COMMAND -->
 			<div class="flex gap-4 w-full md:flex-col items-start">
-				<CodeBlock language="bash" code={`npm i @arisbh/marqueeck`} class="w-full" />
+				<CodeBlock language="cmd" code={`npm i @arisbh/marqueeck`} class="w-full" />
 				<a href="https://github.com/AristideBH/Marqueeck/">
 					<span class="chip variant-ghost-primary">Github page</span>
 				</a>

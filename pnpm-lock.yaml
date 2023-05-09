@@ -2,7 +2,7 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@arisbh/marqueeck':
-    specifier: latest
+    specifier: 0.1.12
     version: 0.1.12(svelte@3.59.1)
   '@skeletonlabs/skeleton':
     specifier: ^1.2.5
