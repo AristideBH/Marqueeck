@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Marqueeck from '@arisbh/marqueeck';
-	// import Marqueeck from '$lib/index.ts';
+	// import Marqueeck from '@arisbh/marqueeck';
+	import Marqueeck from '$lib/index.ts';
 	import {
 		CodeBlock,
 		TabGroup,
@@ -13,7 +13,7 @@
 
 <!-- ! Tab Panel - USAGE --->
 <div id="toc" class="flex gap-16 container flex-wrap md:flex-nowrap mt-8 w-full items-start">
-	<TableOfContents
+	<!-- <TableOfContents
 		class="  md:sticky top-10 z-10 bg-surface-50-900-token md:top-16 "
 		target="#toc"
 		scrollParent="#page"
@@ -21,7 +21,7 @@
 		label="Table of content"
 		width="min-w-[220px] w-full md:min-w-unset md:w-fit"
 		regionLabel="pt-4 md:!pt-0"
-	/>
+	/> -->
 	<main class="min-w-[220px] w-full md:min-w-unset md:w-fit space-y-8">
 		<section class="space-y-2">
 			<h2 class="mb-4">Basic usage</h2>

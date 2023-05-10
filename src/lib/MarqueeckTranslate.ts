@@ -10,6 +10,7 @@ export type MarqueeckTranslateOptions = {
 export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslateOptions): void {
     onMount(() => {
         const ribbon = node.getElementsByClassName('marqueeck-ribbon')[0] as HTMLElement;
+
         const { direction } = options;
         const distance = options.distance() ?? 0;
         const distanceToMove = Math.abs(distance);
@@ -24,6 +25,8 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
             }
         };
         function update() {
+            console.log(ribbon);
+
             const currentSpeed = options.currentSpeed();
             currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
 

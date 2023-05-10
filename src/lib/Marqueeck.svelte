@@ -124,7 +124,7 @@
 	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
 		<span
 			bind:offsetWidth={contentWidth}
-			transition:fade|local
+			transition:fade
 			class="marqueeck-child {childClasses ?? ''}"
 		>
 			<slot>{DefaultPlaceHolder}</slot>
@@ -133,7 +133,7 @@
 		{#each { length: contentNumber } as i}
 			<span
 				bind:offsetWidth={contentWidth}
-				transition:fade|local
+				transition:fade
 				class="marqueeck-child {childClasses ?? ''}"
 			>
 				<slot>{DefaultPlaceHolder}</slot>
@@ -200,6 +200,7 @@
 		background-color: inherit;
 		width: -moz-fit-content;
 		width: fit-content;
+		border-right: 1px solid #0b8c61;
 	}
 
 	.marqueeck-log {

@@ -51,6 +51,8 @@
 
 	<svelte:fragment slot="pageFooter">
 		<a href="https://github.com/AristideBH/" target="_blank"> @AristideBH </a>
+		<a href="/dev" class="mr-auto">🧪 dev </a>
+		
 		<span>
 			Thanks to
 			<a href="https://www.skeleton.dev/" target="_blank">Skeleton.dev</a>
