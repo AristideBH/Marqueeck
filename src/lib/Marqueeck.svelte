@@ -97,15 +97,10 @@
 	const handleMouseClick = async () => {
 		await dispatchClickEvent();
 	};
-
-	let dist = writable(contentWidth + mergedOptions.gap);
-
-	onMount(async () => {
-		$dist = contentWidth + mergedOptions.gap;
-	});
 </script>
 
 <!--/////////////////////////////////////////////////////////////////-->
+
 <div
 	class="marqueeck-wrapper {$$props.class ?? ''} {reactiveHoverClasses}"
 	style:gap="{mergedOptions.gap}px"
@@ -117,15 +112,16 @@
 	on:mouseleave={handleMouseLeave}
 	on:click={handleMouseClick}
 	on:keydown={handleMouseClick}
-	use:MarqueeckTranslate={{
-		direction: direction,
-		distance: () => $dist,
-		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1),
-		isMouseIn: () => $isMouseIn
-	}}
-	use:showNodeDetails
 >
-	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
+	<div
+		class="marqueeck-ribbon {ribbonClasses ?? ''}"
+		use:MarqueeckTranslate={{
+			direction: direction,
+			distance: contentWidth + mergedOptions.gap,
+			currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1),
+			isMouseIn: () => $isMouseIn
+		}}
+	>
 		<span
 			bind:offsetWidth={contentWidth}
 			transition:fade
