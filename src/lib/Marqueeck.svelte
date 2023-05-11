@@ -101,7 +101,7 @@
 	};
 
 	onMount(() => ($dist = contentWidth + mergedOptions.gap));
-	onDestroy(() => console.log('destroy markee'));
+	onDestroy(() => ($dist = 0));
 </script>
 
 <!--/////////////////////////////////////////////////////////////////-->
