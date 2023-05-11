@@ -41,7 +41,7 @@
 </script>
 
 <Marqueeck
-	{options}
+	options={options1}
 	--bg-color={'rgb(164, 217, 205)'}
 	--text-color={'rgb(var(--color-primary-700))'}
 	hoverClasses="!bg-primary-500 !text-white"

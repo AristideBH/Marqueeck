@@ -46,8 +46,6 @@
 	const direction: 'left' | 'right' = mergedOptions.direction as 'left' | 'right';
 	const stickyPosHelper = mergedOptions.stickyPosition === 'start' ? 'left: 0;' : 'right: 0;';
 
-	// Store distance into a store to update it onMount
-	let dist = writable(contentWidth + mergedOptions.gap);
 	// Get the width of the wrapper without it paddings
 	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.paddingX_Wrapper;
 	// Define the number of elements needed to fill the wrapper
