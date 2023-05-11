@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Marqueeck from '@arisbh/marqueeck';
-	// import Marqueeck from '$lib/Marqueeck.svelte';
+	// import Marqueeck from '@arisbh/marqueeck';
+	import Marqueeck from '$lib/Marqueeck.svelte';
 	import { CodeBlock } from '@skeletonlabs/skeleton';
 
 	const handleHoverIn = () => {

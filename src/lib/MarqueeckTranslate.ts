@@ -1,4 +1,4 @@
-import { onMount } from "svelte";
+import { onMount, onDestroy } from "svelte";
 
 export type MarqueeckTranslateOptions = {
     direction: 'left' | 'right';
@@ -8,8 +8,12 @@ export type MarqueeckTranslateOptions = {
 };
 
 export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslateOptions): void {
+    console.log("Before marquee mount");
+
     onMount(() => {
+        console.log("OnMount");
         const ribbon = node.getElementsByClassName('marqueeck-ribbon')[0] as HTMLElement;
+
         const { direction } = options;
         const distance = options.distance() ?? 0;
         const distanceToMove = Math.abs(distance);
@@ -23,7 +27,9 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
                 currentX = 1 * (totalMoved % distance) - distance;
             }
         };
+
         function update() {
+
             const currentSpeed = options.currentSpeed();
             currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
 
@@ -38,8 +44,11 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
 
             requestAnimationFrame(update);
         }
-
         update();
+        console.log("------");
+    })
+    onDestroy(() => {
+        console.log('destroyed')
     })
 
 }
