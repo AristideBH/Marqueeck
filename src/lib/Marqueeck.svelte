@@ -4,8 +4,8 @@
 	import { tweened } from 'svelte/motion';
 	import { quadInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
-	import { MarqueeckTranslate } from '$lib/MarqueeckTranslate.js';
+	import { createEventDispatcher, onMount } from 'svelte';
+	import { MarqueeckTranslate, type MarqueeckTranslateOptions } from '$lib/MarqueeckTranslate.js';
 	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.js';
 	import { showNodeDetails } from '../routes/dev/utils.js';
 
@@ -100,8 +100,11 @@
 		await dispatchClickEvent();
 	};
 
-	onMount(() => ($dist = contentWidth + mergedOptions.gap));
-	onDestroy(() => ($dist = 0));
+	let dist = writable(contentWidth + mergedOptions.gap);
+
+	onMount(async () => {
+		$dist = contentWidth + mergedOptions.gap;
+	});
 </script>
 
 <!--/////////////////////////////////////////////////////////////////-->

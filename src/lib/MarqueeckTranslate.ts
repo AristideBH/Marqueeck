@@ -14,6 +14,7 @@ export function MarqueeckTranslate(node: HTMLElement, options: MarqueeckTranslat
         console.log("OnMount");
         const ribbon = node.getElementsByClassName('marqueeck-ribbon')[0] as HTMLElement;
 
+
         const { direction } = options;
         const distance = options.distance() ?? 0;
         const distanceToMove = Math.abs(distance);
