@@ -1,24 +1,28 @@
 <script lang="ts">
 	// import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
-	import Marqueeck, { type MarqueeckOptions } from '$lib/index.ts';
+	import Marqueeck, { type MarqueeckOptions } from '$lib/index.js';
 	import {
 		scrollState,
 		scrollHandler,
 		factorHelper,
 		pingPongHelper
-	} from '$lib/MarqueeckScroll.ts';
+	} from '$lib/MarqueeckScroll.js';
 
 	const cyclingValue = pingPongHelper(1, 4, 2000);
 
 	let m = { x: 0 };
 	let innerWidth: number;
 	let mouseValue: number;
+
 	function handleMousemove(event: { clientX: number }) {
 		m.x = event.clientX;
 		mouseValue = +((m.x / innerWidth) * 6).toFixed(2);
 	}
 
-	let options1: MarqueeckOptions, options2: MarqueeckOptions, options3: MarqueeckOptions;
+	let options1: Partial<MarqueeckOptions>,
+		options2: Partial<MarqueeckOptions>,
+		options3: Partial<MarqueeckOptions>;
+
 	$: options1 = {
 		direction: 'left',
 		gap: 60,

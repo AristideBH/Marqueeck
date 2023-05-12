@@ -1,185 +1,162 @@
-<!--/////////////////////////////////////////////////////////////////-->
 <script lang="ts">
-	import { writable } from 'svelte/store';
+	import { createEventDispatcher, onMount, tick } from 'svelte';
+	// prettier-ignore
+	import { hasHoverState, defaultOptions, isMouseIn, stickyPos, setOpacity, debugState } from './Marqueeck.js';
+	import type { MarqueeckOptions, TranslateOptions } from './Marqueeck.js';
 	import { tweened } from 'svelte/motion';
-	import { quadInOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
-	import { createEventDispatcher, onMount } from 'svelte';
-	import { MarqueeckTranslate, type MarqueeckTranslateOptions } from '$lib/MarqueeckTranslate.js';
-	import type { MarqueeckOptions } from '$lib/MarqueeckOptions.js';
-	import { showNodeDetails } from '../routes/dev/utils.js';
 
-	let debugVisible = true;
-	let showMarqueeck = false;
+	// VARIABLES
+	let wrapperWidth: number, childWidth: number, childRef: HTMLElement;
+	export let options: Partial<MarqueeckOptions> = {},
+		ribbonRegion = '', // Define classes for the repeating wrapper
+		childRegion = '', // Define classes for the repeated content
+		stickyRegion = '', // Define classes for the sticky element
+		hoverClasses = ''; // Define wrapper classes when hovered;
+	const mergedOptions: MarqueeckOptions = { ...defaultOptions, ...options };
+	let DefaultPlaceHolder = 'Marqueeck Svelte';
 
-	const toggleDebug = () => (debugVisible = debugVisible ? false : true);
-	const toggleMarqueeck = () => (showMarqueeck = showMarqueeck ? false : true);
-
-	// External arguments
-	export let options: MarqueeckOptions = {},
-		ribbonClasses = '', // Define classes for the repeating wrapper
-		childClasses = '', // Define classes for the repeated content
-		stickElClasses = '', // Define classes for the sticky element
-		hoverClasses = ''; // Define wrapper classes when hovered
-
-	let wrapperWidth: number,
-		contentWidth: number = 0;
-	let extendContentby = 3; // Number of elements to add to always overflow the parent
-	let DefaultPlaceHolder = 'Marqueeck component';
-
-	const defaultOptions = {
-		speed: 50,
-		direction: 'left',
-		gap: 20,
-		paddingX_Wrapper: 20,
-		paddingY_Wrapper: 16,
-		debug: false,
-		onHover: 'customSpeed',
-		gradualHoverDuration: 1250,
-		hoverSpeed: 10,
-		stickyPosition: 'start',
-		speedFactor: 1
-	};
-
-	// Merge options with defaultOptions
-	const mergedOptions = { ...defaultOptions, ...options };
-	const direction: 'left' | 'right' = mergedOptions.direction as 'left' | 'right';
-	const stickyPosHelper = mergedOptions.stickyPosition === 'start' ? 'left: 0;' : 'right: 0;';
-
-	// Get the width of the wrapper without it paddings
-	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.paddingX_Wrapper;
-	// Define the number of elements needed to fill the wrapper
-	$: contentNumber =
-		Math.ceil(wrapperInnerWidth / (contentWidth + mergedOptions.gap)) + extendContentby;
-
-	// Define a tweened value for the speed, can be passed to MarqueeckTranslate() as currentSpeed
-	const tweenedSpeed = tweened(mergedOptions.speed * (options.speedFactor ?? 1), {
-		duration: mergedOptions.gradualHoverDuration,
-		easing: quadInOut
-	});
-
-	// Define a Boolean for onHover options state
-	const noHoverState =
-		mergedOptions.onHover === 'stop' || mergedOptions.onHover === 'customSpeed' ? true : false;
-
-	// Define a Boolean for mouse hover state
-	const isMouseIn = writable(false);
+	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.padding.x;
+	$: repeatedChildNumber = Math.floor(wrapperInnerWidth / (childWidth + mergedOptions.gap)) + 3;
+	$: initialPos = -(childWidth + mergedOptions.gap);
 	$: reactiveHoverClasses = $isMouseIn ? hoverClasses : '';
 
-	// Initialize custom event dispatchers
+	// FUNCTIONS
+	const translate = (node: HTMLElement, options: TranslateOptions) => {
+		onMount(async () => {
+			await tick();
+			setOpacity(childRef, 1);
+			let currentX = initialPos,
+				totalMoved = 0,
+				distanceToMove = Math.abs(initialPos);
+			const { direction } = mergedOptions;
+
+			function update() {
+				const currentSpeed = options.currentSpeed();
+				currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
+				totalMoved += currentSpeed / 60;
+
+				node.style.setProperty('--ribbonXpos', currentX + 'px');
+
+				if (totalMoved >= distanceToMove) {
+					totalMoved = 0;
+					currentX = initialPos;
+				}
+				requestAnimationFrame(update);
+			}
+			update();
+		});
+	};
+
+	// TWEENED SPEED VALUE
+	const tweenedSpeed = tweened(mergedOptions.speed * (options.speedFactor ?? 1), {
+		duration: mergedOptions.gradualHoverDuration,
+		easing: mergedOptions.easing
+	});
+
+	// EVENTS MANAGER
 	const dispatch = createEventDispatcher();
-	const dispatchHoverInEvent = async () => dispatch('hoverIn');
-	const dispatchHoverOutEvent = async () => dispatch('hoverOut');
-	const dispatchClickEvent = async () => dispatch('click');
+	const HoverInEvent = async () => dispatch('hoverIn');
+	const HoverOutEvent = async () => dispatch('hoverOut');
+	const ClickEvent = async () => dispatch('click');
 
 	const handleMouseEnter = async () => {
-		if (noHoverState) {
-			if (mergedOptions.debug) console.log('▶️ hover in');
-			isMouseIn.set(true);
-			await dispatchHoverInEvent();
+		if (hasHoverState(mergedOptions as MarqueeckOptions)) {
+			$isMouseIn = true;
+			await HoverInEvent();
+
 			if (mergedOptions.onHover === 'customSpeed') {
-				await tweenedSpeed.update(() => mergedOptions.hoverSpeed * (options.speedFactor ?? 1));
+				$tweenedSpeed = mergedOptions.hoverSpeed * (options.speedFactor ?? 1);
 			} else {
-				await tweenedSpeed.update(() => 0);
+				$tweenedSpeed = 0;
 			}
 		}
 	};
 
 	const handleMouseLeave = async () => {
-		if (noHoverState) {
-			if (mergedOptions.debug) console.log('⏸️ hover out');
-			isMouseIn.set(false);
-			await dispatchHoverOutEvent();
+		if (hasHoverState(mergedOptions as MarqueeckOptions)) {
+			$isMouseIn = false;
+			await HoverOutEvent();
 			await tweenedSpeed.update(() => mergedOptions.speed * (options.speedFactor ?? 1));
 		}
 	};
 
-	const handleMouseClick = async () => {
-		await dispatchClickEvent();
-	};
+	const handleMouseClick = async () => await ClickEvent();
 </script>
 
-<!--/////////////////////////////////////////////////////////////////-->
-
 <div
-	class="marqueeck-wrapper {$$props.class ?? ''} {reactiveHoverClasses}"
-	style:gap="{mergedOptions.gap}px"
-	style:padding-inline="{mergedOptions.paddingX_Wrapper}px"
-	style:padding-block="{mergedOptions.paddingY_Wrapper}px"
-	style={$$props.style ?? ''}
+	class="marqueeck-wrapper
+		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(mergedOptions.debug)}"
 	bind:offsetWidth={wrapperWidth}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
 	on:click={handleMouseClick}
 	on:keydown={handleMouseClick}
+	use:translate={{
+		initialPosition: initialPos,
+		options: mergedOptions,
+		isMouseIn: () => $isMouseIn,
+		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1)
+	}}
+	style:gap="{mergedOptions.gap}px"
+	style:padding-inline="{mergedOptions.padding.x}px"
+	style:padding-block="{mergedOptions.padding.y}px"
+	style:--ribbonXpos={initialPos + 'px'}
 >
-	<div
-		class="marqueeck-ribbon {ribbonClasses ?? ''}"
-		use:MarqueeckTranslate={{
-			direction: direction,
-			distance: contentWidth + mergedOptions.gap,
-			currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1),
-			isMouseIn: () => $isMouseIn
-		}}
-	>
+	<div class="marqueeck-ribbon {ribbonRegion ?? ''}">
+		<!-- Put one element to get its size -->
 		<span
-			bind:offsetWidth={contentWidth}
+			class="marqueeck-child {childRegion ?? ''}"
+			style:opacity="0"
+			bind:offsetWidth={childWidth}
+			bind:this={childRef}
 			transition:fade
-			class="marqueeck-child {childClasses ?? ''}"
 		>
 			<slot>{DefaultPlaceHolder}</slot>
 		</span>
+
 		<!-- Repeating content the necessary times -->
-		{#each { length: contentNumber } as i}
-			<span
-				bind:offsetWidth={contentWidth}
-				transition:fade
-				class="marqueeck-child {childClasses ?? ''}"
-			>
+		{#each { length: repeatedChildNumber } as item, i}
+			<span class="marqueeck-child {childRegion ?? ''}" transition:fade>
 				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}
 	</div>
-
 	<!-- Use sticky slot if provided -->
 	{#if $$slots.sticky}
 		<div
-			class="marqueeck-sticky {stickElClasses ?? ''}"
-			style:padding-inline="{mergedOptions.paddingX_Wrapper}px"
-			style={stickyPosHelper}
+			class="marqueeck-sticky {stickyRegion ?? ''}"
+			style:padding-inline="{mergedOptions.padding.x}px"
+			style={stickyPos(mergedOptions)}
 		>
 			<slot name="sticky" />
 		</div>
 	{/if}
 </div>
-{#if options.debug}
-	<button on:click={toggleDebug}>🐞</button>
 
-	{#if debugVisible}
-		<pre class="marqueeck-log" transition:fade>
-			<span>direction: {mergedOptions.direction}</span>
-			<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
-			<span>contentWidth: {contentWidth} px</span>
-			<span>contentNumber: {contentNumber} elements</span>
-			<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
-			<span>isMouseIn: {$isMouseIn}</span>
-			<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
-			<span>speedFactor: {options.speedFactor}</span>
-		</pre>
-	{/if}
+{#if mergedOptions.debug}
+	<pre class="marqueeck-log unstyled">
+		<!-- <span>direction: {mergedOptions.direction}</span> -->
+		<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
+		<span>childWidth: {childWidth} px</span>
+		<span>childNumber: {repeatedChildNumber} elements</span>
+		<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
+		<span>isMouseIn: {$isMouseIn}</span>
+		<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
+		<span>speedFactor: {mergedOptions.speedFactor}</span>
+	</pre>
 {/if}
 
-<!--/////////////////////////////////////////////////////////////////-->
 <style>
 	.marqueeck-wrapper {
 		width: 100%;
-		max-width: 100%;
 		background-color: var(--bg-color, #a4d9cd);
 		color: var(--text-color, #0b8c61);
 		display: flex;
 		flex-flow: row nowrap;
 		overflow-x: hidden;
 		position: relative;
+		--ribbonXpos: 0px;
 	}
 
 	.marqueeck-ribbon {
@@ -187,6 +164,7 @@
 		flex-flow: inherit;
 		gap: inherit;
 		position: inherit;
+		transform: translateX(var(--ribbonXpos));
 		will-change: transform;
 	}
 
@@ -197,10 +175,9 @@
 
 	.marqueeck-sticky {
 		position: absolute;
-		background-color: inherit;
+		background-color: var(--bg-color, #a4d9cd);
 		width: -moz-fit-content;
 		width: fit-content;
-		border-right: 1px solid #0b8c61;
 	}
 
 	.marqueeck-log {
@@ -214,5 +191,9 @@
 		width: -moz-fit-content;
 		width: fit-content;
 		font-size: 13px;
+	}
+
+	.marqueeck-wrapper.show-debug .marqueeck-child:nth-child(3n-1) {
+		outline: solid 1px #0b8c61;
 	}
 </style>
