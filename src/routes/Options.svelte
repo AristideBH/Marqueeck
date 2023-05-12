@@ -76,7 +76,7 @@
 	};
 </script>
 
-<div class=" container  flex flex-col  lg:flex-row gap-10">
+<div class=" container flex flex-col lg:flex-row gap-10">
 	<div class="grow space-y-2">
 		<p>You can either pass your options directly in the <code>Marqueeck</code> component :</p>
 		<CodeBlock
@@ -115,6 +115,7 @@
 
 <div class="space-y-4 container">
 	<h3>Default MarqueeckOptions</h3>
+	<blockquote>OUTDATED as of version <code>0.1.13</code> - Please come back in a bit</blockquote>
 	<p class="mt-8">
 		If you don't pass any options to the <code>Marqueeck</code> element, it will use the following options.
 	</p>
