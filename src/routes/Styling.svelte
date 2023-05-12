@@ -118,13 +118,13 @@
 
 .marqueeck-wrapper {
 	width: 100%;
-	max-width: 100%;
 	background-color: var(--bg-color, #a4d9cd);
 	color: var(--text-color, #0b8c61);
 	display: flex;
 	flex-flow: row nowrap;
 	overflow-x: hidden;
 	position: relative;
+	--ribbonXpos: 0px;
 }
 
 .marqueeck-ribbon {
@@ -132,6 +132,7 @@
 	flex-flow: inherit;
 	gap: inherit;
 	position: inherit;
+	transform: translateX(var(--ribbonXpos));
 	will-change: transform;
 }
 
@@ -142,7 +143,7 @@
 
 .marqueeck-sticky {
 	position: absolute;
-	background-color: inherit;
+	background-color: var(--bg-color, #a4d9cd);
 	width: -moz-fit-content;
 	width: fit-content;
 }

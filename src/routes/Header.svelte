@@ -25,7 +25,7 @@
 	</div>
 </div>
 <div class="grow w-full">
-	<blockquote class="text-lg">
+	<blockquote class="!text-lg">
 		Marqueeck is a performant full-featured marquee component for Svelte, style-free, highly
 		customizable and dependency-less.
 	</blockquote>

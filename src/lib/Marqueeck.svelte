@@ -182,7 +182,7 @@
 	.marqueeck-log {
 		display: flex;
 		flex-flow: column wrap;
-		border: 1px solid lightslategrey;
+		border: 1px solid #0b8c61;
 		padding: 4px;
 		margin-block: 8px;
 		margin-inline: 8px;

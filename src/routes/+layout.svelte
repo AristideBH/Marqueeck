@@ -12,7 +12,7 @@
 </script>
 
 <AppShell
-	slotPageHeader="px-4 py-8 container mx-auto flex gap-16 gap-y-8 flex-wrap items-baseline md:flex-nowrap"
+	slotPageHeader="px-4 py-8 container mx-auto flex gap-12 flex-wrap items-baseline md:flex-nowrap"
 >
 	<svelte:fragment slot="pageHeader">
 		<Header />
