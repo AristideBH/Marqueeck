@@ -1,6 +1,6 @@
 <script lang="ts">
-	// import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
-	import Marqueeck, { type MarqueeckOptions } from '$lib/index.js';
+	import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
+	// import Marqueeck, { type MarqueeckOptions } from '$lib/index.js';
 	// prettier-ignore
 	import { scrollState, scrollHandler, factorHelper, pingPongHelper} from '$lib/SpeedFactorHelpers.js';
 
