@@ -12,7 +12,7 @@
 		"moduleResolution": "NodeNext",
 		"allowImportingTsExtensions": true,
 		"declaration": true,
-		"emitDeclarationOnly": true
-		// "importsNotUsedAsValues": "preserve"
+		"emitDeclarationOnly": true,
+		"importsNotUsedAsValues": "preserve"
 	}
 }

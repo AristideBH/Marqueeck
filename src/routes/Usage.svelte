@@ -1,19 +1,20 @@
-<script>
+<script lang="ts">
 	// import Marqueeck from '@arisbh/marqueeck';
-	import Marqueeck from '$lib/index.ts';
+	import Marqueeck, { type MarqueeckOptions } from '$lib/index.ts';
 	import {
-		CodeBlock,
-		TabGroup,
-		Tab,
-		Table,
-		tableMapperValues,
-		TableOfContents
-	} from '@skeletonlabs/skeleton';
+		scrollState,
+		scrollHandler,
+		factorHelper,
+		pingPongHelper
+	} from '$lib/SpeedFactorHelpers.js';
+	// prettier-ignore
+	import {CodeBlock, TabGroup, Tab, Table, tableMapperValues, TableOfContents	} from '@skeletonlabs/skeleton';
+	import FactorDemo from './FactorDemo.svelte';
 </script>
 
 <!-- ! Tab Panel - USAGE --->
-<div id="toc" class="flex gap-16 container flex-wrap md:flex-nowrap mt-8 w-full items-start">
-	<!-- <TableOfContents
+<div id="toc" class="flex gap-10 container flex-wrap md:flex-nowrap lg:mt-8 w-full items-start">
+	<TableOfContents
 		class="  md:sticky top-10 z-10 bg-surface-50-900-token md:top-16 "
 		target="#toc"
 		scrollParent="#page"
@@ -21,7 +22,7 @@
 		label="Table of content"
 		width="min-w-[220px] w-full md:min-w-unset md:w-fit"
 		regionLabel="pt-4 md:!pt-0"
-	/> -->
+	/>
 	<main class="min-w-[220px] w-full md:min-w-unset md:w-fit space-y-8">
 		<section class="space-y-2">
 			<h2 class="mb-4">Basic usage</h2>
@@ -41,7 +42,7 @@
 	import Marqueeck from '@arisbh/marqueeck';
 </script>
 
-<Marqueeck>Hello Marqueeck</Marqueeck>
+<Marqueeck> Hello Marqueeck </Marqueeck>
 				`}
 			/>
 		</section>
@@ -63,7 +64,7 @@
 			<CodeBlock
 				language="html"
 				code={`
-<Marqueeck >
+<Marqueeck>
 	Marqueeck
 	<svelte:fragment slot="sticky">
 		<strong>HELLO</strong>
@@ -108,7 +109,19 @@
 			<p>
 				Marqueeck provide a way to live-impact it speed, through the <code>speedFactor</code> proprety.
 			</p>
-			<blockquote class="!mt-4">...writing documentation...</blockquote>
+
+			<blockquote>
+				There are simple examples from the top of my head. You can pass any number to <code
+					>speedFactor</code
+				> and customize the behaviour of Marqueeck the way you like !
+			</blockquote>
+			<FactorDemo />
 		</section>
 	</main>
 </div>
+
+<style>
+	h3 {
+		scroll-padding-top: 10em;
+	}
+</style>

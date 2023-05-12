@@ -1,43 +1,46 @@
 <script lang="ts">
-	import { TabGroup, Tab } from '@skeletonlabs/skeleton';
+	import { TabGroup, Tab, localStorageStore } from '@skeletonlabs/skeleton';
 	import Usage from './Usage.svelte';
 	import Options from './Options.svelte';
 	import Styling from './Styling.svelte';
 	import Events from './Events.svelte';
+	import Infos from './Infos.svelte';
 
-	let tabSet: number = 0;
+	import { tabSet } from './stores.js';
 </script>
 
 <svelte:head>
-	<title>Marqueeck - A custom marquee component for Sveltekit</title>
+	<title>Marqueeck - A custom marquee component for Svelte</title>
 	<meta
 		property="description"
-		content="Marqueeck is a smooth custom marquee component for Sveltekit, speed-eased, style-free and without dependencies."
+		content="Marqueeck is a performant full-featured marquee component for Svelte, style-free, highly customizable and dependency-less."
 	/>
 </svelte:head>
 
-<TabGroup regionPanel="space-y-8 pb-8" regionList="bg-surface-50 sticky top-0 z-40 container !py-0">
-	<Tab bind:group={tabSet} name="tab1" value={0}>Usage</Tab>
-	<Tab bind:group={tabSet} name="tab2" value={1}>Options</Tab>
-	<Tab bind:group={tabSet} name="tab3" value={2}>Styling</Tab>
-	<Tab bind:group={tabSet} name="tab4" value={3}>Events</Tab>
-	<Tab bind:group={tabSet} name="tab5" value={4}>Infos</Tab>
+<TabGroup
+	regionPanel="space-y-8 pb-8"
+	regionList="bg-surface-50 sticky top-0 z-40 container !py-0 !pt-2 !overflow-visible
+		after:content-[''] after:absolute after:right-0 after:top-0 after:w-[500px] after:bg-surface-50 after:translate-x-[100%] after:h-full
+		before:content-[''] before:absolute before:left-0 before:top-0 before:w-[500px] before:bg-surface-50 before:translate-x-[-100%] before:h-full"
+>
+	<Tab bind:group={$tabSet} name="tab1" value={0}>Usage</Tab>
+	<Tab bind:group={$tabSet} name="tab2" value={1}>Options</Tab>
+	<Tab bind:group={$tabSet} name="tab3" value={2}>Styling</Tab>
+	<Tab bind:group={$tabSet} name="tab4" value={3}>Events</Tab>
+	<Tab bind:group={$tabSet} name="tab5" value={4}>Infos</Tab>
 
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
-		{#if tabSet === 0}
+		{#if $tabSet == 0}
 			<Usage />
-		{:else if tabSet === 1}
+		{:else if $tabSet == 1}
 			<Options />
-		{:else if tabSet === 2}
+		{:else if $tabSet == 2}
 			<Styling />
-		{:else if tabSet === 3}
+		{:else if $tabSet == 3}
 			<Events />
-		{:else if tabSet === 4}
-			<div class="container">
-				<h2>Informations</h2>
-				<blockquote class="!mt-4">...writing documentation...</blockquote>
-			</div>
+		{:else if $tabSet == 4}
+			<Infos />
 		{/if}
 	</svelte:fragment>
 </TabGroup>

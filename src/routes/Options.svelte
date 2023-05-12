@@ -76,7 +76,7 @@
 	};
 </script>
 
-<div class=" container flex flex-col lg:flex-row gap-10">
+<div class=" container flex flex-col lg:flex-row gap-10 gap-y-4">
 	<div class="grow space-y-2">
 		<p>You can either pass your options directly in the <code>Marqueeck</code> component :</p>
 		<CodeBlock

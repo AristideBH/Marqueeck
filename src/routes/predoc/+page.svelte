@@ -43,7 +43,7 @@
 </script>
 
 <svelte:window on:mousemove={handleMousemove} bind:innerWidth />
-<hr class="container" />
+
 
 <blockquote class="container">
 	There are simple examples from the top of my head. You can pass any number to <code
