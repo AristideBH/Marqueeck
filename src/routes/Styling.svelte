@@ -109,9 +109,7 @@
 
 <div class="space-y-2 container">
 	<h3 class="mb-2">Adding a separator</h3>
-	<p>
-		Marqueeck provides props to style its barebone structure and the default <code>class</code> tag.
-	</p>
+	<blockquote>... writing documentation ...</blockquote>
 </div>
 
 <div class="space-y-2 container">

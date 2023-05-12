@@ -26,7 +26,7 @@ export type MarqueeckOptions = {
 //* DEFAULTS 
 // The default object options that get merged to user options
 export const defaultOptions: MarqueeckOptions = {
-    speed: 80,
+    speed: 75,
     direction: 'left',
     gap: 20,
     onHover: 'customSpeed',

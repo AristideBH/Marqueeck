@@ -5,6 +5,7 @@
 	import Styling from './Styling.svelte';
 	import Events from './Events.svelte';
 	import Infos from './Infos.svelte';
+	import Demos from './Demos.svelte';
 
 	import { tabSet } from './stores.js';
 </script>
@@ -27,9 +28,9 @@
 	<Tab bind:group={$tabSet} name="tab2" value={1}>Options</Tab>
 	<Tab bind:group={$tabSet} name="tab3" value={2}>Styling</Tab>
 	<Tab bind:group={$tabSet} name="tab4" value={3}>Events</Tab>
-	<Tab bind:group={$tabSet} name="tab5" value={4}>Infos</Tab>
+	<Tab bind:group={$tabSet} name="tab5" value={4}>Demos</Tab>
+	<Tab bind:group={$tabSet} name="tab5" value={5}>Infos</Tab>
 
-	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
 		{#if $tabSet == 0}
 			<Usage />
@@ -40,6 +41,8 @@
 		{:else if $tabSet == 3}
 			<Events />
 		{:else if $tabSet == 4}
+			<Demos />
+		{:else if $tabSet == 5}
 			<Infos />
 		{/if}
 	</svelte:fragment>
