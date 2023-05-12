@@ -17,6 +17,7 @@
 		<div class=" flex flex-col gap-4 w-full max-w-lg">
 			<h1 class="">
 				<a href="/" class="unstyled"><strong>Marqueeck </strong></a>
+
 				<sup><div class="badge variant-ghost-primary">{APP_VERSION}</div></sup>
 			</h1>
 

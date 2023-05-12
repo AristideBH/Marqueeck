@@ -23,8 +23,7 @@
 
 	// FUNCTIONS
 	const translate = (node: HTMLElement, options: TranslateOptions) => {
-		onMount(async () => {
-			await tick();
+		tick().then(() => {
 			setOpacity(childRef, 1);
 			let currentX = initialPos,
 				totalMoved = 0,
@@ -47,10 +46,6 @@
 			update();
 		});
 	};
-	onDestroy(async () => {
-		console.log('destroyed');
-		$tweenedSpeed = 0;
-	});
 
 	// TWEENED SPEED VALUE
 	const tweenedSpeed = tweened(mergedOptions.speed * (options.speedFactor ?? 1), {
