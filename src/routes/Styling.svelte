@@ -1,5 +1,5 @@
-<script lang="ts">
-	import Marqueeck from '@arisbh/marqueeck';
+<script>
+	import Marqueeck from '$lib/index.ts';
 	import { CodeBlock, TabGroup, Tab, Table, tableMapperValues } from '@skeletonlabs/skeleton';
 </script>
 
@@ -16,7 +16,7 @@
 			or anything, you choose what you use, and style it the way you want !
 		</p>
 	</div>
-	<Marqueeck options={{ gap: 56, paddingY_Wrapper: 25 }}>
+	<Marqueeck options={{ gap: 56, padding: { x: 20, y: 25 } }}>
 		<div class="flex gap-2 items-end leading-4">
 			<span class="flex flex-col">
 				<strong>Hello</strong> <i>custom</i>

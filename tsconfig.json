@@ -9,7 +9,10 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "NodeNext"
+		"moduleResolution": "NodeNext",
+		"allowImportingTsExtensions": true,
+		"declaration": true,
+		"emitDeclarationOnly": true
 		// "importsNotUsedAsValues": "preserve"
 	}
 }

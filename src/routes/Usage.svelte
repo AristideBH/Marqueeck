@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	// import Marqueeck from '@arisbh/marqueeck';
 	import Marqueeck from '$lib/index.ts';
 	import {
