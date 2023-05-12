@@ -1,13 +1,8 @@
 <script lang="ts">
 	// import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
-	import Marqueeck, { type MarqueeckOptions } from '$lib/index.ts';
-
-	import {
-		scrollState,
-		scrollHandler,
-		factorHelper,
-		pingPongHelper
-	} from '$lib/MarqueeckScroll.ts';
+	import Marqueeck, { type MarqueeckOptions } from '$lib/index.js';
+	// prettier-ignore
+	import { scrollState, scrollHandler, factorHelper, pingPongHelper} from '$lib/SpeedFactorHelpers.js';
 
 	const cyclingValue = pingPongHelper(1, 4, 2000);
 
@@ -19,7 +14,10 @@
 		mouseValue = +((m.x / innerWidth) * 6).toFixed(2);
 	}
 
-	let options1: MarqueeckOptions, options2: MarqueeckOptions, options3: MarqueeckOptions;
+	let options1: Partial<MarqueeckOptions>,
+		options2: Partial<MarqueeckOptions>,
+		options3: Partial<MarqueeckOptions>;
+
 	$: options1 = {
 		direction: 'left',
 		gap: 60,
@@ -27,15 +25,18 @@
 		onHover: 'stop',
 		speedFactor: factorHelper($scrollState.velocity, 3)
 	};
+
 	$: options2 = {
 		direction: 'right',
 		gap: 60,
 		gradualHoverDuration: 1000,
 		speedFactor: $cyclingValue
 	};
+
 	$: options3 = {
 		direction: 'left',
 		gap: 60,
+		onHover: 'none',
 		gradualHoverDuration: 1000,
 		speedFactor: mouseValue
 	};
@@ -83,7 +84,7 @@
 	</div>
 </section>
 <hr class="container" />
-<!-- 
+
 <section class="space-y-4">
 	<Marqueeck
 		options={options2}
@@ -128,4 +129,4 @@
 			</p>
 		</div>
 	</div>
-</section> -->
+</section>

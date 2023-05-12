@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount, tick } from 'svelte';
+	import { createEventDispatcher, onMount, onDestroy, tick } from 'svelte';
 	// prettier-ignore
 	import { hasHoverState, defaultOptions, isMouseIn, stickyPos, setOpacity, debugState } from './Marqueeck.js';
 	import type { MarqueeckOptions, TranslateOptions } from './Marqueeck.js';
@@ -47,6 +47,10 @@
 			update();
 		});
 	};
+	onDestroy(async () => {
+		console.log('destroyed');
+		$tweenedSpeed = 0;
+	});
 
 	// TWEENED SPEED VALUE
 	const tweenedSpeed = tweened(mergedOptions.speed * (options.speedFactor ?? 1), {

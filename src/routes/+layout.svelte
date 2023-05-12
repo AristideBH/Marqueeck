@@ -11,13 +11,12 @@
 
 <AppShell
 	slotPageHeader="px-4 py-8 container mx-auto flex gap-16 flex-wrap items-baseline md:flex-nowrap"
-	slotPageFooter="px-4 py-2 container mx-auto justify-between flex mt-16 gap-4"
+	slotPageFooter="px-4 py-2 container mx-auto justify-between flex mt-16 gap-4 gap-y-2 flex-col md:flex-row"
 >
 	<svelte:fragment slot="pageHeader">
 		<div class=" flex flex-col gap-4 w-full max-w-lg">
 			<h1 class="">
 				<a href="/" class="unstyled"><strong>Marqueeck </strong></a>
-				<!-- svelte-ignore missing-declaration -->
 				<sup><div class="badge variant-ghost-primary">{APP_VERSION}</div></sup>
 			</h1>
 
@@ -50,9 +49,11 @@
 	</div>
 
 	<svelte:fragment slot="pageFooter">
-		<a href="https://github.com/AristideBH/" target="_blank"> @AristideBH </a>
-		<a href="/dev">Dev </a>
-		<a href="/predoc" class="mr-auto">Predoc </a>
+		<span class="flex gap-2">
+			<a href="https://github.com/AristideBH/" target="_blank"> @AristideBH </a>
+			<a href="/dev">Dev </a>
+			<a href="/predoc" class="mr-auto">Predoc </a>
+		</span>
 
 		<span>
 			Thanks to
