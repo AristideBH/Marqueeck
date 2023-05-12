@@ -108,6 +108,13 @@
 </div>
 
 <div class="space-y-2 container">
+	<h3 class="mb-2">Adding a separator</h3>
+	<p>
+		Marqueeck provides props to style its barebone structure and the default <code>class</code> tag.
+	</p>
+</div>
+
+<div class="space-y-2 container">
 	<h3 class="mb-2">Default styles</h3>
 	<p>
 		Although Marqueeck has a minimal styling approach, it still needs a few CSS lines to operate.
@@ -151,3 +158,14 @@
 `}
 	/>
 </div>
+
+<style global>
+	/* SEPEARATOR DEMO */
+	span.withSep {
+		display: flex;
+		gap: 16px;
+	}
+	span.withSep:before {
+		content: '|';
+	}
+</style>

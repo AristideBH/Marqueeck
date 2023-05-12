@@ -4,14 +4,3 @@
 </script>
 
 <Marqueeck />
-
-<style>
-	/* SEPEARATOR DEMO */
-	span {
-		display: flex;
-		gap: 16px;
-	}
-	span:before {
-		content: '|';
-	}
-</style>

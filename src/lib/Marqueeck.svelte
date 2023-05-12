@@ -1,3 +1,22 @@
+<!--
+@component
+Marqueeck - A custom marquee component for Svelte
+```tsx
+type MarqueeckOptions = {
+    speed: number;
+    direction: 'left' | 'right';
+    gap: number;
+    onHover: 'none' | 'stop' | 'customSpeed';
+    speedFactor: number;
+    gradualHoverDuration: number;
+    hoverSpeed: number;
+    stickyPosition: 'start' | 'end';
+    padding: { x: number; y: number };
+    debug: boolean,
+    easing: (t: number) => number
+};
+	```
+-->
 <script lang="ts">
 	import { createEventDispatcher, onMount, onDestroy, tick } from 'svelte';
 	// prettier-ignore
