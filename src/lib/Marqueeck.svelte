@@ -105,6 +105,8 @@ type MarqueeckOptions = {
 </script>
 
 <div
+	role="button"
+	tabindex="0"
 	class="marqueeck-wrapper
 		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(mergedOptions.debug)}"
 	bind:offsetWidth={wrapperWidth}
