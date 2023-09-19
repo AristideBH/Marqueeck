@@ -31,7 +31,7 @@ Once you've installed the module, use it in your project.
 	import Marqueeck from '@arisbh/marqueeck';
 </script>
 
-<Marqueeck>[Your element]</Marqueeck>
+<Marqueeck> [Your element] </Marqueeck>
 ```
 
 ## Advanced options
