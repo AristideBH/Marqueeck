@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { CodeBlock } from '@skeletonlabs/skeleton';
+
 	import Marqueeck, { type MarqueeckOptions } from '$lib/index.js';
 	// prettier-ignore
 	import { scrollState, scrollHandler, factorHelper, pingPongHelper} from '$lib/SpeedFactorHelpers.js';
@@ -81,7 +83,29 @@
 			<AccordionItem>
 				<svelte:fragment slot="summary">Code insight</svelte:fragment>
 				<svelte:fragment slot="content">
-					<blockquote class="!mt-4">...writing documentation...</blockquote>
+					<CodeBlock
+						language="html"
+						code={`
+<script>
+	import Marqueeck from '@arisbh/marqueeck';
+
+	const velocity = () => {}; // Here, I custom-made a function to calculate the velocity of the scroll, but too long to explain
+	const factorHelper = (velocity: number, damper = 7) => {
+		if (velocity <= 5 && velocity >= -5) {
+			return 1;
+		} else {
+			return Math.abs(velocity) / damper;
+		}
+	};
+</script>
+
+<Marqueeck
+	options={{ speedFactor: factorHelper(velocity(), 3)	}}
+>
+	[ Your element ]
+</Marqueeck>
+				`}
+					/>
 				</svelte:fragment>
 			</AccordionItem>
 		</Accordion>
@@ -113,7 +137,56 @@
 			<AccordionItem>
 				<svelte:fragment slot="summary">Code insight</svelte:fragment>
 				<svelte:fragment slot="content">
-					<blockquote class="!mt-4">...writing documentation...</blockquote>
+					<CodeBlock
+						language="html"
+						code={`
+<script>
+	import Marqueeck from '@arisbh/marqueeck';
+
+	function pingPongHelper(min: number, max: number, duration: number) {
+		const internalStore = writable(min);
+		const pingPongValue = tweened(min, {
+			duration,
+			easing: cubicInOut
+		});
+
+		function startPingPong(min: number, max: number) {
+			pingPongValue
+				.update((value) => {
+					const target = value === min ? max : min;
+					return target;
+				})
+				.then(() => startPingPong(min, max));
+		}
+
+		pingPongValue.subscribe((value) => {
+			internalStore.set(value);
+		});
+
+		startPingPong(min, max);
+
+		return {
+			subscribe: internalStore.subscribe,
+			get value() {
+				let currentValue;
+				internalStore.subscribe((value) => {
+					currentValue = value;
+				})();
+				return currentValue;
+			}
+		};
+	}
+	
+
+</script>
+
+<Marqueeck
+	options={{ speedFactor: pingPongHelper(1, 3, 2000)	}}
+>
+	[ Your element ]
+</Marqueeck>
+			`}
+					/>
 				</svelte:fragment>
 			</AccordionItem>
 		</Accordion>
