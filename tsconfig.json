@@ -13,6 +13,7 @@
 		"allowImportingTsExtensions": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"importsNotUsedAsValues": "preserve"
+		"importsNotUsedAsValues": "preserve",
+		"module": "NodeNext"
 	}
 }
