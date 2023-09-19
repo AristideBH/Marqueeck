@@ -9,11 +9,11 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "NodeNext",
+		"moduleResolution": "node",
 		"allowImportingTsExtensions": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"importsNotUsedAsValues": "preserve",
-		"module": "NodeNext"
+		"importsNotUsedAsValues": "preserve"
+		// "module": "NodeNext"
 	}
 }
