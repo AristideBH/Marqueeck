@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import Marqueeck from '@arisbh/marqueeck';
 	import Marqueeck from '$lib/index.ts';
 	import { CodeBlock } from '@skeletonlabs/skeleton';
 

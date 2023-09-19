@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Marqueeck from '@arisbh/marqueeck';
 	import { CodeBlock, Table, tableMapperValues } from '@skeletonlabs/skeleton';
 	import type { TableSource } from '@skeletonlabs/skeleton';
 

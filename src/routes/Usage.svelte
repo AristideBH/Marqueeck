@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import Marqueeck from '@arisbh/marqueeck';
 	import Marqueeck, { type MarqueeckOptions } from '$lib/index.ts';
 	import {
 		scrollState,

@@ -47,7 +47,6 @@
 		"svelte": "^3.54.0"
 	},
 	"devDependencies": {
-		"@arisbh/marqueeck": "0.1.12",
 		"@skeletonlabs/skeleton": "^1.12.0",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.25.0",
