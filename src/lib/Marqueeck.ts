@@ -1,4 +1,3 @@
-import { writable } from "svelte/store";
 import { quadInOut } from 'svelte/easing';
 
 //* TYPE DEFINITIONS
@@ -43,9 +42,6 @@ export const defaultOptions: MarqueeckOptions = {
 // Return false if option 'onHover' is set to 'stop'
 export const hasHoverState = (mergedOptions: Partial<MarqueeckOptions>) =>
     mergedOptions.onHover === 'stop' || mergedOptions.onHover === 'customSpeed' ? true : false;
-
-// Create a store for hoverState bool
-export const isMouseIn = writable(false);
 
 // Define sticky element style position depending on stickyPosition options
 export const stickyPos = (mergedOptions: Partial<MarqueeckOptions>) =>

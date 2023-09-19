@@ -22,23 +22,19 @@
 			value: 20,
 			description: 'The distance between repeated elements (px).'
 		},
-		{
-			name: 'paddingX_Wrapper',
-			type: 'number',
-			value: 20,
-			description: 'The horizontal padding of the container (px).'
-		},
-		{
-			name: 'paddingY_Wrapper',
-			type: 'number',
-			value: 16,
-			description: 'The vertical padding of the container (px).'
-		},
+
 		{
 			name: 'onHover',
 			type: "'none' | 'stop' | 'customSpeed'",
 			value: "'customSpeed'",
 			description: 'The behaviour when hovering the container.'
+		},
+		{
+			name: 'speedFactor',
+			type: 'number',
+			value: '1',
+			description:
+				'The factor used to modify the speed. You can pass a function that will return any varying value.'
 		},
 		{
 			name: 'gradualHoverDuration',
@@ -59,11 +55,16 @@
 			description: 'The position of the provided sticky element.'
 		},
 		{
-			name: 'speedFactor',
-			type: 'number',
-			value: '1',
-			description:
-				'The factor used to modify the speed. You can pass a function that will return any varying value.'
+			name: 'debug',
+			type: 'boolean',
+			value: 'false',
+			description: 'Enable console debugger for the marquee.'
+		},
+		{
+			name: 'padding',
+			type: 'object',
+			value: '{x:30, y:30}',
+			description: 'The default paddings for the marquee.'
 		}
 	];
 	const tableSimple: TableSource = {
@@ -82,7 +83,7 @@
 		<CodeBlock
 			language="html"
 			code={`
-					<script>
+					<script lang="ts">
 	import Marqueeck from '@arisbh/marqueeck';
 </script>
 

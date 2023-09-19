@@ -77,7 +77,7 @@
 	</p>
 	<ul class="list-disc pl-6 space-y-1">
 		<li>
-			Default <strong> class</strong> is use to style the parent of your repeated element.
+			Default <strong>class</strong> is use to style the parent of your repeated element.
 			<br />Its gap property is automaticaly inherited from <code>options</code> and is use to
 			properly calculate the needed number of elements. Please do not redefined it here and use the
 			<code>gap</code>
@@ -88,7 +88,7 @@
 			</blockquote>
 		</li>
 		<li>
-			<strong>ribbonClasses</strong> is use to style the parent of your repeated element.
+			<strong>ribbonRegion</strong> is use to style the parent of your repeated element.
 			<br />Its gap property is automaticaly inherited from <code>options</code> and is use to
 			properly calculate the needed number of elements. Please do not redefined it here and use the
 			<code>gap</code>
@@ -96,11 +96,11 @@
 			<br />This is the animated element, please do not apply any <code>transform</code> to it.
 		</li>
 		<li>
-			<strong>childClasses</strong> is use to style your repeated element. <br /> You have full control
+			<strong>childRegion</strong> is use to style your repeated element. <br /> You have full control
 			here and no styling restriction.
 		</li>
 		<li>
-			<strong>stickElClasses</strong> is use to style the sticky <code>svelte:fragment</code>.
+			<strong>stickyRegion</strong> is use to style the sticky <code>svelte:fragment</code>.
 			<br /> Its inline paddings are set automaticaly from <code>options</code> but you're free to edit
 			them.
 		</li>

@@ -18,9 +18,9 @@ type MarqueeckOptions = {
 	```
 -->
 <script lang="ts">
-	import { createEventDispatcher, onMount, onDestroy, tick } from 'svelte';
+	import { createEventDispatcher, tick } from 'svelte';
 	// prettier-ignore
-	import { hasHoverState, defaultOptions, isMouseIn, stickyPos, setOpacity, debugState } from './Marqueeck.js';
+	import { hasHoverState, defaultOptions, stickyPos, setOpacity, debugState } from './Marqueeck.js';
 	import type { MarqueeckOptions, TranslateOptions } from './Marqueeck.js';
 	import { tweened } from 'svelte/motion';
 	import { fade } from 'svelte/transition';
@@ -34,11 +34,13 @@ type MarqueeckOptions = {
 		hoverClasses = ''; // Define wrapper classes when hovered;
 	const mergedOptions: MarqueeckOptions = { ...defaultOptions, ...options };
 	let DefaultPlaceHolder = 'Marqueeck Svelte';
+	let isMouseHovering = false;
 
+	// Reactive statements
 	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.padding.x;
 	$: repeatedChildNumber = Math.floor(wrapperInnerWidth / (childWidth + mergedOptions.gap)) + 3;
 	$: initialPos = -(childWidth + mergedOptions.gap);
-	$: reactiveHoverClasses = $isMouseIn ? hoverClasses : '';
+	$: reactiveHoverClasses = isMouseHovering ? hoverClasses : '';
 
 	// FUNCTIONS
 	const translate = (node: HTMLElement, options: TranslateOptions) => {
@@ -80,7 +82,7 @@ type MarqueeckOptions = {
 
 	const handleMouseEnter = async () => {
 		if (hasHoverState(mergedOptions as MarqueeckOptions)) {
-			$isMouseIn = true;
+			isMouseHovering = true;
 			await HoverInEvent();
 
 			if (mergedOptions.onHover === 'customSpeed') {
@@ -93,7 +95,7 @@ type MarqueeckOptions = {
 
 	const handleMouseLeave = async () => {
 		if (hasHoverState(mergedOptions as MarqueeckOptions)) {
-			$isMouseIn = false;
+			isMouseHovering = false;
 			await HoverOutEvent();
 			await tweenedSpeed.update(() => mergedOptions.speed * (options.speedFactor ?? 1));
 		}
@@ -113,7 +115,7 @@ type MarqueeckOptions = {
 	use:translate={{
 		initialPosition: initialPos,
 		options: mergedOptions,
-		isMouseIn: () => $isMouseIn,
+		isMouseIn: () => isMouseHovering,
 		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1)
 	}}
 	style:gap="{mergedOptions.gap}px"
@@ -159,7 +161,7 @@ type MarqueeckOptions = {
 		<span>childWidth: {childWidth} px</span>
 		<span>childNumber: {repeatedChildNumber} elements</span>
 		<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
-		<span>isMouseIn: {$isMouseIn}</span>
+		<span>isMouseIn: {isMouseHovering}</span>
 		<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
 		<span>speedFactor: {mergedOptions.speedFactor}</span>
 	</pre>

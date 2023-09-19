@@ -29,7 +29,7 @@
 	<Tab bind:group={$tabSet} name="tab3" value={2}>Styling</Tab>
 	<Tab bind:group={$tabSet} name="tab4" value={3}>Events</Tab>
 	<Tab bind:group={$tabSet} name="tab5" value={4}>Demos</Tab>
-	<Tab bind:group={$tabSet} name="tab5" value={5}>Infos</Tab>
+	<Tab bind:group={$tabSet} name="tab6" value={5}>Infos</Tab>
 
 	<svelte:fragment slot="panel">
 		{#if $tabSet == 0}
