@@ -12,7 +12,7 @@ Features :
 - 🐞 Debug mode
 - ✅ Fully typed with TypeScript
 
-[Demo](https://marqueeck.vercel.app)
+[Demo & docs](https://marqueeck.vercel.app)
 
 ## Installation
 
