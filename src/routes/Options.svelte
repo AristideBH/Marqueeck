@@ -115,7 +115,6 @@
 
 <div class="space-y-4 container">
 	<h3>Default MarqueeckOptions</h3>
-	<blockquote>OUTDATED as of version <code>0.1.13</code> - Please come back in a bit</blockquote>
 	<p class="mt-8">
 		If you don't pass any options to the <code>Marqueeck</code> element, it will use the following options.
 	</p>
