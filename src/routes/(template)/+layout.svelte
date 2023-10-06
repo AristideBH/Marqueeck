@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
-	import '../app.postcss';
+	import '../../app.postcss';
 
 	import 'highlight.js/styles/github-dark.css';
 	import hljs from 'highlight.js';
@@ -26,5 +26,9 @@
 	:root {
 		--marqueeck-bg-color: #a4d9cd;
 		--marqueeck-text-color: #0b8c61;
+	}
+
+	:global(.marqueeck-wrapper) {
+		width: 100% !important;
 	}
 </style>
