@@ -1,6 +1,6 @@
 {
 	"name": "@arisbh/marqueeck",
-	"version": "0.4.13",
+	"version": "0.4.14",
 	"description": "Marqueeck is a performant full-featured marquee component for Svelte, style-free, highly customizable and dependency-less.",
 	"author": {
 		"name": "AristideBH",
