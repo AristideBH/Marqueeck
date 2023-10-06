@@ -9,17 +9,17 @@ export type TranslateOptions = {
 };
 
 export type MarqueeckOptions = {
-    speed: number;
-    direction: 'left' | 'right';
-    gap: number;
-    onHover: 'none' | 'stop' | 'customSpeed';
-    speedFactor: number;
-    gradualHoverDuration: number;
-    hoverSpeed: number;
-    stickyPosition: 'start' | 'end';
-    padding: { x: number; y: number };
-    debug: boolean,
-    easing: (t: number) => number
+    speed?: number;
+    direction?: 'left' | 'right';
+    gap?: number;
+    onHover?: 'none' | 'stop' | 'customSpeed';
+    speedFactor?: number;
+    gradualHoverDuration?: number;
+    hoverSpeed?: number;
+    stickyPosition?: 'start' | 'end';
+    padding?: { x: number; y: number };
+    debug?: boolean,
+    easing?: (t: number) => number
 };
 
 //* DEFAULTS 

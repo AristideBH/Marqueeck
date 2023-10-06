@@ -7,38 +7,39 @@
 	import { fade } from 'svelte/transition';
 
 	// VARIABLES
-	let wrapperWidth: number, childWidth: number, childRef: HTMLElement;
-	export let options: Partial<MarqueeckOptions> = { ...defaultOptions },
+	let wrapperWidth: number,
+		childWidth: number,
+		childRef: HTMLElement,
+		DefaultPlaceHolder = 'Marqueeck Svelte',
+		isMouseHovering = false;
+	export let options: MarqueeckOptions = { ...defaultOptions },
 		ribbonClasses = '', // Define classes for the repeating wrapper
 		childClasses = '', // Define classes for the repeated content
 		stickyClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered;
-	const mergedOptions: MarqueeckOptions = { ...defaultOptions, ...options };
-	let DefaultPlaceHolder = 'Marqueeck Svelte';
-	let isMouseHovering = false;
 
-	if ($$props.options) {
+	$: if ($$props.options) {
 		options = { ...defaultOptions, ...$$props.options };
 	}
 	console.log(options);
 
 	// Reactive statements
-	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.padding.x;
-	$: repeatedChildNumber = Math.floor(wrapperInnerWidth / (childWidth + mergedOptions.gap)) + 3;
-	$: initialPos = -(childWidth + mergedOptions.gap);
+	$: wrapperInnerWidth = wrapperWidth - 2 * options.padding.x;
+	$: repeatedChildNumber = Math.floor(wrapperInnerWidth / (childWidth + options.gap)) + 3;
+	$: initialPos = -(childWidth + options.gap);
 	$: reactiveHoverClasses = isMouseHovering ? hoverClasses : '';
 
 	// FUNCTIONS
-	const translate = (node: HTMLElement, options: TranslateOptions) => {
+	const translate = (node: HTMLElement, tsOptions: TranslateOptions) => {
 		tick().then(() => {
 			setOpacity(childRef, 1);
 			let currentX = initialPos,
 				totalMoved = 0,
 				distanceToMove = Math.abs(initialPos);
-			const { direction } = mergedOptions;
+			const { direction } = options;
 
 			function update() {
-				const currentSpeed = options.currentSpeed();
+				const currentSpeed = tsOptions.currentSpeed();
 				currentX += direction === 'left' ? -currentSpeed / 60 : currentSpeed / 60;
 				totalMoved += currentSpeed / 60;
 
@@ -55,9 +56,9 @@
 	};
 
 	// TWEENED SPEED VALUE
-	const tweenedSpeed = tweened(mergedOptions.speed * (options.speedFactor ?? 1), {
-		duration: mergedOptions.gradualHoverDuration,
-		easing: mergedOptions.easing
+	const tweenedSpeed = tweened(options.speed * (options.speedFactor ?? 1), {
+		duration: options.gradualHoverDuration,
+		easing: options.easing
 	});
 
 	// EVENTS MANAGER
@@ -67,12 +68,12 @@
 	const ClickEvent = async () => dispatch('click');
 
 	const handleMouseEnter = async () => {
-		if (hasHoverState(mergedOptions as MarqueeckOptions)) {
+		if (hasHoverState(options as MarqueeckOptions)) {
 			isMouseHovering = true;
 			await HoverInEvent();
 
-			if (mergedOptions.onHover === 'customSpeed') {
-				$tweenedSpeed = mergedOptions.hoverSpeed * (options.speedFactor ?? 1);
+			if (options.onHover === 'customSpeed') {
+				$tweenedSpeed = options.hoverSpeed * (options.speedFactor ?? 1);
 			} else {
 				$tweenedSpeed = 0;
 			}
@@ -80,10 +81,10 @@
 	};
 
 	const handleMouseLeave = async () => {
-		if (hasHoverState(mergedOptions as MarqueeckOptions)) {
+		if (hasHoverState(options as MarqueeckOptions)) {
 			isMouseHovering = false;
 			await HoverOutEvent();
-			await tweenedSpeed.update(() => mergedOptions.speed * (options.speedFactor ?? 1));
+			await tweenedSpeed.update(() => options.speed * (options.speedFactor ?? 1));
 		}
 	};
 
@@ -94,7 +95,7 @@
 	role="button"
 	tabindex="0"
 	class="marqueeck-wrapper
-		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(mergedOptions.debug)}"
+		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(options.debug ?? false)}"
 	bind:offsetWidth={wrapperWidth}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
@@ -102,14 +103,14 @@
 	on:keydown={handleMouseClick}
 	use:translate={{
 		initialPosition: initialPos,
-		options: mergedOptions,
+		options: options,
 		isMouseIn: () => isMouseHovering,
 		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1)
 	}}
-	style:gap="{mergedOptions.gap}px"
+	style:gap="{options.gap}px"
 	style:--ribbonXpos={initialPos + 'px'}
-	style:--marqueeck-x-pad="{mergedOptions.padding.x}px"
-	style:--marqueeck-y-pad="{mergedOptions.padding.y}px"
+	style:--marqueeck-x-pad="{options.padding.x}px"
+	style:--marqueeck-y-pad="{options.padding.y}px"
 >
 	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
 		<!-- * Put one element to get its size -->
@@ -132,22 +133,22 @@
 	</div>
 	<!-- * Use sticky slot if provided -->
 	{#if $$slots.sticky}
-		<div class="marqueeck-sticky {stickyClasses ?? ''}" style={stickyPos(mergedOptions)}>
+		<div class="marqueeck-sticky {stickyClasses ?? ''}" style={stickyPos(options)}>
 			<slot name="sticky" />
 		</div>
 	{/if}
 </div>
 
-{#if mergedOptions.debug}
+{#if options.debug}
 	<pre class="marqueeck-log unstyled">
-		<!-- <span>direction: {mergedOptions.direction}</span> -->
+		<!-- <span>direction: {options.direction}</span> -->
 		<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
 		<span>childWidth: {childWidth} px</span>
 		<span>childNumber: {repeatedChildNumber} elements</span>
 		<span>tweenedSpeed: {Math.round($tweenedSpeed)} ms/sec</span>
 		<span>isMouseIn: {isMouseHovering}</span>
 		<span>reactiveHoverClasses: {reactiveHoverClasses}</span>
-		<span>speedFactor: {mergedOptions.speedFactor}</span>
+		<span>speedFactor: {options.speedFactor}</span>
 	</pre>
 {/if}
 
