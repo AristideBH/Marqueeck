@@ -1,36 +1,38 @@
 <script lang="ts">
 	import { createEventDispatcher, tick } from 'svelte';
 	// prettier-ignore
-	import { hasHoverState, defaultOptions, stickyPos, setOpacity, debugState } from './Marqueeck.js';
+	import { hasHoverState, defaults, stickyPos, setOpacity, debugState } from './Marqueeck.js';
 	import type { MarqueeckOptions, TranslateOptions } from './Marqueeck.js';
 	import { tweened } from 'svelte/motion';
 	import { fade } from 'svelte/transition';
 
-	// VARIABLES
+	// * VARIABLES
 	let wrapperWidth: number,
 		childWidth: number,
 		childRef: HTMLElement,
 		DefaultPlaceHolder = 'Marqueeck Svelte',
 		isMouseHovering = false;
-	export let options: MarqueeckOptions = { ...defaultOptions },
+	// * PROPS
+	export let options: MarqueeckOptions = { ...(defaults as MarqueeckOptions) },
 		ribbonClasses = '', // Define classes for the repeating wrapper
 		childClasses = '', // Define classes for the repeated content
 		stickyClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered;
 
 	if ($$props.options) {
-		options = { ...defaultOptions, ...$$props.options };
+		options = { ...defaults, ...$$props.options };
 		console.log('custom options passed');
+		console.log(options);
 	}
-	console.log(options);
 
-	// Reactive statements
-	$: wrapperInnerWidth = wrapperWidth - 2 * options.padding.x;
-	$: repeatedChildNumber = Math.floor(wrapperInnerWidth / (childWidth + options.gap)) + 3;
-	$: initialPos = -(childWidth + options.gap);
+	// * Reactive statements
+	$: wrapperInnerWidth = wrapperWidth - 2 * (options.padding?.x ?? defaults.padding.x);
+	$: repeatedChildNumber =
+		Math.floor(wrapperInnerWidth / (childWidth + (options.gap ?? defaults.gap))) + 3;
+	$: initialPos = -(childWidth + (options.gap ?? defaults.gap));
 	$: reactiveHoverClasses = isMouseHovering ? hoverClasses : '';
 
-	// FUNCTIONS
+	// * FUNCTIONS
 	const translate = (node: HTMLElement, tsOptions: TranslateOptions) => {
 		tick().then(() => {
 			setOpacity(childRef, 1);
@@ -56,13 +58,13 @@
 		});
 	};
 
-	// TWEENED SPEED VALUE
-	const tweenedSpeed = tweened(options.speed * (options.speedFactor ?? 1), {
+	// * TWEENED SPEED VALUE
+	const tweenedSpeed = tweened((options.speed ?? defaults.speed) * (options.speedFactor ?? 1), {
 		duration: options.gradualHoverDuration,
 		easing: options.easing
 	});
 
-	// EVENTS MANAGER
+	//* EVENTS MANAGER
 	const dispatch = createEventDispatcher();
 	const HoverInEvent = async () => dispatch('hoverIn');
 	const HoverOutEvent = async () => dispatch('hoverOut');
@@ -74,7 +76,7 @@
 			await HoverInEvent();
 
 			if (options.onHover === 'customSpeed') {
-				$tweenedSpeed = options.hoverSpeed * (options.speedFactor ?? 1);
+				$tweenedSpeed = (options.hoverSpeed ?? defaults.hoverSpeed) * (options.speedFactor ?? 1);
 			} else {
 				$tweenedSpeed = 0;
 			}
@@ -85,7 +87,9 @@
 		if (hasHoverState(options as MarqueeckOptions)) {
 			isMouseHovering = false;
 			await HoverOutEvent();
-			await tweenedSpeed.update(() => options.speed * (options.speedFactor ?? 1));
+			await tweenedSpeed.update(
+				() => (options.hoverSpeed ?? defaults.hoverSpeed) * (options.speedFactor ?? 1)
+			);
 		}
 	};
 
@@ -96,7 +100,7 @@
 	role="button"
 	tabindex="0"
 	class="marqueeck-wrapper
-		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(options.debug ?? false)}"
+		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(options.debug ?? defaults.debug)}"
 	bind:offsetWidth={wrapperWidth}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
@@ -106,12 +110,12 @@
 		initialPosition: initialPos,
 		options: options,
 		isMouseIn: () => isMouseHovering,
-		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1)
+		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? defaults.speedFactor)
 	}}
 	style:gap="{options.gap}px"
 	style:--ribbonXpos={initialPos + 'px'}
-	style:--marqueeck-x-pad="{options.padding.x}px"
-	style:--marqueeck-y-pad="{options.padding.y}px"
+	style:--marqueeck-x-pad="{options.padding?.x ?? defaults.padding.x}px"
+	style:--marqueeck-y-pad="{options.padding?.y ?? defaults.padding.y}px"
 >
 	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
 		<!-- * Put one element to get its size -->
@@ -142,7 +146,7 @@
 
 {#if options.debug}
 	<pre class="marqueeck-log unstyled">
-		<!-- <span>direction: {options.direction}</span> -->
+		<span>direction: {options.direction}</span>
 		<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
 		<span>childWidth: {childWidth} px</span>
 		<span>childNumber: {repeatedChildNumber} elements</span>

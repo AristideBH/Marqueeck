@@ -24,7 +24,7 @@ export type MarqueeckOptions = {
 
 //* DEFAULTS 
 // The default object options that get merged to user options
-export const defaultOptions: MarqueeckOptions = {
+export const defaults = {
     speed: 75,
     direction: 'left',
     gap: 20,
@@ -40,11 +40,11 @@ export const defaultOptions: MarqueeckOptions = {
 
 //* HELPER FUNCTIONS
 // Return false if option 'onHover' is set to 'stop'
-export const hasHoverState = (mergedOptions: Partial<MarqueeckOptions>) =>
+export const hasHoverState = (mergedOptions: MarqueeckOptions) =>
     mergedOptions.onHover === 'stop' || mergedOptions.onHover === 'customSpeed' ? true : false;
 
 // Define sticky element style position depending on stickyPosition options
-export const stickyPos = (mergedOptions: Partial<MarqueeckOptions>) =>
+export const stickyPos = (mergedOptions: MarqueeckOptions) =>
     mergedOptions.stickyPosition === 'start' ? 'left: 0;' : 'right: 0;';
 
 // Simple 
