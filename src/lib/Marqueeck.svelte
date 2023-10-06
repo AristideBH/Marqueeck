@@ -55,7 +55,7 @@
 	};
 
 	// * TWEENED SPEED VALUE
-	const tweenedSpeed = tweened((options.speed ?? defaults.speed) * (options.speedFactor ?? 1), {
+	const tweenedSpeed = tweened((options.speed ?? defaults.speed) * (defaults.speedFactor ?? 1), {
 		duration: options.gradualHoverDuration,
 		easing: options.easing
 	});
