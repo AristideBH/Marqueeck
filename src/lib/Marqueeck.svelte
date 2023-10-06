@@ -12,18 +12,14 @@
 		childRef: HTMLElement,
 		DefaultPlaceHolder = 'Marqueeck Svelte',
 		isMouseHovering = false;
+
 	// * PROPS
 	export let options: MarqueeckOptions = { ...(defaults as MarqueeckOptions) },
 		ribbonClasses = '', // Define classes for the repeating wrapper
 		childClasses = '', // Define classes for the repeated content
 		stickyClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered;
-
-	if ($$props.options) {
-		options = { ...defaults, ...$$props.options };
-		console.log('custom options passed');
-		console.log(options);
-	}
+	if ($$props.options) options = { ...defaults, ...$$props.options };
 
 	// * Reactive statements
 	$: wrapperInnerWidth = wrapperWidth - 2 * (options.padding?.x ?? defaults.padding.x);
@@ -130,8 +126,8 @@
 		</span>
 
 		<!-- * Repeating content the necessary times -->
-		{#each { length: repeatedChildNumber } as _}
-			<span class="marqueeck-child {childClasses ?? ''}" transition:fade>
+		{#each { length: repeatedChildNumber } as _, i}
+			<span class="marqueeck-child {childClasses ?? ''}" transition:fade={{ delay: i + 25 }}>
 				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}

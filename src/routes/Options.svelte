@@ -105,12 +105,11 @@
 			language="html"
 			code={`
 		<script>
-	import Marqueeck from '@arisbh/marqueeck';
-	import type { MarqueeckOptions } from '@arisbh/marqueeck/dist/Marqueeck';
+import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
 
-	const options: Partial<MarqueeckOptions> = {
-		direction: 'left'
-	};
+const options: MarqueeckOptions = {
+	direction: 'left'
+};
 </script>
 
 <Marqueeck {options}>[Your element]</Marqueeck>
