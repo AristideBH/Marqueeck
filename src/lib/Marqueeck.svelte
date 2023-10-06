@@ -8,14 +8,15 @@
 
 	// VARIABLES
 	let wrapperWidth: number, childWidth: number, childRef: HTMLElement;
-	export let options: Partial<MarqueeckOptions> = {},
-		ribbonRegion = '', // Define classes for the repeating wrapper
-		childRegion = '', // Define classes for the repeated content
-		stickyRegion = '', // Define classes for the sticky element
+	export let options: Partial<MarqueeckOptions> = defaultOptions,
+		ribbonClasses = '', // Define classes for the repeating wrapper
+		childClasses = '', // Define classes for the repeated content
+		stickyClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered;
 	const mergedOptions: MarqueeckOptions = { ...defaultOptions, ...options };
 	let DefaultPlaceHolder = 'Marqueeck Svelte';
 	let isMouseHovering = false;
+	console.log(options);
 
 	// Reactive statements
 	$: wrapperInnerWidth = wrapperWidth - 2 * mergedOptions.padding.x;
@@ -102,14 +103,14 @@
 		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1)
 	}}
 	style:gap="{mergedOptions.gap}px"
-	style:padding-inline="{mergedOptions.padding.x}px"
-	style:padding-block="{mergedOptions.padding.y}px"
 	style:--ribbonXpos={initialPos + 'px'}
+	style:--marqueeck-x-pad="{mergedOptions.padding.x}px"
+	style:--marqueeck-y-pad="{mergedOptions.padding.y}px"
 >
-	<div class="marqueeck-ribbon {ribbonRegion ?? ''}">
-		<!-- Put one element to get its size -->
+	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
+		<!-- * Put one element to get its size -->
 		<span
-			class="marqueeck-child {childRegion ?? ''}"
+			class="marqueeck-child {childClasses ?? ''}"
 			style:opacity="0"
 			bind:offsetWidth={childWidth}
 			bind:this={childRef}
@@ -118,20 +119,16 @@
 			<slot>{DefaultPlaceHolder}</slot>
 		</span>
 
-		<!-- Repeating content the necessary times -->
-		{#each { length: repeatedChildNumber } as item, i}
-			<span class="marqueeck-child {childRegion ?? ''}" transition:fade>
+		<!-- * Repeating content the necessary times -->
+		{#each { length: repeatedChildNumber } as _}
+			<span class="marqueeck-child {childClasses ?? ''}" transition:fade>
 				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}
 	</div>
-	<!-- Use sticky slot if provided -->
+	<!-- * Use sticky slot if provided -->
 	{#if $$slots.sticky}
-		<div
-			class="marqueeck-sticky {stickyRegion ?? ''}"
-			style:padding-inline="{mergedOptions.padding.x}px"
-			style={stickyPos(mergedOptions)}
-		>
+		<div class="marqueeck-sticky {stickyClasses ?? ''}" style={stickyPos(mergedOptions)}>
 			<slot name="sticky" />
 		</div>
 	{/if}
@@ -152,9 +149,11 @@
 
 <style>
 	.marqueeck-wrapper {
-		width: 100%;
+		width: calc(100% - 2 * var(--marqueeck-x-pad));
 		background-color: var(--marqueeck-bg-color);
 		color: var(--marqueeck-text-color);
+		padding-inline: var(--marqueeck-x-pad);
+		padding-block: var(--marqueeck-y-pad);
 		display: flex;
 		flex-flow: row nowrap;
 		overflow-x: hidden;
@@ -179,6 +178,7 @@
 	.marqueeck-sticky {
 		position: absolute;
 		background-color: var(--marqueeck-bg-color);
+		padding-inline: var(--marqueeck-x-pad);
 		width: -moz-fit-content;
 		width: fit-content;
 	}
@@ -186,7 +186,7 @@
 	.marqueeck-log {
 		display: flex;
 		flex-flow: column wrap;
-		border: 1px solid #0b8c61;
+		border: 1px solid var(--marqueeck-bg-color);
 		padding: 4px;
 		margin-block: 8px;
 		margin-inline: 8px;
@@ -197,6 +197,6 @@
 	}
 
 	.marqueeck-wrapper.show-debug .marqueeck-child:nth-child(3n-1) {
-		outline: solid 1px #0b8c61;
+		outline: solid 1px var(--marqueeck-bg-color);
 	}
 </style>
