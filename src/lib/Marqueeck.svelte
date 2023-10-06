@@ -86,7 +86,7 @@
 			// await tweenedSpeed.update(
 			// 	() => (options.hoverSpeed ?? defaults.hoverSpeed) * (options.speedFactor ?? 1)
 			// );
-			$tweenedSpeed = 100;
+			$tweenedSpeed = options.speed ?? defaults.speed;
 		}
 	};
 
