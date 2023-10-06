@@ -1,8 +1,14 @@
 <script lang="ts">
-	import Marqueeck from '$lib';
+	import Marqueeck, { type MarqueeckOptions } from '$lib';
+	const options: MarqueeckOptions = {
+		debug: true,
+		staggerChild: true,
+		staggerDuration: 25
+	};
 </script>
 
-<Marqueeck options={{ debug: true, staggerChild: true }} />
+<Marqueeck {options} />
+<Marqueeck {options} --marqueeck-text-color="red"></Marqueeck>
 
 <style>
 	:root {

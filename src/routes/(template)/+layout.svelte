@@ -26,6 +26,7 @@
 	:root {
 		--marqueeck-bg-color: #a4d9cd;
 		--marqueeck-text-color: #0b8c61;
+		--marqueeck-width: 100% !important;
 	}
 
 	:global(.marqueeck-wrapper) {
