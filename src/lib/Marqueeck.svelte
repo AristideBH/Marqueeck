@@ -126,7 +126,7 @@
 
 		<!-- * Repeating content the necessary times -->
 		{#each { length: repeatedChildNumber } as _, i}
-			<span class="marqueeck-child {childClasses ?? ''}" transition:fade={{ delay: i + 25 }}>
+			<span class="marqueeck-child {childClasses ?? ''}" transition:fade={{ delay: i + 250 }}>
 				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}
