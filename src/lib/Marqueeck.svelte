@@ -72,7 +72,7 @@
 			await HoverInEvent();
 
 			if (options.onHover === 'customSpeed') {
-				$tweenedSpeed = (options.hoverSpeed ?? 1) * (options.speedFactor ?? 1);
+				$tweenedSpeed = (options.hoverSpeed ?? defaults.hoverSpeed) * (options.speedFactor ?? 1);
 			} else {
 				$tweenedSpeed = 0;
 			}
@@ -83,7 +83,9 @@
 		if (hasHoverState(options as MarqueeckOptions)) {
 			isMouseHovering = false;
 			await HoverOutEvent();
-			await tweenedSpeed.update(() => (options.hoverSpeed ?? 1) * (options.speedFactor ?? 1));
+			await tweenedSpeed.update(
+				() => (options.hoverSpeed ?? defaults.hoverSpeed) * (options.speedFactor ?? 1)
+			);
 		}
 	};
 
