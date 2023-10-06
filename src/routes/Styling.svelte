@@ -51,8 +51,8 @@
 		</p>
 	</div>
 	<Marqueeck
-		--bg-color={'rgb(var(--color-primary-700))'}
-		--text-color={'rgb(164, 217, 205)'}
+		--marqueeck-bg-color={'rgb(var(--color-primary-700))'}
+		--marqueeck-text-color={'rgb(164, 217, 205)'}
 		class="mt-2"
 	>
 		CSS Variables
@@ -62,10 +62,19 @@
 			language="html"
 			code={`
 <Marqueeck 
-	--bg-color={'rgb(var(--color-primary-700))'}
-	--text-color={'rgb(164, 217, 205)'}>
+	--marqueeck-bg-color={'rgb(var(--color-primary-700))'}
+	--marqueeck-text-color={'rgb(164, 217, 205)'}>
 	CSS Variables
 </Marqueeck>`}
+		/>
+		<p class="my-4">Or define them globaly like so :</p>
+		<CodeBlock
+			language="css"
+			code={`
+	:root {
+	--marqueeck-bg-color: #a4d9cd;
+	--marqueeck-text-color: #0b8c61;
+}`}
 		/>
 	</div>
 </div>

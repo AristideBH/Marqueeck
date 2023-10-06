@@ -153,8 +153,8 @@
 <style>
 	.marqueeck-wrapper {
 		width: 100%;
-		background-color: var(--bg-color, #a4d9cd);
-		color: var(--text-color, #0b8c61);
+		background-color: var(--marqueeck-bg-color);
+		color: var(--marqueeck-text-color);
 		display: flex;
 		flex-flow: row nowrap;
 		overflow-x: hidden;
@@ -178,7 +178,7 @@
 
 	.marqueeck-sticky {
 		position: absolute;
-		background-color: var(--bg-color, #a4d9cd);
+		background-color: var(--marqueeck-bg-color);
 		width: -moz-fit-content;
 		width: fit-content;
 	}

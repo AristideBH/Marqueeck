@@ -13,8 +13,8 @@
 
 <Marqueeck
 	options={{ gap: 100, padding: { y: 20, x: 20 }, gradualHoverDuration: 1500 }}
-	--bg-color={'black'}
-	--text-color={'white'}
+	--marqueeck-bg-color={'black'}
+	--marqueeck-text-color={'white'}
 	hoverClasses="!bg-white !text-black "
 	class="transition-colors duration-[500ms] cursor-default -rotate-1 mt-8"
 >
