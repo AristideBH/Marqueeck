@@ -18,8 +18,9 @@
 		stickyClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered;
 
-	$: if ($$props.options) {
+	if ($$props.options) {
 		options = { ...defaultOptions, ...$$props.options };
+		console.log('custom options passed');
 	}
 	console.log(options);
 
