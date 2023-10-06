@@ -106,7 +106,7 @@
 		initialPosition: initialPos,
 		options: options,
 		isMouseIn: () => isMouseHovering,
-		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? defaults.speedFactor)
+		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1)
 	}}
 	style:gap="{options.gap}px"
 	style:--ribbonXpos={initialPos + 'px'}
