@@ -16,11 +16,9 @@ Features :
 
 ## Installation
 
-`npm i @arisbh/marqueeck`
-or
-`pnpm i @arisbh/marqueeck`
-or
-`yarn i @arisbh/marqueeck`
+```
+npm i @arisbh/marqueeck
+```
 
 ## Usage
 
