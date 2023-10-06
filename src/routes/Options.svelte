@@ -98,7 +98,7 @@
 			<code>MarqueeckOptions</code> type :
 		</p>
 		<blockquote>
-			The following is a workaround until I figured how to properly export the type definition for
+			The following is a workaround until I figure how to properly export the type definition from
 			the main package.
 		</blockquote>
 		<CodeBlock
