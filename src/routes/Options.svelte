@@ -97,13 +97,19 @@
 			or by constructing a <code>MarqueeckOptions</code> object, using the provided
 			<code>MarqueeckOptions</code> type :
 		</p>
+		<blockquote>
+			The following is a workaround until I figured how to properly export the type definition for
+			the main package.
+		</blockquote>
 		<CodeBlock
 			language="html"
 			code={`
 		<script>
-	import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
-	const options : MarqueeckOptions  = {
-		direction: 'right',	// ...
+	import Marqueeck from '@arisbh/marqueeck';
+	import type { MarqueeckOptions } from '@arisbh/marqueeck/dist/Marqueeck';
+
+	const options: Partial<MarqueeckOptions> = {
+		direction: 'left'
 	};
 </script>
 
