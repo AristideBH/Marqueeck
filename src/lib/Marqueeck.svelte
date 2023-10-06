@@ -4,7 +4,7 @@
 	import { hasHoverState, defaults, stickyPos, setOpacity, debugState } from './Marqueeck.js';
 	import type { MarqueeckOptions, TranslateOptions } from './Marqueeck.js';
 	import { tweened } from 'svelte/motion';
-	import { fade } from 'svelte/transition';
+	import { fade, fly, slide } from 'svelte/transition';
 
 	// * VARIABLES
 	let wrapperWidth: number,
@@ -119,14 +119,21 @@
 			style:opacity="0"
 			bind:offsetWidth={childWidth}
 			bind:this={childRef}
-			transition:fade
+			transition:slide
 		>
 			<slot>{DefaultPlaceHolder}</slot>
 		</span>
 
 		<!-- * Repeating content the necessary times -->
 		{#each { length: repeatedChildNumber } as _, i}
-			<span class="marqueeck-child {childClasses ?? ''}" transition:fade={{ delay: i + 250 }}>
+			<span
+				class="marqueeck-child {childClasses ?? ''}"
+				transition:slide={{
+					delay: options.staggerChild
+						? (options.staggerDuration ?? defaults.staggerDuration) * i
+						: 0
+				}}
+			>
 				<slot>{DefaultPlaceHolder}</slot>
 			</span>
 		{/each}

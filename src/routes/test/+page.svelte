@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Marqueeck, { type MarqueeckOptions } from '$lib/index.js';
+	import Marqueeck from '$lib';
 </script>
 
-<Marqueeck options={{ debug: true }} />
+<Marqueeck options={{ debug: true, staggerChild: true }} />
 
 <style>
 	:root {
