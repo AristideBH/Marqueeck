@@ -8,7 +8,7 @@
 
 	// VARIABLES
 	let wrapperWidth: number, childWidth: number, childRef: HTMLElement;
-	export let options: Partial<MarqueeckOptions> = defaultOptions,
+	export let options: Partial<MarqueeckOptions> = { ...defaultOptions },
 		ribbonClasses = '', // Define classes for the repeating wrapper
 		childClasses = '', // Define classes for the repeated content
 		stickyClasses = '', // Define classes for the sticky element
@@ -16,6 +16,10 @@
 	const mergedOptions: MarqueeckOptions = { ...defaultOptions, ...options };
 	let DefaultPlaceHolder = 'Marqueeck Svelte';
 	let isMouseHovering = false;
+
+	if ($$props.options) {
+		options = { ...defaultOptions, ...$$props.options };
+	}
 	console.log(options);
 
 	// Reactive statements
