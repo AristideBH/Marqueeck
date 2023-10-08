@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher, tick } from 'svelte';
 	import { tweened } from 'svelte/motion';
-	import { fade } from 'svelte/transition';
 	// prettier-ignore
-	import { hasHoverState, defaults, stickyPos, setOpacity, debugState } from './Marqueeck.js';
-	import type { MarqueeckOptions, TranslateOptions } from './Marqueeck.js';
+	import { hasHoverState, defaults, stickyPos, setOpacity, debugState, type MarqueeckOptions, type TranslateOptions } from './Marqueeck.js';
+	import './marqueeck.css';
 
 	// * VARIABLES
 	let wrapperWidth: number,
@@ -19,7 +18,7 @@
 		childClasses = '', // Define classes for the repeated content
 		stickyClasses = '', // Define classes for the sticky element
 		hoverClasses = ''; // Define wrapper classes when hovered;
-	if ($$props.options) options = { ...defaults, ...$$props.options };
+	if ($$props.options) options = { ...defaults, ...$$props.options }; // Merge passed option with defaults
 
 	// * Reactive statements
 	$: wrapperInnerWidth = wrapperWidth - 2 * (options.padding?.x ?? defaults.padding.x);
@@ -27,6 +26,8 @@
 		Math.floor(wrapperInnerWidth / (childWidth + (options.gap ?? defaults.gap))) + 3;
 	$: initialPos = -(childWidth + (options.gap ?? defaults.gap));
 	$: reactiveHoverClasses = isMouseHovering ? hoverClasses : '';
+
+	let transition = options.childTransition || defaults.childTransition;
 
 	// * FUNCTIONS
 	const translate = (node: HTMLElement, tsOptions: TranslateOptions) => {
@@ -56,7 +57,7 @@
 
 	// * TWEENED SPEED VALUE
 	const tweenedSpeed = tweened((options.speed ?? defaults.speed) * (defaults.speedFactor ?? 1), {
-		duration: options.gradualHoverDuration,
+		duration: options.brakeDuration,
 		easing: options.easing
 	});
 
@@ -97,7 +98,7 @@
 	class="marqueeck-wrapper
 		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(options.debug ?? defaults.debug)}"
 	style:gap="{options.gap}px"
-	style:--ribbonXpos={initialPos + 'px'}
+	style:--ribbonXpos="{initialPos}px"
 	style:--marqueeck-x-pad="{options.padding?.x ?? defaults.padding.x}px"
 	style:--marqueeck-y-pad="{options.padding?.y ?? defaults.padding.y}px"
 	bind:offsetWidth={wrapperWidth}
@@ -119,7 +120,7 @@
 			style:opacity="0"
 			bind:offsetWidth={childWidth}
 			bind:this={childRef}
-			transition:fade
+			transition:transition
 		>
 			<slot>{DefaultPlaceHolder}</slot>
 		</span>
@@ -128,9 +129,9 @@
 		{#each { length: repeatedChildNumber } as _, i}
 			<span
 				class="marqueeck-child {childClasses ?? ''}"
-				transition:fade={{
-					delay: options.staggerChild
-						? (options.staggerDuration ?? defaults.staggerDuration) * i
+				transition:transition={{
+					delay: options.childStagger
+						? (options.childStaggerDuration ?? defaults.childStaggerDuration) * i
 						: 0
 				}}
 			>
@@ -148,7 +149,7 @@
 </div>
 
 {#if options.debug}
-	<pre class="marqueeck-log unstyled">
+	<pre class="marqueeck-log">
 		<span>direction: {options.direction}</span>
 		<span>wrapperInnerWidth: {wrapperInnerWidth} px</span>
 		<span>childWidth: {childWidth} px</span>
@@ -159,77 +160,3 @@
 		<span>speedFactor: {options.speedFactor}</span>
 	</pre>
 {/if}
-
-<style global>
-	.marqueeck-wrapper {
-		background-color: var(--marqueeck-bg-color);
-		color: var(--marqueeck-text-color);
-		padding-inline: var(--marqueeck-x-pad);
-		padding-block: var(--marqueeck-y-pad);
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-orient: horizontal;
-		-webkit-box-direction: normal;
-		-ms-flex-flow: row nowrap;
-		flex-flow: row nowrap;
-		overflow-x: hidden;
-		position: relative;
-		--marqueeck-width: calc(100% - 2 * var(--marqueeck-x-pad));
-		width: var(--marqueeck-width);
-		--ribbonXpos: 0px;
-	}
-
-	.marqueeck-ribbon {
-		display: inherit;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		-ms-flex-flow: inherit;
-		flex-flow: inherit;
-		gap: inherit;
-		position: inherit;
-		-webkit-transform: translateX(var(--ribbonXpos));
-		-ms-transform: translateX(var(--ribbonXpos));
-		transform: translateX(var(--ribbonXpos));
-		will-change: transform;
-	}
-
-	.marqueeck-child {
-		display: inline;
-		width: -webkit-max-content;
-		width: -moz-max-content;
-		width: max-content;
-	}
-
-	.marqueeck-sticky {
-		position: absolute;
-		background-color: var(--marqueeck-bg-color);
-		padding-inline: var(--marqueeck-x-pad);
-		width: -moz-fit-content;
-		width: -webkit-fit-content;
-		width: fit-content;
-	}
-
-	.marqueeck-log {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		-ms-flex-flow: column wrap;
-		flex-flow: column wrap;
-		border: 1px solid var(--marqueeck-bg-color);
-		padding: 4px;
-		margin-block: 8px;
-		margin-inline: 8px;
-		border-radius: 4px;
-		width: -moz-fit-content;
-		width: -webkit-fit-content;
-		width: fit-content;
-		font-size: 13px;
-	}
-
-	.marqueeck-wrapper.show-debug .marqueeck-child:nth-child(3n-1) {
-		outline: solid 1px var(--marqueeck-bg-color);
-	}
-</style>

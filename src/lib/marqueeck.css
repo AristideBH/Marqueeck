@@ -1,0 +1,71 @@
+.marqueeck-wrapper {
+	background-color: var(--marqueeck-bg-color);
+	color: var(--marqueeck-text-color);
+	padding-inline: var(--marqueeck-x-pad);
+	padding-block: var(--marqueeck-y-pad);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+	overflow-x: hidden;
+	position: relative;
+	--marqueeck-width: calc(100% - 2 * var(--marqueeck-x-pad));
+	width: var(--marqueeck-width);
+	--ribbonXpos: 0px;
+}
+
+.marqueeck-ribbon {
+	display: inherit;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-flow: inherit;
+	flex-flow: inherit;
+	gap: inherit;
+	position: inherit;
+	-webkit-transform: translateX(var(--ribbonXpos));
+	-ms-transform: translateX(var(--ribbonXpos));
+	transform: translateX(var(--ribbonXpos));
+	will-change: transform;
+}
+
+.marqueeck-child {
+	display: inline;
+	width: -webkit-max-content;
+	width: -moz-max-content;
+	width: max-content;
+}
+
+.marqueeck-sticky {
+	position: absolute;
+	background-color: var(--marqueeck-bg-color);
+	padding-inline: var(--marqueeck-x-pad);
+	width: -moz-fit-content;
+	width: -webkit-fit-content;
+	width: fit-content;
+}
+
+.marqueeck-log {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-flow: column wrap;
+	flex-flow: column wrap;
+	border: 1px solid var(--marqueeck-bg-color);
+	padding: 4px;
+	margin-block: 8px;
+	margin-inline: 8px;
+	border-radius: 4px;
+	width: -moz-fit-content;
+	width: -webkit-fit-content;
+	width: fit-content;
+	font-size: 13px;
+}
+
+.marqueeck-wrapper.debug .marqueeck-child:nth-child(3n-1) {
+	outline: solid 1px var(--marqueeck-bg-color);
+}

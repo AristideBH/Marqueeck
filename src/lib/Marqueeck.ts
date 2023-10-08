@@ -1,4 +1,7 @@
+import type { FadeParams, TransitionConfig } from 'svelte/transition';
 import { quadInOut } from 'svelte/easing';
+import { fade } from 'svelte/transition';
+
 
 //* TYPE DEFINITIONS
 export type TranslateOptions = {
@@ -8,40 +11,48 @@ export type TranslateOptions = {
     currentSpeed: () => number;
 };
 
+//@ts-expect-error cant use any
+type SvelteTransition = (node: HTMLElement, params?: TransitionConfig) => any
+
+
 export type MarqueeckOptions = {
     speed?: number;
     direction?: 'left' | 'right';
     gap?: number;
     onHover?: 'none' | 'stop' | 'customSpeed';
     speedFactor?: number;
-    gradualHoverDuration?: number;
+    brakeDuration?: number;
     hoverSpeed?: number;
     stickyPosition?: 'start' | 'end';
     padding?: { x: number; y: number };
-    staggerChild?: boolean,
-    staggerDuration?: number,
+    childTransition?: SvelteTransition;
+    childStagger?: boolean,
+    childStaggerDuration?: number,
     debug?: boolean,
-    easing?: (t: number) => number
+    easing?: (t: number) => number,
 };
 
-type MustMarqueeckOptions = {
-    [K in keyof MarqueeckOptions]-?: MarqueeckOptions[K];
+type Mandatory<T> = {
+    [K in keyof T]-?: T[K];
 };
 
 //* DEFAULTS 
 // The default object options that get merged to user options
-export const defaults: MustMarqueeckOptions = {
+export const defaults: Mandatory<MarqueeckOptions> = {
     speed: 75,
     direction: 'left',
     gap: 20,
     onHover: 'customSpeed',
-    gradualHoverDuration: 1000,
+    brakeDuration: 1000,
     speedFactor: 1,
     hoverSpeed: 15,
     stickyPosition: 'start',
     padding: { x: 20, y: 10 },
-    staggerChild: true,
-    staggerDuration: 50,
+    childTransition: ((node: Element, params: FadeParams | undefined) => {
+        return fade(node, { ...params, });
+    }),
+    childStagger: true,
+    childStaggerDuration: 75,
     debug: false,
     easing: quadInOut
 };
@@ -59,5 +70,5 @@ export const stickyPos = (options: MarqueeckOptions) =>
 export const setOpacity = (node: HTMLElement, value: number) =>
     node.style.opacity = value.toString();
 
-export const debugState = (state: boolean) => state ? 'show-debug' : ""
+export const debugState = (state: boolean) => state ? 'debug' : ""
 

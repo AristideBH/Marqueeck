@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Marqueeck, { type MarqueeckOptions } from '$lib';
+	import { fly, slide, fade } from 'svelte/transition';
 	const options: MarqueeckOptions = {
 		debug: true,
-		staggerChild: true,
-		staggerDuration: 25
+		childStaggerDuration: 100,
+		childTransition: slide
 	};
 </script>
 
 <Marqueeck {options} />
-<Marqueeck {options} --marqueeck-text-color="red"></Marqueeck>
 
 <style>
 	:root {
