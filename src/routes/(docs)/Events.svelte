@@ -14,7 +14,7 @@
 </script>
 
 <div class="space-y-2">
-	<h3 class="container !py-0">on:hover</h3>
+	<h3 class=" container !py-0">on:hover</h3>
 	<Marqueeck on:hoverIn={handleHoverIn} on:hoverOut={handleHoverOut} hoverClasses="!bg-primary-500">
 		Check your console when hovering !
 	</Marqueeck>
@@ -42,7 +42,7 @@
 </div>
 
 <div class="space-y-2">
-	<h3 class="container !py-0">on:click</h3>
+	<h3 class=" container !py-0">on:click</h3>
 	<Marqueeck on:click={handleClick} class="cursor-pointer">
 		Check your console when clicking !
 	</Marqueeck>

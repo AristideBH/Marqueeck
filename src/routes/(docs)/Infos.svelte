@@ -4,7 +4,7 @@
 
 <div class="container flex flex-col lg:flex-row gap-12 pt-4">
 	<div class="space-y-2 max-w-lg">
-		<h2>About me</h2>
+		<h2 class="">About me</h2>
 		<div class="card p-4 flex gap-6">
 			<a
 				class="flex flex-col items-center gap-2"
@@ -33,7 +33,7 @@
 		</div>
 	</div>
 	<div class="space-y-2 flex flex-col">
-		<h2>Credits</h2>
+		<h2 class="">Credits</h2>
 		<span>
 			<a href="https://www.skeleton.dev/" target="_blank">Skeleton.dev</a>
 			from their framework use to build this site.

@@ -9,7 +9,7 @@
 </blockquote>
 <div class="space-y-2">
 	<div class="container">
-		<h3 class="mb-2">Slotted component</h3>
+		<h3 class=" mb-2">Slotted component</h3>
 		<p>
 			You have full control over the element you're slotting inside Marqueeck, therefore you can
 			style it as you want. <br /> Drop a complex flex layout, a custom Svelte component, a simple icon
@@ -44,7 +44,7 @@
 
 <div class="space-y-2">
 	<div class="container">
-		<h3>Using CSS Variables</h3>
+		<h3 class="">Using CSS Variables</h3>
 		<p>
 			You can directly pass CSS variables for the background and text colors, using any CSS
 			authorized colors (name, hex, hsl, etc...) :
@@ -80,7 +80,7 @@
 </div>
 
 <div class="space-y-2 container">
-	<h3 class="mb-2">Using classes props</h3>
+	<h3 class=" mb-2">Using classes props</h3>
 	<p>
 		Marqueeck provides props to style its barebone structure and the default <code>class</code> tag.
 	</p>
@@ -117,12 +117,12 @@
 </div>
 
 <div class="space-y-2 container">
-	<h3 class="mb-2">Adding a separator</h3>
+	<h3 class=" mb-2">Adding a separator</h3>
 	<blockquote>... writing documentation ...</blockquote>
 </div>
 
 <div class="space-y-2 container">
-	<h3 class="mb-2">Default styles</h3>
+	<h3 class=" mb-2">Default styles</h3>
 	<p>
 		Although Marqueeck has a minimal styling approach, it still needs a few CSS lines to operate.
 	</p>

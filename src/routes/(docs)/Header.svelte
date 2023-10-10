@@ -5,7 +5,7 @@
 </script>
 
 <div class=" flex flex-col gap-4 w-full max-w-md">
-	<h1 class="">
+	<h1>
 		<a href="/" class="unstyled" on:click={() => ($tabSet = 0)}>
 			<strong>Marqueeck</strong>
 		</a>

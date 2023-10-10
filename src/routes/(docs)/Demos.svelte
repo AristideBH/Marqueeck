@@ -12,7 +12,7 @@
 </svelte:head>
 
 <Marqueeck
-	options={{ gap: 100, padding: { y: 20, x: 20 }, gradualHoverDuration: 1500 }}
+	options={{ gap: 100, padding: { y: 20, x: 20 }, brakeDuration: 1500 }}
 	--marqueeck-bg-color={'black'}
 	--marqueeck-text-color={'white'}
 	hoverClasses="!bg-white !text-black "

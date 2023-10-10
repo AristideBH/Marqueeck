@@ -3,29 +3,27 @@
 
 	import Marqueeck, { type MarqueeckOptions } from '$lib/index.js';
 	// prettier-ignore
-	import { scrollState, scrollHandler, factorHelper, pingPongHelper} from '$lib/SpeedFactorHelpers.js';
+	import { scrollState, scrollHandler, factorDamper, pingPongHelper} from '$lib';
 	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
 
-	const cyclingValue = pingPongHelper(1, 3, 2000);
+	const cyclingValue = pingPongHelper(1, 3, 3000);
 
 	let m = { x: 0 };
 	let innerWidth: number;
-	let mouseValue: number;
+	let mouseValue: number = 0;
 	function handleMousemove(event: { clientX: number }) {
 		m.x = event.clientX;
 		mouseValue = +((m.x / innerWidth) * 6).toFixed(2);
 	}
 
-	let options1: Partial<MarqueeckOptions>,
-		options2: Partial<MarqueeckOptions>,
-		options3: Partial<MarqueeckOptions>;
+	let options1: MarqueeckOptions, options2: MarqueeckOptions, options3: MarqueeckOptions;
 
 	$: options1 = {
 		direction: 'left',
 		gap: 60,
 		gradualHoverDuration: 1000,
 		onHover: 'stop',
-		speedFactor: factorHelper($scrollState.velocity, 3)
+		speedFactor: factorDamper($scrollState.velocity, 3)
 	};
 
 	$: options2 = {
@@ -70,7 +68,7 @@
 					<li>Scroll : {$scrollState.direction}</li>
 					<li>{+Math.abs($scrollState.velocity).toFixed(2)} px/sec</li>
 				</ul>
-				<pre>speedFactor : {factorHelper($scrollState.velocity, 3).toFixed(2)}</pre>
+				<pre>speedFactor : {factorDamper($scrollState.velocity, 3).toFixed(2)}</pre>
 
 				<p>
 					Here, we're using the calculated scroll inertia to impact Marqueeck's speed via the
@@ -87,21 +85,15 @@
 						language="html"
 						code={`
 <script>
-	import Marqueeck from '@arisbh/marqueeck';
-
-	const velocity = () => {}; // Here, I custom-made a function to calculate the velocity of the scroll, but too long to explain
-	const factorHelper = (velocity: number, damper = 7) => {
-		if (velocity <= 5 && velocity >= -5) {
-			return 1;
-		} else {
-			return Math.abs(velocity) / damper;
-		}
-	};
+	import Marqueeck, { factorDamper, scrollHandler, scrollState } from '@arisbh/marqueeck';
 </script>
 
-<Marqueeck
-	options={{ speedFactor: factorHelper(velocity(), 3)	}}
->
+<div class="max-h-[200px] overflow-auto" on:scroll={scrollHandler}>
+	<--! Use the scrollHandler action on your overflowing element -->
+	<div class="h-[2000px]" />
+</div>
+
+<Marqueeck options={{ speedFactor: factorDamper($scrollState.velocity, 3) }}>
 	[ Your element ]
 </Marqueeck>
 				`}
@@ -141,51 +133,13 @@
 						language="html"
 						code={`
 <script>
-	import Marqueeck from '@arisbh/marqueeck';
-
-	function pingPongHelper(min: number, max: number, duration: number) {
-		const internalStore = writable(min);
-		const pingPongValue = tweened(min, {
-			duration,
-			easing: cubicInOut
-		});
-
-		function startPingPong(min: number, max: number) {
-			pingPongValue
-				.update((value) => {
-					const target = value === min ? max : min;
-					return target;
-				})
-				.then(() => startPingPong(min, max));
-		}
-
-		pingPongValue.subscribe((value) => {
-			internalStore.set(value);
-		});
-
-		startPingPong(min, max);
-
-		return {
-			subscribe: internalStore.subscribe,
-			get value() {
-				let currentValue;
-				internalStore.subscribe((value) => {
-					currentValue = value;
-				})();
-				return currentValue;
-			}
-		};
-	}
-	
-
+	import Marqueeck, { pingPongHelper } from '@arisbh/marqueeck';
+	const cyclingValue = pingPongHelper(1, 3, 2000);
 </script>
 
-<Marqueeck
-	options={{ speedFactor: pingPongHelper(1, 3, 2000)	}}
->
+<Marqueeck options={{ speedFactor: $cyclingValue }} >
 	[ Your element ]
-</Marqueeck>
-			`}
+</Marqueeck>			`}
 					/>
 				</svelte:fragment>
 			</AccordionItem>

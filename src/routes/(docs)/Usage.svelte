@@ -3,28 +3,23 @@
 	import {
 		scrollState,
 		scrollHandler,
-		factorHelper,
+		factorDamper,
 		pingPongHelper
 	} from '$lib/SpeedFactorHelpers.js';
 	// prettier-ignore
-	import {CodeBlock, TabGroup, Tab, Table, tableMapperValues, TableOfContents	} from '@skeletonlabs/skeleton';
+	import {CodeBlock, TabGroup, Tab, Table, tableMapperValues, TableOfContents, tocCrawler } from '@skeletonlabs/skeleton';
 	import FactorDemo from './FactorDemo.svelte';
 </script>
 
 <!-- ! Tab Panel - USAGE --->
 <div id="toc" class="flex gap-10 container flex-wrap md:flex-nowrap lg:mt-8 w-full items-start">
-	<TableOfContents
-		class="  md:sticky top-10 z-10 bg-surface-50-900-token md:top-16 "
-		target="#toc"
-		scrollParent="#page"
-		allowedHeadings="h2, h3, h4"
-		label="Table of content"
-		width="min-w-[220px] w-full md:min-w-unset md:w-fit"
-		regionLabel="pt-4 md:!pt-0"
-	/>
-	<main class="min-w-[220px] w-full md:min-w-unset md:w-fit space-y-8">
+	<TableOfContents class="md:sticky top-10 z-10 bg-surface-50-900-token md:top-16 min-w-[220px]" />
+	<main
+		class="min-w-[220px] w-full md:min-w-unset md:w-fit space-y-8"
+		use:tocCrawler={{ mode: 'generate' }}
+	>
 		<section class="space-y-2">
-			<h2 class="mb-4">Basic usage</h2>
+			<h2 class=" mb-4">Basic usage</h2>
 			<p>
 				You can throw any element in <code>Marqueeck</code>, solo or grouped, a simple div or
 				another Svelte component, or even just plain text for the sake of simplicity.
@@ -39,18 +34,17 @@
 				code={`
 <script>
 	import Marqueeck from '@arisbh/marqueeck';
-</script>
+<script/>
 
-<Marqueeck> Hello Marqueeck </Marqueeck>
-				`}
+<Marqueeck> Hello Marqueeck </Marqueeck>				`}
 			/>
 		</section>
 
 		<hr />
 
 		<section class="space-y-2">
-			<h2 class="mb-4">Advanced configuration</h2>
-			<h3 class="mb-2">Sticky element</h3>
+			<h2 class=" mb-4">Advanced configuration</h2>
+			<h3 class=" mb-2">Sticky element</h3>
 			<p>
 				You can use the reserved <code>svelte:fragment</code> to place a sticky element inside your component.
 			</p>
@@ -79,7 +73,7 @@
 		<hr />
 
 		<section class="space-y-2">
-			<h3 class="mb-2">onHover</h3>
+			<h3 class=" mb-2">onHover</h3>
 			<p>
 				By default, Marqueeck will slow down to a predefined speed when your mouse is hovering it
 				(see previous demos).
@@ -104,7 +98,7 @@
 
 		<hr />
 		<section class="space-y-2">
-			<h3 class="mb-2">speedFactor</h3>
+			<h3 class=" mb-2">speedFactor</h3>
 			<p>
 				Marqueeck provide a way to live-impact it speed, through the <code>speedFactor</code> proprety.
 			</p>
