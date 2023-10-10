@@ -1,7 +1,6 @@
 import type { FadeParams, TransitionConfig } from 'svelte/transition';
-import { quadInOut } from 'svelte/easing';
 import { fade } from 'svelte/transition';
-
+import { quadInOut } from 'svelte/easing';
 
 //* TYPE DEFINITIONS
 export type TranslateOptions = {
@@ -11,9 +10,7 @@ export type TranslateOptions = {
     currentSpeed: () => number;
 };
 
-//@ts-expect-error cant use any
 type SvelteTransition = (node: HTMLElement, params?: TransitionConfig) => any
-
 
 export type MarqueeckOptions = {
     speed?: number;

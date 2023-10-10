@@ -9,7 +9,7 @@
 	let wrapperWidth: number,
 		childWidth: number,
 		childRef: HTMLElement,
-		DefaultPlaceHolder = 'Marqueeck Svelte',
+		DefaultPlaceHolder = 'Marqueeck',
 		isMouseHovering = false;
 
 	// * PROPS
@@ -63,10 +63,8 @@
 
 	//* EVENTS MANAGER
 	const dispatch = createEventDispatcher();
-	const HoverInEvent = async () => dispatch('hoverIn');
-	const HoverOutEvent = async () => dispatch('hoverOut');
-	const ClickEvent = async () => dispatch('click');
 
+	const HoverInEvent = async () => dispatch('hoverIn');
 	const handleMouseEnter = async () => {
 		if (hasHoverState(options)) {
 			isMouseHovering = true;
@@ -80,6 +78,7 @@
 		}
 	};
 
+	const HoverOutEvent = async () => dispatch('hoverOut');
 	const handleMouseLeave = async () => {
 		if (hasHoverState(options)) {
 			isMouseHovering = false;
@@ -88,8 +87,6 @@
 				(options.speed ?? defaults.speed) * (options.speedFactor ?? defaults.speedFactor);
 		}
 	};
-
-	const handleMouseClick = async () => await ClickEvent();
 </script>
 
 <div
@@ -104,8 +101,8 @@
 	bind:offsetWidth={wrapperWidth}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
-	on:click={handleMouseClick}
-	on:keydown={handleMouseClick}
+	on:click
+	on:keydown
 	use:translate={{
 		initialPosition: initialPos,
 		options: options,

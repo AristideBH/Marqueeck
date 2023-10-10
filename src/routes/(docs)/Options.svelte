@@ -82,8 +82,8 @@
 		<CodeBlock
 			language="html"
 			code={`
-					<script lang="ts">
-	import Marqueeck from '@arisbh/marqueeck';
+	<script lang="ts">
+			import Marqueeck from '@arisbh/marqueeck';
 </script>
 
 <Marqueeck options={{ direction: 'right' }}>
@@ -104,7 +104,8 @@
 		<CodeBlock
 			language="html"
 			code={`
-		<script>
+		<script lang="ts">
+			
 import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
 
 const options: MarqueeckOptions = {

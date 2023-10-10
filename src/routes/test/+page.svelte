@@ -1,14 +1,20 @@
 <script lang="ts">
 	import Marqueeck, { type MarqueeckOptions } from '$lib';
-	import { fly, slide, fade } from 'svelte/transition';
+	import { fly, slide, fade, blur } from 'svelte/transition';
+
 	const options: MarqueeckOptions = {
 		debug: true,
-		childStaggerDuration: 100,
-		childTransition: slide
+		childStaggerDuration: 45,
+		childTransition: blur
 	};
 </script>
 
-<Marqueeck {options} />
+<Marqueeck
+	{options}
+	on:click={() => {
+		console.log('click');
+	}}
+/>
 
 <style>
 	:root {
