@@ -130,39 +130,39 @@
 		language="css"
 		code={`
 .marqueeck-wrapper {
-		width: calc(100% - 2 * var(--marqueeck-x-pad));
-		background-color: var(--marqueeck-bg-color);
-		color: var(--marqueeck-text-color);
-		padding-inline: var(--marqueeck-x-pad);
-		padding-block: var(--marqueeck-y-pad);
-		display: flex;
-		flex-flow: row nowrap;
-		overflow-x: hidden;
-		position: relative;
-		--ribbonXpos: 0px;
-	}
+	width: calc(100% - 2 * var(--marqueeck-x-pad));
+	background-color: var(--marqueeck-bg-color);
+	color: var(--marqueeck-text-color);
+	padding-inline: var(--marqueeck-x-pad);
+	padding-block: var(--marqueeck-y-pad);
+	display: flex;
+	flex-flow: row nowrap;
+	overflow-x: hidden;
+	position: relative;
+	--ribbonXpos: 0px;
+}
 
-	.marqueeck-ribbon {
-		display: inherit;
-		flex-flow: inherit;
-		gap: inherit;
-		position: inherit;
-		transform: translateX(var(--ribbonXpos));
-		will-change: transform;
-	}
+.marqueeck-ribbon {
+	display: inherit;
+	flex-flow: inherit;
+	gap: inherit;
+	position: inherit;
+	transform: translateX(var(--ribbonXpos));
+	will-change: transform;
+}
 
-	.marqueeck-child {
-		display: inline;
-		width: max-content;
-	}
+.marqueeck-child {
+	display: inline;
+	width: max-content;
+}
 
-	.marqueeck-sticky {
-		position: absolute;
-		background-color: var(--marqueeck-bg-color);
-		padding-inline: var(--marqueeck-x-pad);
-		width: -moz-fit-content;
-		width: fit-content;
-	}
+.marqueeck-sticky {
+	position: absolute;
+	background-color: var(--marqueeck-bg-color);
+	padding-inline: var(--marqueeck-x-pad);
+	width: -moz-fit-content;
+	width: fit-content;
+}
 
 `}
 	/>

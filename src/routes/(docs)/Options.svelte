@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { CodeBlock, Table, tableMapperValues } from '@skeletonlabs/skeleton';
-	import type { TableSource } from '@skeletonlabs/skeleton';
+	import { CodeBlock, Table, tableMapperValues, type TableSource } from '@skeletonlabs/skeleton';
 
 	const sourceData = [
 		{
@@ -82,7 +81,7 @@
 		<CodeBlock
 			language="html"
 			code={`
-	<script lang="ts">
+	<script>
 			import Marqueeck from '@arisbh/marqueeck';
 </script>
 
@@ -97,15 +96,11 @@
 			or by constructing a <code>MarqueeckOptions</code> object, using the provided
 			<code>MarqueeckOptions</code> type :
 		</p>
-		<blockquote>
-			The following is a workaround until I figure how to properly export the type definition from
-			the main package.
-		</blockquote>
+
 		<CodeBlock
 			language="html"
 			code={`
 		<script lang="ts">
-			
 import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
 
 const options: MarqueeckOptions = {

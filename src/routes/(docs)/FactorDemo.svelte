@@ -89,7 +89,7 @@
 </script>
 
 <div class="max-h-[200px] overflow-auto" on:scroll={scrollHandler}>
-	<--! Use the scrollHandler action on your overflowing element -->
+	<!-- Use the scrollHandler action on your overflowing element -->
 	<div class="h-[2000px]" />
 </div>
 
