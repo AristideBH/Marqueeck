@@ -43,9 +43,7 @@
 
 <div class="space-y-2">
 	<h3 class=" container !py-0">on:click</h3>
-	<Marqueeck on_click={handleClick} class="cursor-pointer">
-		Check your console when clicking !
-	</Marqueeck>
+	<Marqueeck on_click={handleClick}>Check your console when clicking !</Marqueeck>
 	<CodeBlock
 		class="container !py-0"
 		language="html"
@@ -54,7 +52,7 @@
     const handleClick = () => {	//do what you want };
 </script>
 
-<Marqueeck on_click={ handleClick }	class="cursor-pointer">
+<Marqueeck on_click={ handleClick }	>
 	[Your element]
 </Marqueeck>
     `}

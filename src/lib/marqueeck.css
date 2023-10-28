@@ -17,6 +17,10 @@
 	--ribbonXpos: 0px;
 }
 
+.marqueeck-wrapper[role='button'] {
+	cursor: pointer;
+}
+
 .marqueeck-ribbon {
 	display: inherit;
 	-webkit-box-orient: vertical;

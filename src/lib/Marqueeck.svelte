@@ -102,8 +102,6 @@
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div
-	{role}
-	{tabindex}
 	class="marqueeck-wrapper
 		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(options.debug ?? defaults.debug)}"
 	style:gap="{options.gap}px"
@@ -111,16 +109,18 @@
 	style:--marqueeck-x-pad="{options.padding?.x ?? defaults.padding.x}px"
 	style:--marqueeck-y-pad="{options.padding?.y ?? defaults.padding.y}px"
 	bind:offsetWidth={wrapperWidth}
-	on:mouseenter={handleMouseEnter}
-	on:mouseleave={handleMouseLeave}
-	on:click={handleClick}
-	on:keydown={handleClick}
 	use:translate={{
 		initialPosition: initialPos,
 		options: options,
 		isMouseIn: () => isMouseHovering,
 		currentSpeed: () => $tweenedSpeed * (options.speedFactor ?? 1)
 	}}
+	on:mouseenter={handleMouseEnter}
+	on:mouseleave={handleMouseLeave}
+	on:click={handleClick}
+	on:keydown={handleClick}
+	{role}
+	{tabindex}
 >
 	<div class="marqueeck-ribbon {ribbonClasses ?? ''}">
 		<!-- * Put one element to get its size -->
