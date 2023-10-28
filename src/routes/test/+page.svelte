@@ -12,7 +12,7 @@
 	};
 </script>
 
-<Marqueeck {options}>
+<Marqueeck {options} on_click={() => console.log('test')}>
 	<svelte:fragment slot="sticky">
 		<strong>HELLO</strong>
 	</svelte:fragment>

@@ -5,29 +5,36 @@
 	import { hasHoverState, defaults, stickyPos, setOpacity, debugState, type MarqueeckOptions, type TranslateOptions } from './Marqueeck.js';
 	import './marqueeck.css';
 
-	// * VARIABLES
-	let wrapperWidth: number,
-		childWidth: number,
-		childRef: HTMLElement,
-		DefaultPlaceHolder = 'Marqueeck',
-		isMouseHovering = false;
-
 	// * PROPS
 	export let options: MarqueeckOptions = defaults,
 		ribbonClasses = '', // Define classes for the repeating wrapper
 		childClasses = '', // Define classes for the repeated content
 		stickyClasses = '', // Define classes for the sticky element
-		hoverClasses = ''; // Define wrapper classes when hovered;
-	if ($$props.options) options = { ...defaults, ...$$props.options }; // Merge passed option with defaults
+		hoverClasses = '',
+		on_click: ((event: MouseEvent | KeyboardEvent) => void) | undefined = undefined;
 
+	// * VARIABLES
+	let wrapperWidth: number,
+		childWidth: number,
+		childRef: HTMLElement,
+		DefaultPlaceHolder = 'Marqueeck',
+		isMouseHovering = false,
+		role: 'marquee' | 'button' = 'marquee',
+		tabindex = -1,
+		transition = options.childTransition || defaults.childTransition;
+
+	// * Conditional assignements
+	if ($$props.options) options = { ...defaults, ...$$props.options }; // Merge passed option with defaults
+	if (on_click) {
+		role = 'button';
+		tabindex = 0;
+	}
 	// * Reactive statements
 	$: wrapperInnerWidth = wrapperWidth - 2 * (options.padding?.x ?? defaults.padding.x);
 	$: repeatedChildNumber =
 		Math.floor(wrapperInnerWidth / (childWidth + (options.gap ?? defaults.gap))) + 3;
 	$: initialPos = -(childWidth + (options.gap ?? defaults.gap));
 	$: reactiveHoverClasses = isMouseHovering ? hoverClasses : '';
-
-	let transition = options.childTransition || defaults.childTransition;
 
 	// * FUNCTIONS
 	const translate = (node: HTMLElement, tsOptions: TranslateOptions) => {
@@ -87,11 +94,16 @@
 				(options.speed ?? defaults.speed) * (options.speedFactor ?? defaults.speedFactor);
 		}
 	};
+
+	const handleClick = (event: MouseEvent | KeyboardEvent) => {
+		if (on_click) on_click(event);
+	};
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div
-	role="button"
-	tabindex="0"
+	{role}
+	{tabindex}
 	class="marqueeck-wrapper
 		{$$props.class ?? ''} {reactiveHoverClasses} {debugState(options.debug ?? defaults.debug)}"
 	style:gap="{options.gap}px"
@@ -101,8 +113,8 @@
 	bind:offsetWidth={wrapperWidth}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
-	on:click
-	on:keydown
+	on:click={handleClick}
+	on:keydown={handleClick}
 	use:translate={{
 		initialPosition: initialPos,
 		options: options,
