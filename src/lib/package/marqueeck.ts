@@ -15,7 +15,7 @@ export const defaults: MarqueeckOptions = {
     speedFactor: 1,
     hoverSpeed: 5,
     stickyPosition: 'start',
-    padding: { x: 20, y: 10 },
+    paddingX: 20,
     childStagger: true,
     childStaggerDuration: 50,
     childTransition: ((node: Element, params: FadeParams | undefined) => {
@@ -32,24 +32,43 @@ export const defaults: MarqueeckOptions = {
 // * ACTION
 import { writable } from 'svelte/store';
 
+
+/**
+ * A Svelte action that animates a marqueeck slide.
+ * 
+ * @param {HTMLDivElement} node - The node where the action is applied.
+ * @param {MarqueeckOptions} options - The options for the marqueeck slide.
+ * 
+ * @returns {ActionReturn<MarqueeckOptions, SlideAttributes>} - An object with an `update` method and a `destroy` method.
+ * 
+ * The `update` method is called whenever the `options` parameter changes, immediately after Svelte has applied updates to the markup.
+ * The `destroy` method is called after the element is unmounted.
+ * 
+ * The `update` method also restarts the animation if it was not initially still.
+ * The `destroy` method removes the event listeners when the action is destroyed.
+ * 
+ * The action can emit custom events and apply custom attributes to the element it is applied to.
+ * 
+ * @example
+ * <div use:marqueeckSlide={{ direction: "right", gap: 10 }} />
+ */
 export function marqueeckSlide(
     node: HTMLDivElement,
     options: MarqueeckOptions
 ): ActionReturn<MarqueeckOptions, SlideAttributes> {
-    const { still, gap, } = options
+    const { still, gap } = options
     const marqueeckRibbon = node.querySelector('[data-marqueeck-ribbon]');
     const marqueeckChild = marqueeckRibbon?.querySelector('[data-marqueeck-child]') as HTMLElement;
     const childWidth = Math.floor(marqueeckChild!.getBoundingClientRect().width);
     const initialPos = -(childWidth + gap);
-    marqueeckChild.style.opacity = "1";
 
     // * INITIAL STATE
+    marqueeckChild.style.opacity = "1";
     const store = writable({
         position: initialPos,
         animationFrameId: null as number | null,
         prefersReducedMotion: false,
     });
-
 
     // * REDUCED MOTIONS
     const mediaQuery: MediaQueryList = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -110,7 +129,6 @@ export function marqueeckSlide(
 };
 
 
-
 // * UTILS
 function isKeyOfMarqueeckOptions(key: string): key is keyof MarqueeckOptions {
     return key in defaults;
@@ -126,10 +144,8 @@ export const optionsMerger = (options: PublicMarqueeckOptions, props?: Props): M
             }
         });
     });
-
     return merged;
 }
-
 
 // Return false if option 'onHover' is set to 'stop'
 const hasHoverState = (options: MarqueeckOptions) =>

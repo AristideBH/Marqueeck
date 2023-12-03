@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import type { PublicMarqueeckOptions } from './types';
 	import { defaults, marqueeckSlide, optionsMerger } from './marqueeck';
@@ -21,21 +21,20 @@
 	let initialPos: number;
 	let role: 'marquee' | 'button' = 'marquee';
 	let tabindex = -1;
-
 	let opt = optionsMerger(options, [{ still: still }]);
+
 	const { separator, stickyStart, stickyEnd } = $$slots;
 	const { childTransition, childStagger, childStaggerDuration } = opt;
-
-	// * SLOT CHECK
-	if (!$$slots.default) console.error('📦 Wrap something inside the Marqueeck component.');
-
 	const tweenedSpeed = tweened(opt.speed * opt.speedFactor, {
 		duration: opt.brakeDuration,
 		easing: opt.easing
 	});
 
+	// * SLOT CHECK
+	if (!$$slots.default) console.error('📦 Wrap something inside the Marqueeck component.');
+
 	// * REACTIVE STATEMENTS
-	$: wrapperInnerWidth = wrapperWidth - 2 * opt.padding?.x;
+	$: wrapperInnerWidth = wrapperWidth - 2 * opt.paddingX;
 	$: neededChildren = Math.round(wrapperInnerWidth / (childWidth + opt.gap)) + 2;
 	$: initialPos = -(childWidth + opt.gap);
 	$: reactiveHoverClasses = isMouseHovering ? hoverClasses : '';
@@ -71,8 +70,7 @@
 <div
 	data-marqueeck-wrapper
 	class="{$$props.class ?? ''} {reactiveHoverClasses} "
-	style:--marqueeck-x-pad="{opt.padding?.x}px"
-	style:--marqueeck-y-pad="{opt.padding?.y}px"
+	style:--marqueeck-x-pad="{opt.paddingX}px"
 	style:--ribbonXpos="{initialPos}px"
 	{role}
 	{tabindex}
@@ -144,7 +142,6 @@
 		width: calc(100% + 2 * var(--marqueeck-x-pad, 0));
 		margin-inline: calc(-1 * var(--marqueeck-x-pad));
 		padding-inline: var(--marqueeck-x-pad);
-		padding-block: var(--marqueeck-y-pad);
 	}
 
 	[data-marqueeck-ribbon] {

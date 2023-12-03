@@ -6,7 +6,7 @@
 		gap: 25,
 		direction: 'right',
 		speed: 100,
-		padding: { y: 10, x: 0 },
+		paddingX: 25,
 		hoverSpeed: 5
 	};
 </script>
