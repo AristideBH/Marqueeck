@@ -1,6 +1,6 @@
 {
 	"name": "@arisbh/marqueeck",
-	"version": "0.4.4",
+	"version": "0.5.0",
 	"description": "Marqueeck is a performant full-featured marquee component for Svelte, style-free, highly customizable and dependency-less.",
 	"author": {
 		"name": "AristideBH",
@@ -9,14 +9,12 @@
 	},
 	"homepage": "https://marqueeck.vercel.app",
 	"license": "MIT",
-	"keywords": [
-		"sveltekit",
-		"marquee",
-		"typescript",
-		"svelte3",
-		"sveltejs",
-		"svelte-component"
-	],
+	"exports": {
+		".": {
+			"types": "./dist/package/index.d.ts",
+			"svelte": "./dist/package/index.js"
+		}
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -26,59 +24,49 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
-		"pubup": "pnpm publish && pnpm update && git commit -am 'Package.json update after npm publish'",
-		"v:patch": "git commit -am 'patch:version update' && pnpm version patch ",
-		"v:minor": "git commit -am 'minor:version update' && pnpm version minor",
-		"v:major": "git commit -am 'major:version update' && pnpm version major"
-	},
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
-		}
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"dist/package",
+		"!dist/package/**/*.test.*",
+		"!dist/package/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.2.1"
+		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
-		"@skeletonlabs/skeleton": "^2.5.1",
-		"@skeletonlabs/tw-plugin": "^0.2.4",
 		"@sveltejs/adapter-auto": "^2.1.1",
 		"@sveltejs/kit": "^1.27.6",
 		"@sveltejs/package": "^2.2.3",
-		"@types/node": "^20.10.0",
-		"@typescript-eslint/eslint-plugin": "^6.12.0",
-		"@typescript-eslint/parser": "^6.12.0",
+		"@typescript-eslint/eslint-plugin": "^6.13.1",
+		"@typescript-eslint/parser": "^6.13.1",
 		"autoprefixer": "^10.4.16",
-		"eslint": "^8.54.0",
+		"eslint": "^8.55.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-svelte": "^2.35.1",
-		"highlight.js": "^11.9.0",
 		"postcss": "^8.4.31",
-		"postcss-load-config": "^4.0.2",
+		"postcss-load-config": "^5.0.0",
 		"prettier": "^3.1.0",
-		"prettier-plugin-svelte": "^3.1.2",
-		"publint": "^0.2.5",
-		"svelte": "^4.2.7",
+		"prettier-plugin-tailwindcss": "^0.5.7",
+		"publint": "^0.2.6",
+		"svelte": "^4.2.8",
 		"svelte-check": "^3.6.2",
-		"svelte-preprocess": "^5.1.1",
 		"tailwindcss": "^3.3.5",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.2",
-		"vite": "^4.5.0",
-		"vite-plugin-tailwind-purgecss": "^0.1.4"
+		"vite": "^5.0.4",
+		"clsx": "^2.0.0",
+		"lucide-svelte": "^0.294.0",
+		"mode-watcher": "^0.1.2",
+		"tailwind-merge": "^2.0.0",
+		"tailwind-variants": "^0.1.18"
 	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"svelte": "./dist/package/index.js",
+	"types": "./dist/package/index.d.ts",
 	"type": "module",
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
-	}
+	},
+	"dependencies": {}
 }
