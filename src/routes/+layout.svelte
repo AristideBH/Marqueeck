@@ -21,7 +21,7 @@
 			<Button
 				variant="outline"
 				class="no-underline"
-				href="https://github.com/AristideBH/elaimant-svelte"
+				href="https://github.com/AristideBH/Marqueeck"
 				target="_blank"
 				size="icon"
 				title="GitHub page"

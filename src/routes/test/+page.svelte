@@ -12,17 +12,24 @@
 		hoverSpeed: 5,
 		speedFactor: () => $state
 	};
+
+	const handleHover = (e: CustomEvent) => {
+		// console.log(e.detail);
+	};
+
+	const handleClick = () => {
+		// console.log('Clicked');
+	};
 </script>
 
 <div class="overflow-hidden min-h-[100dvh] pt-[24vh] flex flex-col gap-[1vh]">
-	<Marqueeck {options} class="py-2 bg-foreground text-background">
-		<h1 class="text-2xl italic font-semibold">Marqueeck</h1>
-		<svelte:fragment slot="separator">✱</svelte:fragment>
-		<svelte:fragment slot="stickyStart">Hello,</svelte:fragment>
-		<svelte:fragment slot="stickyEnd">Goodbye</svelte:fragment>
-	</Marqueeck>
-	<Marqueeck {options} class="py-2 bg-foreground text-background">
-		<h1 class="text-2xl italic font-semibold">Marqueeck</h1>
+	<Marqueeck
+		let:hovered
+		on:hover={handleHover}
+		onClick={handleClick}
+		class="py-2 bg-foreground text-background"
+	>
+		<h1 class="text-2xl italic font-semibold">Hovered: {hovered}</h1>
 		<svelte:fragment slot="separator">✱</svelte:fragment>
 		<svelte:fragment slot="stickyStart">Hello,</svelte:fragment>
 		<svelte:fragment slot="stickyEnd">Goodbye</svelte:fragment>

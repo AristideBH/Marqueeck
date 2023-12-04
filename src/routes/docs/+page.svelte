@@ -7,6 +7,7 @@
 	import Events from './Events.svelte';
 	import About from './About.svelte';
 	import Helpers from './Helpers.svelte';
+	import { fade, fly } from 'svelte/transition';
 
 	const tabs = [
 		{ label: 'Usage', value: 'usage', component: Usage },
@@ -42,8 +43,8 @@
 		{/each}
 	</Tabs.List>
 
-	{#each tabs as { label, value, component }}
-		<Tabs.Content {value} class="mt-6">
+	{#each tabs as { value, component }}
+		<Tabs.Content {value} class="mt-6 overflow-hidden">
 			<svelte:component this={component} />
 		</Tabs.Content>
 	{/each}
