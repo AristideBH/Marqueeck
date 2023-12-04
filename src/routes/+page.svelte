@@ -27,12 +27,20 @@
 </section>
 
 <section class="overflow-hidden gap-y-2 content-grid !col-span-full py-14">
-	<Marqueeck class="py-4 bg-primary text-background full-width" options={{ gap: 35 }}>
+	<Marqueeck class="py-4 bg-primary text-background full-width <" options={{ gap: 35 }}>
 		<h1 class="text-5xl italic font-bold">Marqueeck</h1>
 		<svelte:fragment slot="separator"><span class="text-2xl bold">✱</span></svelte:fragment>
 		<svelte:fragment slot="stickyStart">Hello</svelte:fragment>
 	</Marqueeck>
-	<p class="text-center">Hover the marquee to slow it down</p>
+	<Marqueeck
+		class="py-4 bg-primary text-background full-width <"
+		options={{ gap: 50, direction: 'left', speed: 120 }}
+	>
+		<h1 class="text-5xl italic font-bold">Marqueeck</h1>
+		<svelte:fragment slot="separator"><span class="text-2xl bold">✱</span></svelte:fragment>
+		<svelte:fragment slot="stickyEnd">Bye !</svelte:fragment>
+	</Marqueeck>
+	<p class="text-center">Hover the marquees to slow them down</p>
 </section>
 
 <section class="flex flex-col items-start gap-2 isolate">

@@ -1,94 +1,101 @@
 /* CODEBLOCK */
 .svhighlight-header {
-	@apply !bg-card;
+	@apply !bg-[#262626];
 }
 
 .svhighlight-header ~ div {
-	@apply bg-muted;
+	@apply bg-[#1a1a1a];
 }
 
-/* Dracula Theme v1.2.5
- *
- * https://github.com/dracula/highlightjs
- *
- * Copyright 2016-present, All rights reserved
- *
- * Code licensed under the MIT license
- *
- * @author Denis Ciccale <dciccale@gmail.com>
- * @author Zeno Rocha <hi@zenorocha.com>
- */
+.hljs-comment {
+	color: #626483;
+}
 
-.hljs {
-	display: block;
-	overflow-x: auto;
-	padding: 0.5em;
-	background: #282a36;
+.hljs-tag {
+	color: #62d6e8;
+}
+
+.hljs-operator,
+.hljs-punctuation,
+.hljs-subst {
+	color: #e9e9f4;
+}
+
+.hljs-operator {
+	opacity: 0.7;
+}
+
+.hljs-bullet,
+.hljs-deletion,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-template-variable,
+.hljs-variable {
+	color: #ea51b2;
+}
+
+.hljs-attr,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+	color: #b45bcf;
+}
+
+.hljs-class .hljs-title,
+.hljs-title,
+.hljs-title.class_ {
+	color: #00f769;
+}
+
+.hljs-strong {
+	font-weight: 700;
+	color: #00f769;
+}
+
+.hljs-addition,
+.hljs-code,
+.hljs-string,
+.hljs-title.class_.inherited__ {
+	color: #ebff87;
 }
 
 .hljs-built_in,
-.hljs-selector-tag,
-.hljs-section,
-.hljs-link {
-	color: #8be9fd;
-}
-
-.hljs-keyword {
-	color: #f97583;
-}
-
-.hljs,
-.hljs-subst {
-	color: #f8f8f2;
-}
-
-.hljs-title,
-.hljs-meta-keyword {
-	color: #fff;
-}
-
-.hljs-attr {
-	color: #78e880;
-}
-
-.hljs-string {
-	color: #9ecbff;
-}
-.hljs-meta,
-.hljs-name,
-.hljs-type,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition,
-.hljs-variable,
-.hljs-template-tag,
-.hljs-template-variable {
-	color: #b392f0;
-}
-
-.hljs-comment,
-.hljs-quote,
-.hljs-deletion {
-	color: #6272a4;
-}
-
-/* .hljs-keyword,
-.hljs-selector-tag,
-.hljs-literal,
-.hljs-title,
-.hljs-section,
 .hljs-doctag,
-.hljs-type,
-.hljs-name,
-.hljs-strong {
-	font-weight: bold;
-} */
+.hljs-keyword.hljs-atrule,
+.hljs-quote,
+.hljs-regexp {
+	color: #a1efe4;
+}
 
-.hljs-literal,
-.hljs-number {
-	color: #bd93f9;
+.hljs-attribute,
+.hljs-function .hljs-title,
+.hljs-section,
+.hljs-title.function_,
+.ruby .hljs-property {
+	color: #62d6e8;
+}
+
+.diff .hljs-meta,
+.hljs-keyword,
+.hljs-template-tag,
+.hljs-type {
+	color: #b45bcf;
 }
 
 .hljs-emphasis {
+	color: #b45bcf;
 	font-style: italic;
+}
+
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+	color: #00f769;
+}
+
+.hljs-meta .hljs-keyword,
+.hljs-meta-keyword {
+	font-weight: 700;
 }
