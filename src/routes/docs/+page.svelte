@@ -23,9 +23,9 @@
 <section>
 	<h2>What does it do ?</h2>
 	<p>
-		Elaimant is a simple Sveltekit component that applies a magnetic attraction effect to the
-		provided element it wraps, based on the mouse position. Here’s a quick demo/playground in Svelte
-		REPL
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat fugit earum est quasi quisquam
+		voluptatum sint exercitationem ex qui ad alias a cumque molestias ab eveniet velit sed, officia
+		neque.
 	</p>
 </section>
 

@@ -1,9 +1,9 @@
 <h2>Installation</h2>
 <p>Use your preferred node package manager.</p>
 <div class="flex flex-col [&>*]:w-fit gap-y-1">
-	<code> npm i @arisbh/elaimant </code>
-	<code>pnpm add @arisbh/elaimant </code>
-	<code>yarn add @arisbh/elaimant</code>
+	<code>npm i @arisbh/marqueeck </code>
+	<code>pnpm add @arisbh/marqueeck </code>
+	<code>yarn add @arisbh/marqueeck</code>
 </div>
 
 <h2>Usage</h2>

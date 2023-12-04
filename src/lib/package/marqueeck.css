@@ -43,6 +43,7 @@
 	display: inline-flex;
 	align-items: center;
 }
+/* todo: fix FOUC on load */
 
 [data-marqueeck-sticky].start {
 	padding-inline-start: calc(2 * var(--marqueeck-x-pad));

@@ -2,7 +2,6 @@
 	import Marqueeck from '$lib/package/index';
 	import { type MarqueeckOptions } from '$lib/package/index';
 	import { tweened } from 'svelte/motion';
-	import { writable } from 'svelte/store';
 
 	const state = tweened(1);
 	let options: MarqueeckOptions = {
@@ -16,6 +15,12 @@
 </script>
 
 <div class="overflow-hidden min-h-[100dvh] pt-[24vh] flex flex-col gap-[1vh]">
+	<Marqueeck {options} class="py-2 bg-foreground text-background">
+		<h1 class="text-2xl italic font-semibold">Marqueeck</h1>
+		<svelte:fragment slot="separator">✱</svelte:fragment>
+		<svelte:fragment slot="stickyStart">Hello,</svelte:fragment>
+		<svelte:fragment slot="stickyEnd">Goodbye</svelte:fragment>
+	</Marqueeck>
 	<Marqueeck {options} class="py-2 bg-foreground text-background">
 		<h1 class="text-2xl italic font-semibold">Marqueeck</h1>
 		<svelte:fragment slot="separator">✱</svelte:fragment>
