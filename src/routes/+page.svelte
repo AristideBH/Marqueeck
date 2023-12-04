@@ -1,43 +1,41 @@
 <script lang="ts">
-	import Marqueeck from '$lib/package/index';
-	import { type MarqueeckOptions } from '$lib/package/index';
+	import Marqueeck from '$lib/package';
+	import { Button } from '$lib/components/ui/button';
+	import { ArrowDownWideNarrow } from 'lucide-svelte';
 
-	let options: MarqueeckOptions = {
-		gap: 25,
-		direction: 'right',
-		speed: 75,
-		paddingX: 25,
-		hoverSpeed: 5,
-		speedFactor: () => 1
-	};
+	const description =
+		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque iste voluptatum, accusantium excepturi nam recusandae, quisquam alias doloremque nulla libero sunt ut. Perspiciatis, maxime qui consequuntur inventore dolor facere tempore?';
 </script>
 
-<div class="overflow-hidden min-h-[100dvh] pt-[24vh] flex flex-col gap-[1vh]">
-	<Marqueeck {options} class="py-2 bg-foreground text-background">
-		<h1 class="text-2xl italic font-semibold">Marqueeck</h1>
-		<svelte:fragment slot="separator">✱</svelte:fragment>
-		<svelte:fragment slot="stickyStart">Hello,</svelte:fragment>
-		<svelte:fragment slot="stickyEnd">Goodbye</svelte:fragment>
+<svelte:head>
+	<title>Marqueeck for Sveltekit</title>
+	<meta name="description" content={description} />
+</svelte:head>
+
+<section class="flex flex-col items-start gap-4">
+	<p class="max-w-2xl lead text-balance">
+		{description}
+	</p>
+
+	<div class="flex flex-col items-start gap-6 gap-y-3">
+		<Button variant="link" class="px-0 text-foreground hover:no-underline">
+			<ArrowDownWideNarrow class="w-4 h-4 mr-2" />
+			View the basic demos
+		</Button>
+		<Button href="/docs" class="no-underline" variant="outline">Read the documentation</Button>
+	</div>
+</section>
+
+<section class="overflow-hidden gap-y-2 content-grid !col-span-full py-14">
+	<Marqueeck class="py-4 bg-primary text-background full-width" options={{ gap: 35 }}>
+		<h1 class="text-5xl italic font-bold">Marqueeck</h1>
+		<svelte:fragment slot="separator"><span class="text-2xl bold">✱</span></svelte:fragment>
+		<svelte:fragment slot="stickyStart">Hello</svelte:fragment>
 	</Marqueeck>
+	<p class="text-center">Hover the marquee to slow it down</p>
+</section>
 
-	<button
-		on:click={() => {
-			options.direction = options.direction === 'right' ? 'left' : 'right';
-		}}
-	>
-		go to {options.direction === 'right' ? 'left' : 'right'}</button
-	>
-	<button
-		on:click={() => {
-			options.speedFactor = options.speedFactor() === 1 ? () => 0 : () => 1;
-		}}
-	>
-		{options.speedFactor() === 1 ? 'stop' : 'start'}</button
-	>
-
-	<button
-		on:click={() => {
-			options.gap = options.gap === 25 ? 50 : 25;
-		}}>cycle gap : {options.gap}</button
-	>
-</div>
+<section class="flex flex-col items-start gap-2 isolate">
+	<p class="lead text-balance">Want to install and customize Marqueeck ?</p>
+	<Button href="/docs" class="no-underline" variant="outline">Read the documentation</Button>
+</section>

@@ -68,5 +68,9 @@
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
+	},
+	"dependencies": {
+		"@macfja/svelte-persistent-store": "^2.4.1",
+		"bits-ui": "^0.10.0"
 	}
 }

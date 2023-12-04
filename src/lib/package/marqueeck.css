@@ -9,7 +9,7 @@
 
 [data-marqueeck-wrapper].extend {
 	width: calc(100% + 2 * var(--marqueeck-x-pad, 0));
-	margin-inline: calc(-1 * var(--marqueeck-x-pad));
+	margin-inline: calc(-1 * var(--marqueeck-x-pad, 0));
 	padding-inline: calc(var(--marqueeck-x-pad) * 2);
 }
 
