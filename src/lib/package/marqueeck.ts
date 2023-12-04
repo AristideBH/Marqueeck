@@ -12,7 +12,7 @@ export const defaults: MarqueeckOptions = {
     gap: 20,
     onHover: 'customSpeed',
     brakeDuration: 1000,
-    speedFactor: 1,
+    speedFactor: () => 1,
     hoverSpeed: 5,
     stickyPosition: 'start',
     paddingX: 20,
@@ -59,13 +59,13 @@ export function marqueeckSlide(
     const { still, gap } = options
     const marqueeckRibbon = node.querySelector('[data-marqueeck-ribbon]');
     const marqueeckChild = marqueeckRibbon?.querySelector('[data-marqueeck-child]') as HTMLElement;
-    const childWidth = Math.floor(marqueeckChild!.getBoundingClientRect().width);
-    const initialPos = -(childWidth + gap);
+    const initalPos = (x: number, y: number) => -(x + y)
+    let childWidth = Math.floor(marqueeckChild!.getBoundingClientRect().width);
 
     // * INITIAL STATE
     marqueeckChild.style.opacity = "1";
     const store = writable({
-        position: initialPos,
+        position: initalPos(childWidth, gap),
         animationFrameId: null as number | null,
         prefersReducedMotion: false,
     });
@@ -79,16 +79,19 @@ export function marqueeckSlide(
     const animate = () => {
         store.update(state => {
             if (state.prefersReducedMotion) return state;
-            const isOutOfBounds = state.position >= 0 || state.position < 2 * initialPos;
-            const newPosition = isOutOfBounds ? initialPos : state.position;
 
-            const baseSpeed = options.currentSpeed();
-            const currentSpeed = baseSpeed / 60;
+            childWidth = Math.floor(marqueeckChild!.getBoundingClientRect().width);
+            const { speedFactor, currentSpeed, direction, gap } = options;
 
-            const newPos = newPosition + (options.direction === 'left' ? -1 : 1) * currentSpeed;
+            const isOutOfBounds = state.position >= 0 || state.position < 2 * initalPos(childWidth, gap);
+            const position = isOutOfBounds ? initalPos(childWidth, gap) : state.position;
 
-            node.style.setProperty('--ribbonXpos', newPos + 'px');
-            return { ...state, position: newPos, animationFrameId: requestAnimationFrame(() => animate()) };
+            const directionalFactor = () => direction === 'left' ? -1 : 1;
+
+            const newPosition = position + (directionalFactor() * speedFactor()) * (currentSpeed() / 60);
+
+            node.style.setProperty('--ribbonXpos', newPosition + 'px');
+            return { ...state, position: newPosition, animationFrameId: requestAnimationFrame(() => animate()) };
         });
     }
 

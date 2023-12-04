@@ -41,25 +41,25 @@
 		"@typescript-eslint/eslint-plugin": "^6.13.1",
 		"@typescript-eslint/parser": "^6.13.1",
 		"autoprefixer": "^10.4.16",
+		"clsx": "^2.0.0",
 		"eslint": "^8.55.0",
-		"eslint-config-prettier": "^9.0.0",
+		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
-		"postcss": "^8.4.31",
-		"postcss-load-config": "^5.0.0",
+		"lucide-svelte": "^0.294.0",
+		"mode-watcher": "^0.1.2",
+		"postcss": "^8.4.32",
+		"postcss-load-config": "^5.0.2",
 		"prettier": "^3.1.0",
 		"prettier-plugin-tailwindcss": "^0.5.7",
 		"publint": "^0.2.6",
 		"svelte": "^4.2.8",
 		"svelte-check": "^3.6.2",
+		"tailwind-merge": "^2.1.0",
+		"tailwind-variants": "^0.1.18",
 		"tailwindcss": "^3.3.5",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.2",
-		"vite": "^5.0.4",
-		"clsx": "^2.0.0",
-		"lucide-svelte": "^0.294.0",
-		"mode-watcher": "^0.1.2",
-		"tailwind-merge": "^2.0.0",
-		"tailwind-variants": "^0.1.18"
+		"vite": "^5.0.5"
 	},
 	"svelte": "./dist/package/index.js",
 	"types": "./dist/package/index.d.ts",
@@ -67,6 +67,5 @@
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
-	},
-	"dependencies": {}
+	}
 }

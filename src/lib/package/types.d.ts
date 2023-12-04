@@ -7,7 +7,7 @@ export type MarqueeckOptions = {
     paddingX: number;
     gap: number,
     onHover: 'none' | 'stop' | 'customSpeed';
-    speedFactor: number;
+    speedFactor: () => number;
     brakeDuration: number;
     hoverSpeed: number;
     stickyPosition: 'start' | 'end';
@@ -18,7 +18,7 @@ export type MarqueeckOptions = {
     easing: (t: number) => number,
     still: boolean,
     isMouseIn: () => boolean,
-    currentSpeed: () => number,
+    currentSpeed: () => number
 }
 
 export type PublicMarqueeckOptions = Omit<Partial<MarqueeckOptions>,

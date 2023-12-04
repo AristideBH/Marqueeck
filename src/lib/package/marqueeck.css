@@ -1,0 +1,62 @@
+/* * Wrapper */
+[data-marqueeck-wrapper] {
+	display: flex;
+	flex-flow: row nowrap;
+	overflow: hidden;
+	width: 100%;
+	padding-inline: calc(var(--marqueeck-x-pad) * 1);
+}
+
+[data-marqueeck-wrapper].extend {
+	width: calc(100% + 2 * var(--marqueeck-x-pad, 0));
+	margin-inline: calc(-1 * var(--marqueeck-x-pad));
+	padding-inline: calc(var(--marqueeck-x-pad) * 2);
+}
+
+/* * Ribbon */
+[data-marqueeck-ribbon] {
+	display: inherit;
+	flex-flow: inherit;
+	gap: inherit;
+	transform: translateX(var(--ribbonXpos));
+	will-change: transform;
+	transition: gap 0.3s ease-out;
+}
+
+/* * Children */
+[data-marqueeck-child] {
+	display: inline-flex;
+	width: max-content;
+	gap: inherit;
+}
+
+/* * Stickies */
+[data-marqueeck-sticky] {
+	position: absolute;
+	padding-inline: var(--marqueeck-x-pad);
+	width: fit-content;
+	background-color: inherit;
+	color: inherit;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	display: inline-flex;
+	align-items: center;
+}
+
+[data-marqueeck-sticky].start {
+	padding-inline-start: calc(2 * var(--marqueeck-x-pad));
+}
+
+[data-marqueeck-sticky].end {
+	padding-inline-end: calc(2 * var(--marqueeck-x-pad));
+}
+
+/* * Separator */
+[data-marqueeck-separator] {
+	width: fit-content;
+	height: 100%;
+	display: inline-flex;
+	align-items: center;
+	user-select: none;
+}
