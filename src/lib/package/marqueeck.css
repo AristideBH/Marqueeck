@@ -4,7 +4,10 @@
 	flex-flow: row nowrap;
 	overflow: hidden;
 	width: 100%;
-	padding-inline: calc(var(--marqueeck-x-pad) * 1);
+	padding-inline: var(--marqueeck-x-pad);
+	padding-block: var(--marqueeck-padding-y);
+	background-color: var(--marqueeck-bg-color);
+	color: var(--marqueeck-text-color);
 }
 
 [data-marqueeck-wrapper].extend {
@@ -42,6 +45,8 @@
 	bottom: 0;
 	display: inline-flex;
 	align-items: center;
+	background-color: inherit;
+	color: inherit;
 }
 /* todo: fix FOUC on load */
 

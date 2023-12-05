@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Marqueeck from '$lib/package/index';
-	import { type MarqueeckOptions } from '$lib/package/index';
+	import { Button } from '$lib/components/ui/button';
+	import { type MarqueeckOptions, type MarqueeckHoverEvent } from '$lib/package';
 	import { tweened } from 'svelte/motion';
 
 	const state = tweened(1);
@@ -13,42 +14,41 @@
 		speedFactor: () => $state
 	};
 
-	const handleHover = (e: CustomEvent) => {
-		// console.log(e.detail);
+	const handleHover = (e: MarqueeckHoverEvent) => {
+		console.log(`Hover: ${e.detail}`);
 	};
 
 	const handleClick = () => {
-		// console.log('Clicked');
+		console.log('Clicked');
 	};
 </script>
 
-<div class="overflow-hidden min-h-[100dvh] pt-[24vh] flex flex-col gap-[1vh]">
-	<Marqueeck
-		let:hovered
-		on:hover={handleHover}
-		onClick={handleClick}
-		class="py-2 bg-foreground text-background"
-	>
-		<h1 class="text-2xl italic font-semibold">Hovered: {hovered}</h1>
+<div class="overflow-hidden pt-[24vh] flex flex-col gap-[1vh]">
+	<Marqueeck {options} on:hover={handleHover} onClick={handleClick} class="py-2">
+		<h1 class="text-2xl italic font-semibold">Marqueeck</h1>
 		<svelte:fragment slot="separator">✱</svelte:fragment>
 		<svelte:fragment slot="stickyStart">Hello,</svelte:fragment>
 		<svelte:fragment slot="stickyEnd">Goodbye</svelte:fragment>
 	</Marqueeck>
 
-	<button
-		on:click={() => {
-			options.direction = options.direction === 'right' ? 'left' : 'right';
-		}}
-	>
-		go to {options.direction === 'right' ? 'left' : 'right'}</button
-	>
-	<button on:click={() => ($state = $state === 1 ? 0 : 1)}>
-		{$state === 1 ? 'stop' : 'start'}</button
-	>
-
-	<button
-		on:click={() => {
-			options.gap = options.gap === 25 ? 50 : 25;
-		}}>cycle gap : {options.gap}</button
-	>
+	<div>
+		<Button variant="secondary" on:click={() => ($state = $state === 1 ? 0 : 1)}>
+			{$state === 1 ? 'Stop' : 'Play'}
+		</Button>
+		<Button
+			variant="secondary"
+			on:click={() => {
+				options.direction = options.direction === 'right' ? 'left' : 'right';
+			}}
+		>
+			Change direction
+		</Button>
+		<Button
+			variant="secondary"
+			on:click={() => {
+				options.gap = options.gap === 25 ? 50 : 25;
+			}}
+			>Change gap
+		</Button>
+	</div>
 </div>

@@ -6,9 +6,9 @@
 <h2>Slotted component</h2>
 
 <p>
-	You have full control over the element you're slotting inside Marqueeck, therefore you can style
-	it as you want. Drop a complex flex layout, a custom Svelte component, a simple icon or anything,
-	you choose what you use, and style it the way you want !
+	You have full control over the element you are slotting inside Marqueeck, therefore you can style
+	it as you want. Drop a complex flex layout, another Svelte component, a simple icon or anything...
+	You choose what you use, and style it the way you want !
 </p>
 <Marqueeck class="py-5">
 	<div class="flex items-end gap-2 leading-4">
@@ -21,7 +21,7 @@
 <CodeBlock
 	language="svelte"
 	code={`<Marqueeck class="py-5">
-	<!-- Here we're using Tailwind classes -->
+	<!-- Using Tailwind classes -->
 	<div class="flex items-end gap-2 leading-4">
 		<span class="flex flex-col">
 			<strong>Hello</strong> <i>custom</i>
@@ -33,38 +33,52 @@
 
 <h2>CSS Variable</h2>
 <p>
-	You can directly pass CSS variables for the background and text colors, using any CSS authorized
-	colors (name, hex, hsl, etc...) :
+	You can directly pass CSS variables for the background and text colors, and also for the vertical
+	paddings, using any CSS appropriate propreties.
 </p>
-<!-- todo: fix variable not applying -->
 <Marqueeck
-	--marqueeck-bg-color={'rgb(var(--color-primary-700))'}
-	--marqueeck-text-color={'rgb(164, 217, 205)'}
+	--marqueeck-bg-color="hsl(var(--primary))"
+	--marqueeck-text-color="hsl(var(--background))"
+	--marqueeck-padding-y="0.5rem">CSS Variables</Marqueeck
 >
-	CSS Variables
-</Marqueeck>
 
 <CodeBlock
 	language="svelte"
 	code={`<Marqueeck 
-	--marqueeck-bg-color={'rgb(var(--color-primary-700))'}
-	--marqueeck-text-color={'rgb(164, 217, 205)'}>
+	--marqueeck-bg-color="rgb(164, 217, 205)" 
+	--marqueeck-text-color="hsl(var(--background))"
+	--marqueeck-padding-y="0.5rem">
 	CSS Variables
 </Marqueeck>`}
 />
-<p>Or define them globaly in your project :</p>
+<p class="mt-2">Or define them globaly for all Marqueecks in your project :</p>
 <CodeBlock
 	language="css"
 	code={`:root {
-	--marqueeck-bg-color: #a4d9cd;
-	--marqueeck-text-color: #0b8c61;
+	--marqueeck-bg-color: hsl(var(--foreground));
+	--marqueeck-text-color: hsl(var(--background));
+	--marqueeck-padding-y: 0.5rem;
 }`}
 />
 
 <h2>Marqueeck default structure</h2>
 
 <h3>Treeview</h3>
-<blockquote class="mt-1">Editing documentation...</blockquote>
+<CodeBlock
+	language="less"
+	code={`├─ div [data-marqueeck-wrapper]
+│  ├─ div [data-marqueeck-ribbon] => animated element
+│  │  ├─ span [data-marqueeck-child] 
+│  │  │  ├─ chosenTag ("Your content")
+│  │  │  └─ div [data-marqueeck-separator] ("Separator")
+│  │  ├─ span [data-marqueeck-child, hidden]
+│  │  │  ├─ chosenTag ("Your content")
+│  │  │  └─ span [data-marqueeck-separator] ("Separator")
+│  │  └─ ...
+│  ├─ div [data-marqueeck-sticky.start] ("StickyStart content")
+│  └─ div [data-marqueeck-sticky.end] ("StickyEnd content")
+`}
+/>
 
 <h3>Classes props</h3>
 <p>Marqueeck provides props to style its barebone structure and the default class tag.</p>
@@ -83,7 +97,7 @@
 			options.
 		</p>
 		<blockquote class="mt-1">
-			This is the animated element, please do not apply any transform to it.
+			This is the animated element, please do not apply any transform proprety to it.
 		</blockquote>
 	</li>
 	<li>
@@ -113,6 +127,8 @@
 	overflow: hidden;
 	width: 100%;
 	padding-inline: calc(var(--marqueeck-x-pad) * 1);
+	background-color: var(--marqueeck-bg-color);
+	color: var(--marqueeck-text-color);
 }
 
 [data-marqueeck-wrapper].extend {
@@ -150,6 +166,8 @@
 	bottom: 0;
 	display: inline-flex;
 	align-items: center;
+	background-color: inherit;
+	color: inherit;
 }
 /* todo: fix FOUC on load */
 

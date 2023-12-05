@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { tweened } from 'svelte/motion';
 
-	import type { PublicMarqueeckOptions } from './types';
+	import type { PublicMarqueeckOptions, MarqueeckHoverEvent } from './types';
 	import { defaults, marqueeckSlide, optionsMerger } from './marqueeck';
 	import './marqueeck.css';
 
@@ -51,21 +51,28 @@
 	// * HANDLE EVENTS
 	const handleClick = (event: MouseEvent | KeyboardEvent) => {
 		if (!onClick) return;
-		if (event.type === 'click') onClick(event);
+		if (event.type === 'click') {
+			event.preventDefault();
+			onClick(event);
+		}
 		if (event.type === 'keydown') {
 			const { code } = event as KeyboardEvent;
-			if (code === 'Space' || code === 'Enter') onClick(event);
+			if (code === 'Space' || code === 'Enter') {
+				event.preventDefault();
+				onClick(event);
+			}
 		}
 	};
 
 	const dispatch = createEventDispatcher();
-	const handleHover = async (event: CustomEvent) => {
+	const handleHover = async (event: MarqueeckHoverEvent) => {
+		isMouseHovering = event.detail;
 		if (opt.onHover === 'none') return;
-		$tweenedSpeed = event.detail
+		$tweenedSpeed = isMouseHovering
 			? opt.hoverSpeed * opt.speedFactor()
 			: opt.speed * opt.speedFactor();
 
-		dispatch('hover', { detail: event.detail });
+		dispatch('hover', event.detail);
 	};
 </script>
 

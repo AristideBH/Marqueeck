@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.pcss';
 	import { Button } from '$lib/components/ui/button';
-	import { Book, Github } from 'lucide-svelte';
+	import { Book, Github, Star } from 'lucide-svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import { page } from '$app/stores';
 </script>
@@ -27,6 +27,9 @@
 				title="GitHub page"
 			>
 				<Github class="w-4 h-4 " />
+			</Button>
+			<Button variant="outline" class="no-underline" href="/test" size="icon" title="Test page">
+				<Star class="w-4 h-4 " />
 			</Button>
 		</nav>
 	</div>

@@ -68,6 +68,7 @@ export function marqueeckSlide(
         position: initalPos(childWidth, gap),
         animationFrameId: null as number | null,
         prefersReducedMotion: false,
+        options: options
     });
 
     // * REDUCED MOTIONS
