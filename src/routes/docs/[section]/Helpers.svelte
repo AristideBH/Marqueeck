@@ -54,7 +54,72 @@
 		GitHub issue</a
 	>.
 </p>
-<blockquote>Most of these example makes use of the <code>speedFactor</code> prop.</blockquote>
+<blockquote>
+	Most of these example makes use of the <code>options.speedFactor</code> proprepty to impact the component
+	speed.
+</blockquote>
+
+<h2>Play/Pause</h2>
+<Marqueeck {options}>[ Your element ]</Marqueeck>
+
+<div class="flex gap-4 my-4">
+	<div class="flex gap-2">
+		<Button variant="secondary" size="icon" title="Play/Pause" on:click={playPause}>
+			{#if !$speed}
+				<Play class="w-4 h-4 " />
+			{:else}
+				<Pause class="w-4 h-4 " />
+			{/if}
+		</Button>
+		<Button variant="secondary" size="icon" title="Change direction" on:click={changeDirection}>
+			{#if options.direction === 'right'}
+				<ArrowBigLeft class="w-4 h-4 " />
+			{:else}
+				<ArrowBigRight class="w-4 h-4 " />
+			{/if}
+		</Button>
+		<Button variant="secondary" size="icon" title="Change gap size" on:click={changeGap}>
+			{#if options.gap === 25}
+				<UnfoldHorizontal class="w-4 h-4 " />
+			{:else}
+				<FoldHorizontal class="w-4 h-4 " />
+			{/if}
+		</Button>
+	</div>
+	<div class="w-full">
+		<p>
+			When you construct a <code>options</code> object, you are easily able to update it.
+		</p>
+		<p>Here we are creating three buttons to interact with the component.</p>
+	</div>
+</div>
+
+<CodeBlock
+	language="svelte"
+	code={`<script>
+    import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
+    import { tweened } from 'svelte/motion';
+
+    const speed = tweened(1);
+	const playPause = () => ($speed = $speed === 1 ? 0 : 1);
+	const changeDirection = () => (options.direction = options.direction === 'right' ? 'left' : 'right');
+	const changeGap = () => (options.gap = options.gap === 25 ? 50 : 25);
+    
+    let options: MarqueeckOptions = {
+        gap: 25,
+        direction: 'right',
+        speedFactor: () => $speed
+    };
+<\/script>
+
+<Marqueeck {options} >
+	[ Your element ]
+</Marqueeck>
+
+<button	on:click={playPause} > Play/Pause </button>
+<button	on:click={changeDirection} > Change direction </button>
+<button	on:click={changeGap} > Change gap size </button>`}
+/>
 
 <h2>Scroll sync</h2>
 
@@ -120,65 +185,3 @@
 />
 
 <!-- <h2>Mouse modifier</h2> -->
-
-<h2>Play/Pause</h2>
-<Marqueeck {options}>[ Your element ]</Marqueeck>
-
-<div class="flex gap-4 my-4">
-	<div class="flex gap-2">
-		<Button variant="secondary" size="icon" title="Play/Pause" on:click={playPause}>
-			{#if !$speed}
-				<Play class="w-4 h-4 " />
-			{:else}
-				<Pause class="w-4 h-4 " />
-			{/if}
-		</Button>
-		<Button variant="secondary" size="icon" title="Change direction" on:click={changeDirection}>
-			{#if options.direction === 'right'}
-				<ArrowBigLeft class="w-4 h-4 " />
-			{:else}
-				<ArrowBigRight class="w-4 h-4 " />
-			{/if}
-		</Button>
-		<Button variant="secondary" size="icon" title="Change gap size" on:click={changeGap}>
-			{#if options.gap === 25}
-				<UnfoldHorizontal class="w-4 h-4 " />
-			{:else}
-				<FoldHorizontal class="w-4 h-4 " />
-			{/if}
-		</Button>
-	</div>
-	<div class="w-full">
-		<p>
-			When you construct a <code>options</code> object, you are easily able to update it.
-		</p>
-		<p>Here we are creating three buttons to interact with the component.</p>
-	</div>
-</div>
-
-<CodeBlock
-	language="svelte"
-	code={`<script>
-    import Marqueeck, { type MarqueeckOptions } from '@arisbh/marqueeck';
-    import { tweened } from 'svelte/motion';
-
-    const speed = tweened(1);
-	const playPause = () => ($speed = $speed === 1 ? 0 : 1);
-	const changeDirection = () => (options.direction = options.direction === 'right' ? 'left' : 'right');
-	const changeGap = () => (options.gap = options.gap === 25 ? 50 : 25);
-    
-    let options: MarqueeckOptions = {
-        gap: 25,
-        direction: 'right',
-        speedFactor: () => $speed
-    };
-<\/script>
-
-<Marqueeck {options} >
-	[ Your element ]
-</Marqueeck>
-
-<button	on:click={playPause} > Play/Pause </button>
-<button	on:click={changeDirection} > Change direction </button>
-<button	on:click={changeGap} > Change gap size </button>`}
-/>
