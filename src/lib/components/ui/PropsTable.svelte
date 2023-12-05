@@ -62,9 +62,9 @@
 <Table.Root>
 	<Table.Header>
 		<Table.Row>
-			<Table.Head class="w-[125px]">Name</Table.Head>
-			<Table.Head class="w-[250px]">Type</Table.Head>
-			<Table.Head>Description</Table.Head>
+			<Table.Head>Name</Table.Head>
+			<Table.Head>Type</Table.Head>
+			<Table.Head class="w-[350px]">Description</Table.Head>
 			<Table.Head class="text-right">Default value</Table.Head>
 		</Table.Row>
 	</Table.Header>

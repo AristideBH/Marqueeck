@@ -61,16 +61,15 @@
 <h2>Extend</h2>
 <p>
 	By default, Marqueeck will bleed out to its sides. This is intended behaviour as you might need to
-	apply a rotation to the component. This ensure its really fill your parent element.
+	apply a rotation to the component. This ensure it really fills your parent element on both sides.
 </p>
 <p>
 	If you want to get rid of this behaviour, set the <code>extend</code> prop to <code>false</code>.
 </p>
-<blockquote class="mt-1">
+<blockquote class="mt-1 mb-2">
 	You can set <code>overflow-x: hidden;</code> to the parent element to keep the prop active and still
 	crop to the good width.
 </blockquote>
-<Marqueeck extend={false} class="my-4">[Your element]</Marqueeck>
 <CodeBlock
 	language="svelte"
 	code={`<Marqueeck extend={false}>
