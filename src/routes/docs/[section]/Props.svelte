@@ -19,7 +19,9 @@
 </Marqueeck>`}
 />
 
-<p>Or you can construct a MarqueeckOptions object, using the provided MarqueeckOptions type :</p>
+<p class="mt-3">
+	Or you can construct a MarqueeckOptions object, using the provided MarqueeckOptions type :
+</p>
 <CodeBlock
 	language="svelte"
 	code={`<script lang="ts">
@@ -78,4 +80,4 @@
 />
 
 <h2>Classes</h2>
-<p>View the <code>Styling</code> tab to know more about classes.</p>
+<p>Check the <a href="/docs/styling">Styling</a> page to know more about classes.</p>

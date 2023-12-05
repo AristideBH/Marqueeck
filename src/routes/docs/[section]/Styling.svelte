@@ -10,7 +10,7 @@
 	it as you want. Drop a complex flex layout, another Svelte component, a simple icon or anything...
 	You choose what you use, and style it the way you want !
 </p>
-<Marqueeck class="py-5">
+<Marqueeck class="!py-8">
 	<div class="flex items-end gap-2 leading-4">
 		<span class="flex flex-col">
 			<strong>Hello</strong> <i>custom</i>
@@ -20,7 +20,7 @@
 </Marqueeck>
 <CodeBlock
 	language="svelte"
-	code={`<Marqueeck class="py-5">
+	code={`<Marqueeck class="!py-8">
 	<!-- Using Tailwind classes -->
 	<div class="flex items-end gap-2 leading-4">
 		<span class="flex flex-col">
@@ -66,12 +66,13 @@
 <h3>Treeview</h3>
 <CodeBlock
 	language="less"
-	code={`├─ div [data-marqueeck-wrapper]
+	headerText="STRUCTURE"
+	code={`├─ div|marquee [data-marqueeck-wrapper]
 │  ├─ div [data-marqueeck-ribbon] => animated element
 │  │  ├─ span [data-marqueeck-child] 
 │  │  │  ├─ chosenTag ("Your content")
 │  │  │  └─ div [data-marqueeck-separator] ("Separator")
-│  │  ├─ span [data-marqueeck-child, hidden]
+│  │  ├─ span [data-marqueeck-child, aria-hidden]
 │  │  │  ├─ chosenTag ("Your content")
 │  │  │  └─ span [data-marqueeck-separator] ("Separator")
 │  │  └─ ...
@@ -110,6 +111,9 @@
 	</li>
 	<li>
 		<p><b>separatorClasses</b> is used to style the separator <code>svelte:fragment</code>.</p>
+	</li>
+	<li>
+		<p><b>hoverClasses</b> is used to set arbitrary classes to the wrapper when it is hovered.</p>
 	</li>
 </ul>
 

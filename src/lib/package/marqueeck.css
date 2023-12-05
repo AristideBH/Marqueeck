@@ -3,6 +3,7 @@
 	display: flex;
 	flex-flow: row nowrap;
 	overflow: hidden;
+	position: relative;
 	width: 100%;
 	padding-inline: var(--marqueeck-x-pad);
 	padding-block: var(--marqueeck-padding-y);
@@ -38,17 +39,12 @@
 	position: absolute;
 	padding-inline: var(--marqueeck-x-pad);
 	width: fit-content;
-	background-color: inherit;
-	color: inherit;
-	height: 100%;
-	top: 0;
-	bottom: 0;
+	height: stretch;
 	display: inline-flex;
 	align-items: center;
 	background-color: inherit;
 	color: inherit;
 }
-/* todo: fix FOUC on load */
 
 [data-marqueeck-sticky].start {
 	padding-inline-start: calc(2 * var(--marqueeck-x-pad));

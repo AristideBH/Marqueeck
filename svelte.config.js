@@ -14,6 +14,9 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			pkg: 'src/package'
+		},
+		version: {
+			name: process.env.npm_package_version
 		}
 	}
 };

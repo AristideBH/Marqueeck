@@ -1,18 +1,23 @@
 <script lang="ts">
 	import '../app.pcss';
 	import { Button } from '$lib/components/ui/button';
-	import { Book, Github, Star } from 'lucide-svelte';
+	import { Badge } from '$lib/components/ui/badge';
+	import { Book, Github, BugPlay } from 'lucide-svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import { page } from '$app/stores';
+	import { version } from '$app/environment';
 </script>
 
 <ModeWatcher />
 
 <header class="sticky top-0 z-50 content-grid full-width bg-background">
 	<div class="flex flex-wrap items-center justify-between gap-3 py-4 border-b lg:py-8">
-		<a href="/" class="no-underline text-foreground">
+		<a href="/" class="inline-flex gap-2 no-underline text-foreground">
 			<h1 class="tracking-wide">Marqueeck</h1>
 		</a>
+		<sup>
+			<Badge variant="secondary">{version}</Badge>
+		</sup>
 		<nav class="flex gap-1.5 ms-auto">
 			<Button variant="outline" class="no-underline" href="/docs" title="Documentation">
 				<Book class="w-4 h-4" />
@@ -29,7 +34,7 @@
 				<Github class="w-4 h-4 " />
 			</Button>
 			<Button variant="outline" class="no-underline" href="/test" size="icon" title="Test page">
-				<Star class="w-4 h-4 " />
+				<BugPlay class="w-4 h-4 " />
 			</Button>
 		</nav>
 	</div>

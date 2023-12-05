@@ -69,4 +69,6 @@
 />
 
 <h2>Learn more</h2>
-<p>Check the <code>Props</code> or <code>Events</code> tabs for even more informations.</p>
+<p>
+	Check the <a href="/docs/props">Props</a> or <a href="/docs/events">Events</a> pages for more information.
+</p>

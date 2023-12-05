@@ -40,16 +40,22 @@
 	</Marqueeck>
 
 	<div class="flex gap-2">
-		<Button variant="secondary" size="icon" on:click={() => ($state = $state === 1 ? 0 : 1)}>
-			{#if $state}
-				<Pause class="w-4 h-4 " />
-			{:else}
+		<Button
+			variant="secondary"
+			size="icon"
+			title="Play/Pause"
+			on:click={() => ($state = $state === 1 ? 0 : 1)}
+		>
+			{#if !$state}
 				<Play class="w-4 h-4 " />
+			{:else}
+				<Pause class="w-4 h-4 " />
 			{/if}
 		</Button>
 		<Button
 			variant="secondary"
 			size="icon"
+			title="Change direction"
 			on:click={() => {
 				options.direction = options.direction === 'right' ? 'left' : 'right';
 			}}
@@ -63,6 +69,7 @@
 		<Button
 			variant="secondary"
 			size="icon"
+			title="Change gap size"
 			on:click={() => {
 				options.gap = options.gap === 25 ? 50 : 25;
 			}}

@@ -53,7 +53,7 @@
 <CodeBlock
 	language="svelte"
 	code={`<script lang="ts">
-	import Marqueeck from '@arisbh/marqueeck';
+	import Marqueeck, { type MarqueeckHoverEvent } from '@arisbh/marqueeck';
 
 	const handleHover = (e: MarqueeckHoverEvent) => { 
 		console.log('Hover:', e.detail);

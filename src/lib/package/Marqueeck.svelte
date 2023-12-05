@@ -134,12 +134,24 @@
 
 		<!-- * Stickies -->
 		{#if stickyStart}
-			<div data-marqueeck-sticky class="start {stickyClasses}" style:left={0}>
+			<div
+				data-marqueeck-sticky
+				class="start {stickyClasses}"
+				style:top={0}
+				style:bottom={0}
+				style:left={0}
+			>
 				<slot name="stickyStart" />
 			</div>
 		{/if}
 		{#if stickyEnd}
-			<div data-marqueeck-sticky class="end {stickyClasses}" style:right={0}>
+			<div
+				data-marqueeck-sticky
+				class="end {stickyClasses}"
+				style:top={0}
+				style:bottom={0}
+				style:right={0}
+			>
 				<slot name="stickyEnd" />
 			</div>
 		{/if}
