@@ -14,7 +14,6 @@ export const defaults: MarqueeckOptions = {
     brakeDuration: 1000,
     speedFactor: () => 1,
     hoverSpeed: 5,
-    stickyPosition: 'start',
     paddingX: 20,
     childStagger: true,
     childStaggerDuration: 50,

@@ -10,7 +10,6 @@ export type MarqueeckOptions = {
     speedFactor: () => number;
     brakeDuration: number;
     hoverSpeed: number;
-    stickyPosition: 'start' | 'end';
     paddingX: 20;
     childTransition: SvelteTransition;
     childStagger: boolean,

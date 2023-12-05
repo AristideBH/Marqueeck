@@ -7,7 +7,6 @@
 	import Events from './Events.svelte';
 	import About from './About.svelte';
 	import Helpers from './Helpers.svelte';
-	import { fade, fly } from 'svelte/transition';
 
 	const tabs = [
 		{ label: 'Usage', value: 'usage', component: Usage },

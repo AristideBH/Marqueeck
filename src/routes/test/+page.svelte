@@ -3,6 +3,14 @@
 	import { Button } from '$lib/components/ui/button';
 	import { type MarqueeckOptions, type MarqueeckHoverEvent } from '$lib/package';
 	import { tweened } from 'svelte/motion';
+	import {
+		Play,
+		Pause,
+		ArrowBigLeft,
+		ArrowBigRight,
+		UnfoldHorizontal,
+		FoldHorizontal
+	} from 'lucide-svelte';
 
 	const state = tweened(1);
 	let options: MarqueeckOptions = {
@@ -31,24 +39,39 @@
 		<svelte:fragment slot="stickyEnd">Goodbye</svelte:fragment>
 	</Marqueeck>
 
-	<div>
-		<Button variant="secondary" on:click={() => ($state = $state === 1 ? 0 : 1)}>
-			{$state === 1 ? 'Stop' : 'Play'}
+	<div class="flex gap-2">
+		<Button variant="secondary" size="icon" on:click={() => ($state = $state === 1 ? 0 : 1)}>
+			{#if $state}
+				<Pause class="w-4 h-4 " />
+			{:else}
+				<Play class="w-4 h-4 " />
+			{/if}
 		</Button>
 		<Button
 			variant="secondary"
+			size="icon"
 			on:click={() => {
 				options.direction = options.direction === 'right' ? 'left' : 'right';
 			}}
 		>
-			Change direction
+			{#if options.direction === 'right'}
+				<ArrowBigLeft class="w-4 h-4 " />
+			{:else}
+				<ArrowBigRight class="w-4 h-4 " />
+			{/if}
 		</Button>
 		<Button
 			variant="secondary"
+			size="icon"
 			on:click={() => {
 				options.gap = options.gap === 25 ? 50 : 25;
 			}}
-			>Change gap
+		>
+			{#if options.gap === 25}
+				<UnfoldHorizontal class="w-4 h-4 " />
+			{:else}
+				<FoldHorizontal class="w-4 h-4 " />
+			{/if}
 		</Button>
 	</div>
 </div>

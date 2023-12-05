@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { CodeBlock } from 'svhighlight';
 	import Marqueeck from '$lib/package';
+	import PropsTable from '$lib/components/ui/PropsTable.svelte';
 </script>
 
 <h2>Options</h2>
@@ -37,7 +38,7 @@
 
 <h3>Default MarqueeckOptions</h3>
 <p>If you don't pass any options to the Marqueeck element, it will use the following options.</p>
-<blockquote class="mt-1">Editing documentation...</blockquote>
+<PropsTable />
 
 <h3>In depth</h3>
 <blockquote class="mt-1">Editing documentation...</blockquote>
