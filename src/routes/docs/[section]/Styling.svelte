@@ -37,7 +37,7 @@
 	paddings, using any CSS appropriate propreties.
 </p>
 <Marqueeck
-	--marqueeck-bg-color="hsl(var(--primary))"
+	--marqueeck-bg-color="hsl(var(--foreground))"
 	--marqueeck-text-color="hsl(var(--background))"
 	--marqueeck-padding-y="0.5rem">CSS Variables</Marqueeck
 >
@@ -45,7 +45,7 @@
 <CodeBlock
 	language="svelte"
 	code={`<Marqueeck 
-	--marqueeck-bg-color="rgb(164, 217, 205)" 
+	--marqueeck-bg-color="rgb(255, 255, 255)" 
 	--marqueeck-text-color="hsl(var(--background))"
 	--marqueeck-padding-y="0.5rem">
 	CSS Variables
@@ -55,7 +55,7 @@
 <CodeBlock
 	language="css"
 	code={`:root {
-	--marqueeck-bg-color: hsl(var(--foreground));
+	--marqueeck-bg-color: hsl(var(--primary));
 	--marqueeck-text-color: hsl(var(--background));
 	--marqueeck-padding-y: 0.5rem;
 }`}
@@ -129,8 +129,10 @@
 	display: flex;
 	flex-flow: row nowrap;
 	overflow: hidden;
+	position: relative;
 	width: 100%;
-	padding-inline: calc(var(--marqueeck-x-pad) * 1);
+	padding-inline: var(--marqueeck-x-pad);
+	padding-block: var(--marqueeck-padding-y);
 	background-color: var(--marqueeck-bg-color);
 	color: var(--marqueeck-text-color);
 }
@@ -163,17 +165,12 @@
 	position: absolute;
 	padding-inline: var(--marqueeck-x-pad);
 	width: fit-content;
-	background-color: inherit;
-	color: inherit;
-	height: 100%;
-	top: 0;
-	bottom: 0;
+	height: stretch;
 	display: inline-flex;
 	align-items: center;
 	background-color: inherit;
 	color: inherit;
 }
-/* todo: fix FOUC on load */
 
 [data-marqueeck-sticky].start {
 	padding-inline-start: calc(2 * var(--marqueeck-x-pad));
@@ -191,6 +188,5 @@
 	align-items: center;
 	user-select: none;
 }
-	
 `}
 />

@@ -8,6 +8,10 @@
 		string.charAt(0).toUpperCase() + string.slice(1);
 </script>
 
+<svelte:head>
+	<title>Marqueeck - Docs - {capitalizeFirstLetter(currentSection)}</title>
+</svelte:head>
+
 <section>
 	<h2>What does it do ?</h2>
 	<p>
@@ -23,10 +27,6 @@
 		<li>✅ Fully typed with TypeScript</li>
 	</ul>
 </section>
-
-<svelte:head>
-	<title>Marqueeck - Docs - {capitalizeFirstLetter(currentSection)}</title>
-</svelte:head>
 
 <section class="flex gap-1 p-1 overflow-x-auto rounded-lg bg-secondary">
 	{#each sections as section}

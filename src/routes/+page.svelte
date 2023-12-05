@@ -26,14 +26,6 @@
 			<li>✅ Fully typed with TypeScript</li>
 		</ul>
 	</div>
-
-	<div class="flex flex-col items-start gap-6 gap-y-3">
-		<Button variant="link" class="px-0 text-foreground hover:no-underline">
-			<ArrowDownWideNarrow class="w-4 h-4 mr-2" />
-			View the basic demos
-		</Button>
-		<Button href="/docs" class="no-underline" variant="outline">Read the documentation</Button>
-	</div>
 </section>
 
 <section class="overflow-hidden gap-y-2 content-grid !col-span-full py-14">

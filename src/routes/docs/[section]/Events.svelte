@@ -45,7 +45,7 @@
 	component.
 </p>
 <p>You can check the <code>event.detail</code> to see if it is true or false.</p>
-<blockquote class="mt-1">
+<blockquote class="mt-1 mb-3">
 	This event also triggerred when the component is focused, either if bu the mouse or the keyboard.
 </blockquote>
 
@@ -63,10 +63,15 @@
 
 <Marqueeck 
 	on:hover={ handleHover }
-	hoverClasses="bg-primary" >
+	hoverClasses="!text-bold">
 	<Content/>
 </Marqueeck>`}
 />
+<!-- todo: check reactiveHoverClasses -->
+<p class="mt-4">
+	Check the <a href="/docs/styling">Styling</a> page to set a global <code>hoverClasses</code> on the
+	wrapper.
+</p>
 
 <h2>let:hovered</h2>
 <p>
@@ -84,5 +89,5 @@
 	code={`<Marqueeck let:hovered>
 	{@const hoverClasses = hovered ? 'underline decoration-primary' : ''}
 	<p class={hoverClasses}>Hovered</p>
-</Marqueeck>`}
+	</Marqueeck>`}
 />
