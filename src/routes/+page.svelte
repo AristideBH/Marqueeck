@@ -4,7 +4,7 @@
 	import { ArrowDownWideNarrow } from 'lucide-svelte';
 
 	const description =
-		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque iste voluptatum, accusantium excepturi nam recusandae, quisquam alias doloremque nulla libero sunt ut. Perspiciatis, maxime qui consequuntur inventore dolor facere tempore?';
+		'Marqueeck is a performant full-featured marquee component for Svelte, style-free, highly customizable and dependency-less.';
 </script>
 
 <svelte:head>
@@ -13,9 +13,19 @@
 </svelte:head>
 
 <section class="flex flex-col items-start gap-4">
-	<p class="max-w-2xl lead text-balance">
-		{description}
-	</p>
+	<div>
+		<p class="max-w-2xl lead text-balance">
+			{description}
+		</p>
+		<ul>
+			<li>♾️ Auto-repeat slotted element (reactive to screen's width)</li>
+			<li>🎚️ Custom speed, direction, gap, padding, easing, animation, etc..</li>
+			<li>🎨 Minimal styling (come with your own classes)</li>
+			<li>✨ Custom interactions via event-forwarding (hover, click)</li>
+			<li>⚓ Optional sticky elements</li>
+			<li>✅ Fully typed with TypeScript</li>
+		</ul>
+	</div>
 
 	<div class="flex flex-col items-start gap-6 gap-y-3">
 		<Button variant="link" class="px-0 text-foreground hover:no-underline">

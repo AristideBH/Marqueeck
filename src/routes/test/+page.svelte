@@ -3,6 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { type MarqueeckOptions, type MarqueeckHoverEvent } from '$lib/package';
 	import { tweened } from 'svelte/motion';
+	import { slide } from 'svelte/transition';
 	import {
 		Play,
 		Pause,
@@ -19,7 +20,8 @@
 		speed: 75,
 		paddingX: 25,
 		hoverSpeed: 5,
-		speedFactor: () => $state
+		speedFactor: () => $state,
+		childTransition: slide
 	};
 
 	const handleHover = (e: MarqueeckHoverEvent) => {

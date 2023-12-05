@@ -39,6 +39,12 @@
 			defaultValue: 5
 		},
 		{
+			prop: 'easing',
+			type: 'function(t: number) ',
+			description: 'The easing function that applies to the speed changes.',
+			defaultValue: 50
+		},
+		{
 			prop: 'paddingX',
 			type: 'number (px)',
 			description: 'The default horizontal paddings for the marquee.',
@@ -48,6 +54,12 @@
 			prop: 'childStagger',
 			type: 'boolean',
 			description: 'Does your repeated element transitions are staggered ?',
+			defaultValue: true
+		},
+		{
+			prop: 'childTransition',
+			type: 'boolean',
+			description: 'The svelte transition applied to the repeated children',
 			defaultValue: true
 		},
 		{

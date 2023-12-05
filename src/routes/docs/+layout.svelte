@@ -3,16 +3,30 @@
 	import { sections } from './[section]';
 	import { page } from '$app/stores';
 	$: currentSection = $page.params.section;
+
+	const capitalizeFirstLetter = (string: string) =>
+		string.charAt(0).toUpperCase() + string.slice(1);
 </script>
 
 <section>
 	<h2>What does it do ?</h2>
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat fugit earum est quasi quisquam
-		voluptatum sint exercitationem ex qui ad alias a cumque molestias ab eveniet velit sed, officia
-		neque.
+		Marqueeck is a performant full-featured marquee component for Svelte, style-free, highly
+		customizable and dependency-less.
 	</p>
+	<ul>
+		<li>♾️ Auto-repeat slotted element (reactive to screen's width)</li>
+		<li>🎚️ Custom speed, direction, gap, padding, easing, animation, etc..</li>
+		<li>🎨 Minimal styling (come with your own classes)</li>
+		<li>✨ Custom interactions via event-forwarding (hover, click)</li>
+		<li>⚓ Optional sticky elements</li>
+		<li>✅ Fully typed with TypeScript</li>
+	</ul>
 </section>
+
+<svelte:head>
+	<title>Marqueeck - Docs - {capitalizeFirstLetter(currentSection)}</title>
+</svelte:head>
 
 <section class="flex gap-1 p-1 overflow-x-auto rounded-lg bg-secondary">
 	{#each sections as section}

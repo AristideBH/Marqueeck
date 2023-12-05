@@ -2,7 +2,7 @@
 	import '../app.pcss';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { Book, Github, BugPlay } from 'lucide-svelte';
+	import { Book, Github } from 'lucide-svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import { page } from '$app/stores';
 	import { version } from '$app/environment';
@@ -32,9 +32,6 @@
 				title="GitHub page"
 			>
 				<Github class="w-4 h-4 " />
-			</Button>
-			<Button variant="outline" class="no-underline" href="/test" size="icon" title="Test page">
-				<BugPlay class="w-4 h-4 " />
 			</Button>
 		</nav>
 	</div>

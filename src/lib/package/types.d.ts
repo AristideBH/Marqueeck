@@ -21,7 +21,7 @@ export type MarqueeckOptions = {
 }
 
 export type PublicMarqueeckOptions = Omit<Partial<MarqueeckOptions>,
-    "debug" | "still" | "childTransition" | 'isMouseIn' | 'currentSpeed'>
+    "debug" | "still" | 'isMouseIn' | 'currentSpeed'>
 
 export type Props = Partial<MarqueeckOptions>[]
 
