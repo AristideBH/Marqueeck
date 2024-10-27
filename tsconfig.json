@@ -11,8 +11,7 @@
 		"strict": true,
 		"moduleResolution": "node",
 		"allowImportingTsExtensions": true,
-		"declaration": true,
+		"declaration": true
 		// "emitDeclarationOnly": true,
-		"importsNotUsedAsValues": "preserve"
 	}
 }
