@@ -27,7 +27,7 @@
 	language="svelte"
 	code={`<script>
 	import Marqueeck from '@arisbh/marqueeck';
-<script/>
+</script>
 
 <Marqueeck> Hello Marqueeck </Marqueeck>`}
 />
